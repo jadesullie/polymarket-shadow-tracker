@@ -85503,15 +85503,15 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
         bullets.push(`${emoji} <b>${ourRedeems.length}</b> market${ourRedeems.length > 1 ? 's' : ''} resolved → <b>${ourRedeemPnl >= 0 ? '+' : ''}${fmtUsd(ourRedeemPnl)}</b> — ${topRedeems.join(', ')}`);
       }
       if (noCashCount > 0) {
-        bullets.push(`🚫 Missed <b>${noCashCount}</b> trade${noCashCount > 1 ? 's' : ''} — wallet's empty!`);
+        bullets.push(`🚫 Missed <b>${noCashCount}</b> trade${noCashCount > 1 ? 's' : ''} — insufficient cash`);
       }
       if (dupCount > 0) {
-        bullets.push(`♻️ Skipped <b>${dupCount}</b> duplicate${dupCount > 1 ? 's' : ''} — already riding ${dupCount > 1 ? 'those' : 'that'}`);
+        bullets.push(`♻️ Skipped <b>${dupCount}</b> duplicate${dupCount > 1 ? 's' : ''} — already in position`);
       }
       // Portfolio state
       const numPos = sim.positions.size;
       const roiEmoji = roi > 50 ? '🚀' : roi > 10 ? '📊' : roi > 0 ? '✅' : roi > -5 ? '😐' : '🩸';
-      const cashNote = sim.cash < 1 ? 'fully deployed 💪' : `${fmtUsd(sim.cash)} dry powder`;
+      const cashNote = sim.cash < 1 ? 'fully deployed' : `${fmtUsd(sim.cash)} cash available`;
       bullets.push(`${roiEmoji} Portfolio at <b>${fmtUsd(portfolioVal)}</b> (${roi >= 0 ? '+' : ''}${roi.toFixed(1)}%) — ${numPos} positions open, ${cashNote}`);
 
       if (enteredCount === 0 && ourSells.length === 0 && ourRedeems.length === 0) {
