@@ -3,7 +3,7 @@
     {
       "id": "mega-optimal",
       "name": "Mega Optimal \ud83c\udfc6",
-      "description": "Top traders, 3% dynamic, 10% trailing stop, 0.85/0.15 price exits, 90d limit",
+      "description": ">55% WR traders, 3% dynamic, 10% trailing stop, 0.85/0.15 price exits, 90d limit",
       "sizing": "dynamic",
       "sizePct": 3,
       "entryRule": "first-buy",
