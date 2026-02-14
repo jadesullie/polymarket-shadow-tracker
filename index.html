@@ -85444,13 +85444,7 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
       { label: '🐋 Whale Events', value: String(events.length), sub: fmtUsd(buyVol) + ' trader buys', color: 'var(--text-muted)' },
     ];
 
-    $('dsTotals').innerHTML = cards.map(c => `
-      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px">
-        <div style="font-size:0.7rem;color:var(--text-muted);margin-bottom:4px">${c.label}</div>
-        <div style="font-size:1rem;font-weight:700;font-family:'JetBrains Mono',monospace;color:${c.color || 'var(--text-primary)'}">${c.value}</div>
-        ${c.sub ? `<div style="font-size:0.7rem;color:var(--text-muted);margin-top:2px">${c.sub}</div>` : ''}
-      </div>
-    `).join('');
+    // Cards now integrated into collapsible summary below
 
     // Build trader/market link helpers
     const traderProfileMap = {};
