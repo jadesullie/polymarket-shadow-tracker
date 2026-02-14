@@ -363,6 +363,9 @@ canvas{width:100%!important;height:300px!important}
         <div style="grid-column:1/-1;font-size:0.75rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px">📊 Portfolio Simulation</div>
       </div>
 
+      <!-- Day Summary -->
+      <div id="dsDaySummary" style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;margin-bottom:16px;font-size:0.82rem;line-height:1.6;color:var(--text-secondary)"></div>
+
       <!-- Running Totals -->
       <div id="dsTotals" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:20px"></div>
 
@@ -85476,6 +85479,44 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
         ${c.sub ? `<div style="font-size:0.7rem;color:var(--text-muted);margin-top:2px">${c.sub}</div>` : ''}
       </div>
     `).join('');
+
+    // Day summary bullets
+    {
+      const bullets = [];
+      const locked = Array.from(sim.positions.values()).reduce((s, p) => s + p.cost, 0);
+      const portfolioVal = sim.cash + locked;
+      const roi = ((portfolioVal / getStartingCapital()) - 1) * 100;
+
+      if (enteredCount > 0) {
+        const topBuys = buys.filter(e => !e._skipped).slice(0, 3).map(e => e.m.length > 40 ? e.m.slice(0, 37) + '…' : e.m);
+        bullets.push(`Entered <b>${enteredCount}</b> new position${enteredCount > 1 ? 's' : ''} (${fmtUsd(ourBuyVol)} deployed)` +
+          (topBuys.length ? ` — ${topBuys.join(', ')}${enteredCount > 3 ? ` +${enteredCount - 3} more` : ''}` : ''));
+      }
+      if (ourSells.length > 0) {
+        const topSells = ourSells.slice(0, 3).map(e => e.m.length > 35 ? e.m.slice(0, 32) + '…' : e.m);
+        bullets.push(`Sold <b>${ourSells.length}</b> position${ourSells.length > 1 ? 's' : ''} for <b>${fmtUsd(ourSellPnl)}</b> P&L — ${topSells.join(', ')}`);
+      }
+      if (ourRedeems.length > 0) {
+        const topRedeems = ourRedeems.slice(0, 3).map(e => e.m.length > 35 ? e.m.slice(0, 32) + '…' : e.m);
+        bullets.push(`<b>${ourRedeems.length}</b> position${ourRedeems.length > 1 ? 's' : ''} redeemed for <b>${fmtUsd(ourRedeemPnl)}</b> P&L — ${topRedeems.join(', ')}`);
+      }
+      if (noCashCount > 0) {
+        bullets.push(`Skipped <b>${noCashCount}</b> trade${noCashCount > 1 ? 's' : ''} — insufficient cash`);
+      }
+      if (dupCount > 0) {
+        bullets.push(`Filtered <b>${dupCount}</b> duplicate${dupCount > 1 ? 's' : ''} (already in position)`);
+      }
+      // Portfolio state
+      const numPos = sim.positions.size;
+      bullets.push(`Portfolio: <b>${fmtUsd(portfolioVal)}</b> (${roi >= 0 ? '+' : ''}${roi.toFixed(1)}% ROI) — ${numPos} open position${numPos !== 1 ? 's' : ''}, ${fmtUsd(sim.cash)} cash`);
+
+      if (enteredCount === 0 && ourSells.length === 0 && ourRedeems.length === 0) {
+        bullets.unshift('Quiet day — no new entries or exits on our positions');
+      }
+
+      $('dsDaySummary').innerHTML = '<div style="font-size:0.7rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">📝 Day Summary</div>' +
+        '<ul style="margin:0;padding-left:18px;list-style:disc">' + bullets.map(b => `<li style="margin-bottom:4px">${b}</li>`).join('') + '</ul>';
+    }
 
     // Buys table
     $('dsBuyCount').textContent = `(${buys.length} — $${fmt(buyVol)})`;
