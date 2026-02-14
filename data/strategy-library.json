@@ -1,0 +1,114 @@
+{
+  "strategies": [
+    {
+      "id": "optimal",
+      "name": "Optimal ⭐",
+      "description": "First-buy, 2% dynamic, 30d stop-loss, copy sells",
+      "sizing": "dynamic",
+      "sizePct": 2,
+      "entryRule": "first-buy",
+      "exitRule": "stop-loss-30d",
+      "marketFilter": "none",
+      "highlighted": true
+    },
+    {
+      "id": "aggressive",
+      "name": "Aggressive",
+      "description": "First-buy, 5% dynamic, 30d stop-loss, copy sells",
+      "sizing": "dynamic",
+      "sizePct": 5,
+      "entryRule": "first-buy",
+      "exitRule": "stop-loss-30d",
+      "marketFilter": "none",
+      "highlighted": false
+    },
+    {
+      "id": "conservative",
+      "name": "Conservative",
+      "description": "First-buy, 0.5% dynamic, 30d stop-loss, copy sells",
+      "sizing": "dynamic",
+      "sizePct": 0.5,
+      "entryRule": "first-buy",
+      "exitRule": "stop-loss-30d",
+      "marketFilter": "none",
+      "highlighted": false
+    },
+    {
+      "id": "short-dated",
+      "name": "Short-dated ≤30d",
+      "description": "First-buy, 2% dynamic, only ≤30d markets, no force exits",
+      "sizing": "dynamic",
+      "sizePct": 2,
+      "entryRule": "first-buy",
+      "exitRule": "none",
+      "marketFilter": "short-30d",
+      "highlighted": false
+    },
+    {
+      "id": "sprint",
+      "name": "Sprint ≤14d",
+      "description": "First-buy, 1% dynamic, only ≤14d markets",
+      "sizing": "dynamic",
+      "sizePct": 1,
+      "entryRule": "first-buy",
+      "exitRule": "none",
+      "marketFilter": "sprint-14d",
+      "highlighted": false
+    },
+    {
+      "id": "every-buy",
+      "name": "Every-buy Baseline",
+      "description": "Every BUY = new position, 0.65% fixed, no stop-loss",
+      "sizing": "fixed",
+      "sizePct": 0.65,
+      "entryRule": "every-buy",
+      "exitRule": "none",
+      "marketFilter": "none",
+      "highlighted": false
+    },
+    {
+      "id": "first-buy-no-exits",
+      "name": "First-buy No Exits",
+      "description": "First-buy, 2% dynamic, no stop-loss, pure buy-and-hold",
+      "sizing": "dynamic",
+      "sizePct": 2,
+      "entryRule": "first-buy",
+      "exitRule": "none",
+      "marketFilter": "none",
+      "highlighted": false
+    },
+    {
+      "id": "proportional",
+      "name": "Proportional Copy",
+      "description": "Mirror trader buy size proportionally, 2% max cap",
+      "sizing": "proportional",
+      "sizePct": 2,
+      "entryRule": "first-buy",
+      "exitRule": "none",
+      "marketFilter": "none",
+      "highlighted": false
+    },
+    {
+      "id": "micro-lockup",
+      "name": "Micro Lockup",
+      "description": "First-buy, 0.1% sizing, no stop-loss, lock up in everything",
+      "sizing": "dynamic",
+      "sizePct": 0.1,
+      "entryRule": "first-buy",
+      "exitRule": "none",
+      "marketFilter": "none",
+      "highlighted": false
+    },
+    {
+      "id": "high-conviction",
+      "name": "High Conviction",
+      "description": "First-buy, 3% dynamic, 30d stop-loss, only >$1K trader bets",
+      "sizing": "dynamic",
+      "sizePct": 3,
+      "entryRule": "first-buy",
+      "exitRule": "stop-loss-30d",
+      "marketFilter": "high-conviction",
+      "highlighted": false
+    }
+  ]
+}

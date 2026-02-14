@@ -281,6 +281,16 @@ canvas{width:100%!important;height:300px!important}
 
   <!-- JOURNAL VIEW -->
   <div class="view" id="view-journal">
+    <!-- Strategy Library Selector -->
+    <div id="strategySelector" style="background:linear-gradient(135deg,rgba(124,92,252,0.08),rgba(74,222,128,0.05));border:1px solid rgba(124,92,252,0.2);border-radius:var(--radius);padding:16px 20px;margin-bottom:16px">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px">
+        <span style="font-size:0.9rem;font-weight:700;color:var(--accent)">📚 Strategy Library</span>
+        <select id="strategyDropdown" style="padding:8px 14px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);font-family:inherit;font-size:0.85rem;cursor:pointer;min-width:220px">
+        </select>
+      </div>
+      <div id="strategyDescription" style="font-size:0.78rem;color:var(--text-muted);font-style:italic"></div>
+      <div id="strategyQuickStats" style="display:flex;gap:16px;margin-top:8px;flex-wrap:wrap;font-size:0.75rem;font-family:'JetBrains Mono',monospace"></div>
+    </div>
     <!-- Sticky Step Controls - outside dayStepperJournal for proper sticky -->
     <div id="dsStickyNav" style="position:sticky;top:0;z-index:50;background:var(--bg-primary);padding:8px 0 8px 0;border-bottom:1px solid var(--border);margin-bottom:16px">
         <div style="display:flex;align-items:center;justify-content:center;gap:16px">
@@ -390,6 +400,34 @@ canvas{width:100%!important;height:300px!important}
 
   <!-- SIMULATION VIEW -->
   <div class="view" id="view-simulation">
+    <!-- STRATEGY LIBRARY COMPARISON -->
+    <div id="strategyLibrarySection" style="margin-bottom:40px">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap">
+        <h2 style="font-size:1.1rem;margin:0">📚 Strategy Library — 10 Strategies Compared</h2>
+        <div style="display:flex;gap:6px">
+          <button class="filter-btn strat-tf-btn active" data-tf="ALL" onclick="setStratTf('ALL')">ALL</button>
+          <button class="filter-btn strat-tf-btn" data-tf="1Y" onclick="setStratTf('1Y')">1Y</button>
+          <button class="filter-btn strat-tf-btn" data-tf="YTD" onclick="setStratTf('YTD')">YTD</button>
+        </div>
+      </div>
+      <div class="chart-container" style="margin-bottom:24px;position:relative">
+        <div class="chart-title">📈 Strategy Portfolio Curves — <span id="stratChartTfLabel">ALL</span></div>
+        <canvas id="stratLibChart" style="width:100%;height:350px"></canvas>
+        <div id="stratLibLegend" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;font-size:0.75rem"></div>
+      </div>
+      <div style="margin-bottom:24px">
+        <div style="font-size:0.95rem;font-weight:700;margin-bottom:12px">📊 Strategy Comparison</div>
+        <div class="table-wrap">
+          <table id="stratCompTable">
+            <thead><tr>
+              <th>Strategy</th><th>Return %</th><th>Final Value</th><th>Sharpe</th><th>Max DD</th><th>Win Rate</th><th>Trades</th><th>Avg Hold</th>
+            </tr></thead>
+            <tbody id="stratCompBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
     <!-- BET SIZE SIMULATOR -->
     <div id="betSizeSimulator">
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap">
@@ -83767,7 +83805,7 @@ function handleRoute() {
   const tab = document.querySelector(`[data-view="${view}"]`);
   if (tab) tab.classList.add('active');
   document.title = (view === 'dashboard' ? 'Dashboard' : view.charAt(0).toUpperCase() + view.slice(1)) + ' — Shadow Index';
-  if (view === 'simulation') { try { renderSimulation(); renderSimCompChart(); } catch(e) {} }
+  if (view === 'simulation') { try { renderSimulation(); renderSimCompChart(); renderStrategyLibrary(); } catch(e) {} }
   if (view === 'dashboard') { try { renderChart(); } catch(e) {} }
 }
 
@@ -84390,6 +84428,204 @@ function renderChart() {
 }
 
 window.addEventListener('resize', renderChart);
+
+// ═══════════════════ STRATEGY LIBRARY ═══════════════════
+const STRATEGY_LIBRARY = {"strategies":[{"id":"optimal","name":"Optimal ⭐","description":"First-buy, 2% dynamic, 30d stop-loss, copy sells","sizing":"dynamic","sizePct":2,"entryRule":"first-buy","exitRule":"stop-loss-30d","marketFilter":"none","highlighted":true},{"id":"aggressive","name":"Aggressive","description":"First-buy, 5% dynamic, 30d stop-loss, copy sells","sizing":"dynamic","sizePct":5,"entryRule":"first-buy","exitRule":"stop-loss-30d","marketFilter":"none","highlighted":false},{"id":"conservative","name":"Conservative","description":"First-buy, 0.5% dynamic, 30d stop-loss, copy sells","sizing":"dynamic","sizePct":0.5,"entryRule":"first-buy","exitRule":"stop-loss-30d","marketFilter":"none","highlighted":false},{"id":"short-dated","name":"Short-dated ≤30d","description":"First-buy, 2% dynamic, only ≤30d markets, no force exits","sizing":"dynamic","sizePct":2,"entryRule":"first-buy","exitRule":"none","marketFilter":"short-30d","highlighted":false},{"id":"sprint","name":"Sprint ≤14d","description":"First-buy, 1% dynamic, only ≤14d markets","sizing":"dynamic","sizePct":1,"entryRule":"first-buy","exitRule":"none","marketFilter":"sprint-14d","highlighted":false},{"id":"every-buy","name":"Every-buy Baseline","description":"Every BUY = new position, 0.65% fixed, no stop-loss","sizing":"fixed","sizePct":0.65,"entryRule":"every-buy","exitRule":"none","marketFilter":"none","highlighted":false},{"id":"first-buy-no-exits","name":"First-buy No Exits","description":"First-buy, 2% dynamic, no stop-loss, pure buy-and-hold","sizing":"dynamic","sizePct":2,"entryRule":"first-buy","exitRule":"none","marketFilter":"none","highlighted":false},{"id":"proportional","name":"Proportional Copy","description":"Mirror trader buy size proportionally, 2% max cap","sizing":"proportional","sizePct":2,"entryRule":"first-buy","exitRule":"none","marketFilter":"none","highlighted":false},{"id":"micro-lockup","name":"Micro Lockup","description":"First-buy, 0.1% sizing, no stop-loss, lock up in everything","sizing":"dynamic","sizePct":0.1,"entryRule":"first-buy","exitRule":"none","marketFilter":"none","highlighted":false},{"id":"high-conviction","name":"High Conviction","description":"First-buy, 3% dynamic, 30d stop-loss, only >$1K trader bets","sizing":"dynamic","sizePct":3,"entryRule":"first-buy","exitRule":"stop-loss-30d","marketFilter":"high-conviction","highlighted":false}]};
+let STRATEGY_RESULTS = null;
+let stratSelectedTf = 'ALL';
+const STRAT_COLORS = ['#00e676','#f87171','#60a5fa','#f5c518','#f472b6','#fb923c','#22d3ee','#a78bfa','#94a3b8','#4ade80'];
+
+// Load strategy results lazily (inline or fetch)
+(async function loadStrategyResults() {
+  try {
+    const resp = await fetch('data/strategy-results.json');
+    STRATEGY_RESULTS = await resp.json();
+    renderStrategyLibrary();
+    initStrategySelector();
+  } catch(e) {
+    console.warn('Strategy results not found, skipping library', e);
+  }
+})();
+
+function fmtBig(n) {
+  if (n == null || isNaN(n)) return '—';
+  const abs = Math.abs(n);
+  if (abs >= 1e18) return (n/1e18).toFixed(1)+'E';
+  if (abs >= 1e15) return (n/1e15).toFixed(1)+'Q';
+  if (abs >= 1e12) return (n/1e12).toFixed(1)+'T';
+  if (abs >= 1e9) return (n/1e9).toFixed(1)+'B';
+  if (abs >= 1e6) return (n/1e6).toFixed(1)+'M';
+  if (abs >= 1e3) return (n/1e3).toFixed(1)+'K';
+  return n.toFixed(0);
+}
+
+function initStrategySelector() {
+  const dropdown = document.getElementById('strategyDropdown');
+  if (!dropdown || !STRATEGY_LIBRARY) return;
+  dropdown.innerHTML = STRATEGY_LIBRARY.strategies.map(s =>
+    `<option value="${s.id}" ${s.highlighted ? 'selected' : ''}>${s.highlighted ? '⭐ ' : ''}${s.name} — ${s.sizePct}% ${s.sizing}</option>`
+  ).join('');
+  dropdown.addEventListener('change', updateStrategySelector);
+  updateStrategySelector();
+}
+
+function updateStrategySelector() {
+  const dropdown = document.getElementById('strategyDropdown');
+  const id = dropdown.value;
+  const strat = STRATEGY_LIBRARY.strategies.find(s => s.id === id);
+  const desc = document.getElementById('strategyDescription');
+  const stats = document.getElementById('strategyQuickStats');
+  if (strat) desc.textContent = strat.description;
+  if (STRATEGY_RESULTS && STRATEGY_RESULTS[id]) {
+    const s = STRATEGY_RESULTS[id].ALL.stats;
+    stats.innerHTML = `
+      <span style="color:var(--green)">Return: ${fmtBig(s.return)}%</span>
+      <span>Sharpe: ${s.sharpe}</span>
+      <span>MaxDD: ${s.maxDD}%</span>
+      <span>Win: ${s.winRate}%</span>
+      <span>${s.trades} trades</span>
+      <span>Avg hold: ${s.avgHold}d</span>
+    `;
+  }
+}
+
+function setStratTf(tf) {
+  stratSelectedTf = tf;
+  document.querySelectorAll('.strat-tf-btn').forEach(b => b.classList.toggle('active', b.dataset.tf === tf));
+  document.getElementById('stratChartTfLabel').textContent = tf;
+  renderStrategyLibrary();
+}
+
+function renderStrategyLibrary() {
+  if (!STRATEGY_RESULTS) return;
+  renderStratChart();
+  renderStratTable();
+}
+
+function renderStratChart() {
+  const canvas = document.getElementById('stratLibChart');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.parentElement.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = 350 * dpr;
+  canvas.style.height = '350px';
+  ctx.scale(dpr, dpr);
+  const W = rect.width, H = 350;
+  const padL = 70, padR = 20, padT = 20, padB = 30;
+
+  // Collect all curves, use log scale since values span many orders of magnitude
+  const allCurves = STRATEGY_LIBRARY.strategies.map((s, i) => {
+    const data = STRATEGY_RESULTS[s.id]?.[stratSelectedTf];
+    if (!data || !data.curve || data.curve.length < 2) return null;
+    return { name: s.name, color: STRAT_COLORS[i], curve: data.curve, highlighted: s.highlighted, stats: data.stats };
+  }).filter(Boolean);
+
+  if (allCurves.length === 0) return;
+
+  // Find min/max across all curves (log scale)
+  let allVals = [];
+  allCurves.forEach(c => c.curve.forEach(p => { if (p.value > 0) allVals.push(Math.log10(p.value)); }));
+  let minLog = Math.min(...allVals), maxLog = Math.max(...allVals);
+  if (maxLog - minLog < 1) { minLog -= 0.5; maxLog += 0.5; }
+  const logRange = maxLog - minLog;
+
+  // Find date range
+  let allDates = new Set();
+  allCurves.forEach(c => c.curve.forEach(p => allDates.add(p.date)));
+  allDates = [...allDates].sort();
+  const dateMin = allDates[0], dateMax = allDates[allDates.length - 1];
+
+  const xScale = (d) => padL + (allDates.indexOf(d) / (allDates.length - 1)) * (W - padL - padR);
+  const yScale = (v) => padT + (1 - (Math.log10(Math.max(v, 1)) - minLog) / logRange) * (H - padT - padB);
+
+  // Background
+  ctx.fillStyle = 'rgba(10,10,15,0.8)';
+  ctx.fillRect(0, 0, W, H);
+
+  // Grid lines (log scale)
+  ctx.strokeStyle = 'rgba(42,42,58,0.5)';
+  ctx.lineWidth = 0.5;
+  ctx.font = '10px JetBrains Mono';
+  ctx.fillStyle = '#6868a0';
+  ctx.textAlign = 'right';
+  for (let logV = Math.ceil(minLog); logV <= Math.floor(maxLog); logV++) {
+    const y = padT + (1 - (logV - minLog) / logRange) * (H - padT - padB);
+    ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(W - padR, y); ctx.stroke();
+    ctx.fillText('$' + fmtBig(Math.pow(10, logV)), padL - 5, y + 3);
+  }
+
+  // Date labels
+  ctx.textAlign = 'center';
+  const labelCount = Math.min(6, allDates.length);
+  for (let i = 0; i < labelCount; i++) {
+    const idx = Math.floor(i * (allDates.length - 1) / (labelCount - 1));
+    const x = padL + (idx / (allDates.length - 1)) * (W - padL - padR);
+    ctx.fillText(allDates[idx], x, H - 5);
+  }
+
+  // Draw curves (non-highlighted first, then highlighted)
+  const sorted = [...allCurves].sort((a, b) => (a.highlighted ? 1 : 0) - (b.highlighted ? 1 : 0));
+  for (const c of sorted) {
+    ctx.beginPath();
+    ctx.strokeStyle = c.color;
+    ctx.lineWidth = c.highlighted ? 3 : 1.5;
+    ctx.globalAlpha = c.highlighted ? 1 : 0.7;
+    let started = false;
+    // Build a date->value map for this curve
+    const dateMap = {};
+    c.curve.forEach(p => dateMap[p.date] = p.value);
+    for (let i = 0; i < allDates.length; i++) {
+      const val = dateMap[allDates[i]];
+      if (val === undefined) continue;
+      const x = padL + (i / (allDates.length - 1)) * (W - padL - padR);
+      const y = yScale(val);
+      if (!started) { ctx.moveTo(x, y); started = true; }
+      else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+  }
+
+  // Legend
+  const legend = document.getElementById('stratLibLegend');
+  if (legend) {
+    legend.innerHTML = allCurves.map(c => {
+      const ret = c.stats?.return;
+      const retStr = ret !== undefined ? ` (${fmtBig(ret)}%)` : '';
+      return `<span style="display:flex;align-items:center;gap:4px;${c.highlighted ? 'font-weight:700' : ''}">
+        <span style="width:12px;height:3px;background:${c.color};border-radius:2px;display:inline-block;${c.highlighted ? 'height:4px' : ''}"></span>
+        ${c.name}<span style="color:${ret >= 0 ? 'var(--green)' : 'var(--red)'}">${retStr}</span>
+      </span>`;
+    }).join('');
+  }
+}
+
+function renderStratTable() {
+  const tbody = document.getElementById('stratCompBody');
+  if (!tbody) return;
+  tbody.innerHTML = STRATEGY_LIBRARY.strategies.map((s, i) => {
+    const data = STRATEGY_RESULTS[s.id]?.[stratSelectedTf];
+    if (!data) return '';
+    const st = data.stats;
+    const retColor = st.return >= 0 ? 'var(--green)' : 'var(--red)';
+    return `<tr style="${s.highlighted ? 'background:rgba(0,230,118,0.06)' : ''}">
+      <td style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:${STRAT_COLORS[i]};display:inline-block"></span>${s.highlighted ? '⭐ ' : ''}${s.name}</td>
+      <td class="mono" style="color:${retColor}">${fmtBig(st.return)}%</td>
+      <td class="mono">$${fmtBig(st.finalValue)}</td>
+      <td class="mono">${st.sharpe}</td>
+      <td class="mono" style="color:var(--red)">${st.maxDD}%</td>
+      <td class="mono">${st.winRate}%</td>
+      <td class="mono">${st.trades.toLocaleString()}</td>
+      <td class="mono">${st.avgHold}d</td>
+    </tr>`;
+  }).join('');
+}
+
+window.addEventListener('resize', () => {
+  if (document.getElementById('view-simulation')?.classList.contains('active')) renderStratChart();
+});
 
 // ═══════════════════ BET SIZE SIMULATOR ═══════════════════
 const BET_SIZE_DATA = {"YTD":{"1":{"betSize":1,"pctOfPortfolio":"0.0","finalValue":18993,"totalReturn":"89.9","entered":1539,"skipped":0,"total":1539,"hitRate":"100.0","winRate":"60.2","peakConcurrent":245,"maxDD":"0.1","avgIdleCash":"99.6"},"2":{"betSize":2,"pctOfPortfolio":"0.0","finalValue":27986,"totalReturn":"179.9","entered":1539,"skipped":0,"total":1539,"hitRate":"100.0","winRate":"60.2","peakConcurrent":245,"maxDD":"0.2","avgIdleCash":"99.3"},"5":{"betSize":5,"pctOfPortfolio":"0.1","finalValue":54965,"totalReturn":"449.7","entered":1539,"skipped":0,"total":1539,"hitRate":"100.0","winRate":"60.2","peakConcurrent":245,"maxDD":"0.3","avgIdleCash":"98.2"},"10":{"betSize":10,"pctOfPortfolio":"0.1","finalValue":99930,"totalReturn":"899.3","entered":1539,"skipped":0,"total":1539,"hitRate":"100.0","winRate":"60.2","peakConcurrent":245,"maxDD":"0.5","avgIdleCash":"96.4"},"15":{"betSize":15,"pctOfPortfolio":"0.1","finalValue":144896,"totalReturn":"1349.0","entered":1539,"skipped":0,"total":1539,"hitRate":"100.0","winRate":"60.2","peakConcurrent":245,"maxDD":"0.7","avgIdleCash":"94.6"},"20":{"betSize":20,"pctOfPortfolio":"0.2","finalValue":189861,"totalReturn":"1798.6","entered":1539,"skipped":0,"total":1539,"hitRate":"100.0","winRate":"60.2","peakConcurrent":245,"maxDD":"0.8","avgIdleCash":"92.8"},"25":{"betSize":25,"pctOfPortfolio":"0.3","finalValue":234826,"totalReturn":"2248.3","entered":1539,"skipped":0,"total":1539,"hitRate":"100.0","winRate":"60.2","peakConcurrent":245,"maxDD":"1.0","avgIdleCash":"91.0"},"30":{"betSize":30,"pctOfPortfolio":"0.3","finalValue":279791,"totalReturn":"2697.9","entered":1539,"skipped":0,"total":1539,"hitRate":"100.0","winRate":"60.2","peakConcurrent":245,"maxDD":"1.1","avgIdleCash":"89.2"},"40":{"betSize":40,"pctOfPortfolio":"0.4","finalValue":369722,"totalReturn":"3597.2","entered":1539,"skipped":0,"total":1539,"hitRate":"100.0","winRate":"60.2","peakConcurrent":245,"maxDD":"1.3","avgIdleCash":"85.6"},"50":{"betSize":50,"pctOfPortfolio":"0.5","finalValue":459652,"totalReturn":"4496.5","entered":1539,"skipped":0,"total":1539,"hitRate":"100.0","winRate":"60.2","peakConcurrent":245,"maxDD":"1.5","avgIdleCash":"82.0"},"65":{"betSize":65,"pctOfPortfolio":"0.7","finalValue":594548,"totalReturn":"5845.5","entered":1539,"skipped":0,"total":1539,"hitRate":"100.0","winRate":"60.2","peakConcurrent":245,"maxDD":"1.9","avgIdleCash":"76.6"},"75":{"betSize":75,"pctOfPortfolio":"0.8","finalValue":684585,"totalReturn":"6745.8","entered":1533,"skipped":6,"total":1539,"hitRate":"99.6","winRate":"60.2","peakConcurrent":243,"maxDD":"2.1","avgIdleCash":"73.0"},"100":{"betSize":100,"pctOfPortfolio":"1.0","finalValue":902810,"totalReturn":"8928.1","entered":1486,"skipped":53,"total":1539,"hitRate":"96.6","winRate":"59.8","peakConcurrent":237,"maxDD":"3.3","avgIdleCash":"64.0"},"125":{"betSize":125,"pctOfPortfolio":"1.3","finalValue":954168,"totalReturn":"9441.7","entered":1251,"skipped":288,"total":1539,"hitRate":"81.3","winRate":"59.7","peakConcurrent":184,"maxDD":"4.1","avgIdleCash":"61.3"},"150":{"betSize":150,"pctOfPortfolio":"1.5","finalValue":1141626,"totalReturn":"11316.3","entered":1174,"skipped":365,"total":1539,"hitRate":"76.3","winRate":"59.5","peakConcurrent":180,"maxDD":"4.8","avgIdleCash":"55.0"},"200":{"betSize":200,"pctOfPortfolio":"2.0","finalValue":1519796,"totalReturn":"15098.0","entered":1122,"skipped":417,"total":1539,"hitRate":"72.9","winRate":"59.8","peakConcurrent":181,"maxDD":"7.1","avgIdleCash":"40.0"},"250":{"betSize":250,"pctOfPortfolio":"2.5","finalValue":1895948,"totalReturn":"18859.5","entered":1063,"skipped":476,"total":1539,"hitRate":"69.1","winRate":"59.6","peakConcurrent":176,"maxDD":"7.9","avgIdleCash":"25.0"},"300":{"betSize":300,"pctOfPortfolio":"3.0","finalValue":2273484,"totalReturn":"22634.8","entered":1048,"skipped":491,"total":1539,"hitRate":"68.1","winRate":"59.8","peakConcurrent":175,"maxDD":"8.0","avgIdleCash":"10.0"},"400":{"betSize":400,"pctOfPortfolio":"4.0","finalValue":3021269,"totalReturn":"30112.7","entered":962,"skipped":577,"total":1539,"hitRate":"62.5","winRate":"59.8","peakConcurrent":163,"maxDD":"8.6","avgIdleCash":"-16.0"},"500":{"betSize":500,"pctOfPortfolio":"5.0","finalValue":3759786,"totalReturn":"37497.9","entered":909,"skipped":630,"total":1539,"hitRate":"59.1","winRate":"59.4","peakConcurrent":161,"maxDD":"7.2","avgIdleCash":"-45.0"},"750":{"betSize":750,"pctOfPortfolio":"7.5","finalValue":5630086,"totalReturn":"56200.9","entered":862,"skipped":677,"total":1539,"hitRate":"56.0","winRate":"59.7","peakConcurrent":158,"maxDD":"9.6","avgIdleCash":"-117.5"},"1000":{"betSize":1000,"pctOfPortfolio":"10.0","finalValue":7505184,"totalReturn":"74951.8","entered":843,"skipped":696,"total":1539,"hitRate":"54.8","winRate":"59.9","peakConcurrent":155,"maxDD":"12.6","avgIdleCash":"-190.0"}},"3M":{"1":{"betSize":1,"pctOfPortfolio":"0.0","finalValue":20971,"totalReturn":"109.7","entered":2112,"skipped":0,"total":2112,"hitRate":"100.0","winRate":"60.8","peakConcurrent":266,"maxDD":"0.2","avgIdleCash":"99.6"},"2":{"betSize":2,"pctOfPortfolio":"0.0","finalValue":31943,"totalReturn":"219.4","entered":2112,"skipped":0,"total":2112,"hitRate":"100.0","winRate":"60.8","peakConcurrent":266,"maxDD":"0.5","avgIdleCash":"99.3"},"5":{"betSize":5,"pctOfPortfolio":"0.1","finalValue":64857,"totalReturn":"548.6","entered":2112,"skipped":0,"total":2112,"hitRate":"100.0","winRate":"60.8","peakConcurrent":266,"maxDD":"1.2","avgIdleCash":"98.2"},"10":{"betSize":10,"pctOfPortfolio":"0.1","finalValue":119714,"totalReturn":"1097.1","entered":2112,"skipped":0,"total":2112,"hitRate":"100.0","winRate":"60.8","peakConcurrent":266,"maxDD":"2.3","avgIdleCash":"96.4"},"15":{"betSize":15,"pctOfPortfolio":"0.1","finalValue":174571,"totalReturn":"1645.7","entered":2112,"skipped":0,"total":2112,"hitRate":"100.0","winRate":"60.8","peakConcurrent":266,"maxDD":"3.3","avgIdleCash":"94.6"},"20":{"betSize":20,"pctOfPortfolio":"0.2","finalValue":229428,"totalReturn":"2194.3","entered":2112,"skipped":0,"total":2112,"hitRate":"100.0","winRate":"60.8","peakConcurrent":266,"maxDD":"4.3","avgIdleCash":"92.8"},"25":{"betSize":25,"pctOfPortfolio":"0.3","finalValue":284285,"totalReturn":"2742.8","entered":2112,"skipped":0,"total":2112,"hitRate":"100.0","winRate":"60.8","peakConcurrent":266,"maxDD":"5.2","avgIdleCash":"91.0"},"30":{"betSize":30,"pctOfPortfolio":"0.3","finalValue":339142,"totalReturn":"3291.4","entered":2112,"skipped":0,"total":2112,"hitRate":"100.0","winRate":"60.8","peakConcurrent":266,"maxDD":"6.0","avgIdleCash":"89.2"},"40":{"betSize":40,"pctOfPortfolio":"0.4","finalValue":448856,"totalReturn":"4388.6","entered":2112,"skipped":0,"total":2112,"hitRate":"100.0","winRate":"60.8","peakConcurrent":266,"maxDD":"7.5","avgIdleCash":"85.6"},"50":{"betSize":50,"pctOfPortfolio":"0.5","finalValue":558570,"totalReturn":"5485.7","entered":2112,"skipped":0,"total":2112,"hitRate":"100.0","winRate":"60.8","peakConcurrent":266,"maxDD":"8.8","avgIdleCash":"82.0"},"65":{"betSize":65,"pctOfPortfolio":"0.7","finalValue":723140,"totalReturn":"7131.4","entered":2112,"skipped":0,"total":2112,"hitRate":"100.0","winRate":"60.8","peakConcurrent":266,"maxDD":"10.6","avgIdleCash":"76.6"},"75":{"betSize":75,"pctOfPortfolio":"0.8","finalValue":832854,"totalReturn":"8228.5","entered":2112,"skipped":0,"total":2112,"hitRate":"100.0","winRate":"60.8","peakConcurrent":266,"maxDD":"11.6","avgIdleCash":"73.0"},"100":{"betSize":100,"pctOfPortfolio":"1.0","finalValue":1107139,"totalReturn":"10971.4","entered":2112,"skipped":0,"total":2112,"hitRate":"100.0","winRate":"60.8","peakConcurrent":266,"maxDD":"13.7","avgIdleCash":"64.0"},"125":{"betSize":125,"pctOfPortfolio":"1.3","finalValue":1381424,"totalReturn":"13714.2","entered":2112,"skipped":0,"total":2112,"hitRate":"100.0","winRate":"60.8","peakConcurrent":266,"maxDD":"15.5","avgIdleCash":"55.0"},"150":{"betSize":150,"pctOfPortfolio":"1.5","finalValue":1655584,"totalReturn":"16455.8","entered":2111,"skipped":1,"total":2112,"hitRate":"100.0","winRate":"60.8","peakConcurrent":266,"maxDD":"16.9","avgIdleCash":"46.0"},"200":{"betSize":200,"pctOfPortfolio":"2.0","finalValue":2202664,"totalReturn":"21926.6","entered":2075,"skipped":37,"total":2112,"hitRate":"98.2","winRate":"60.8","peakConcurrent":266,"maxDD":"20.7","avgIdleCash":"28.0"},"250":{"betSize":250,"pctOfPortfolio":"2.5","finalValue":2751264,"totalReturn":"27412.6","entered":2066,"skipped":46,"total":2112,"hitRate":"97.8","winRate":"60.7","peakConcurrent":265,"maxDD":"20.5","avgIdleCash":"10.0"},"300":{"betSize":300,"pctOfPortfolio":"3.0","finalValue":3300014,"totalReturn":"32900.1","entered":2050,"skipped":62,"total":2112,"hitRate":"97.1","winRate":"60.7","peakConcurrent":265,"maxDD":"19.9","avgIdleCash":"-8.0"},"400":{"betSize":400,"pctOfPortfolio":"4.0","finalValue":4224040,"totalReturn":"42140.4","entered":2034,"skipped":78,"total":2112,"hitRate":"96.3","winRate":"60.6","peakConcurrent":265,"maxDD":"22.9","avgIdleCash":"-44.0"},"500":{"betSize":500,"pctOfPortfolio":"5.0","finalValue":5258642,"totalReturn":"52486.4","entered":1994,"skipped":118,"total":2112,"hitRate":"94.4","winRate":"60.3","peakConcurrent":264,"maxDD":"27.2","avgIdleCash":"-80.0"},"750":{"betSize":750,"pctOfPortfolio":"7.5","finalValue":7907614,"totalReturn":"78976.1","entered":2005,"skipped":107,"total":2112,"hitRate":"94.9","winRate":"60.5","peakConcurrent":264,"maxDD":"28.2","avgIdleCash":"-170.0"},"1000":{"betSize":1000,"pctOfPortfolio":"10.0","finalValue":10508699,"totalReturn":"104987.0","entered":1967,"skipped":145,"total":2112,"hitRate":"93.1","winRate":"60.4","peakConcurrent":263,"maxDD":"30.3","avgIdleCash":"-260.0"}},"6M":{"1":{"betSize":1,"pctOfPortfolio":"0.0","finalValue":21586,"totalReturn":"115.9","entered":2421,"skipped":0,"total":2421,"hitRate":"100.0","winRate":"62.0","peakConcurrent":270,"maxDD":"0.2","avgIdleCash":"99.6"},"2":{"betSize":2,"pctOfPortfolio":"0.0","finalValue":33171,"totalReturn":"231.7","entered":2421,"skipped":0,"total":2421,"hitRate":"100.0","winRate":"62.0","peakConcurrent":270,"maxDD":"0.4","avgIdleCash":"99.3"},"5":{"betSize":5,"pctOfPortfolio":"0.1","finalValue":67928,"totalReturn":"579.3","entered":2421,"skipped":0,"total":2421,"hitRate":"100.0","winRate":"62.0","peakConcurrent":270,"maxDD":"1.0","avgIdleCash":"98.2"},"10":{"betSize":10,"pctOfPortfolio":"0.1","finalValue":125856,"totalReturn":"1158.6","entered":2421,"skipped":0,"total":2421,"hitRate":"100.0","winRate":"62.0","peakConcurrent":270,"maxDD":"1.8","avgIdleCash":"96.4"},"15":{"betSize":15,"pctOfPortfolio":"0.1","finalValue":183784,"totalReturn":"1737.8","entered":2421,"skipped":0,"total":2421,"hitRate":"100.0","winRate":"62.0","peakConcurrent":270,"maxDD":"2.6","avgIdleCash":"94.6"},"20":{"betSize":20,"pctOfPortfolio":"0.2","finalValue":241711,"totalReturn":"2317.1","entered":2421,"skipped":0,"total":2421,"hitRate":"100.0","winRate":"62.0","peakConcurrent":270,"maxDD":"3.2","avgIdleCash":"92.8"},"25":{"betSize":25,"pctOfPortfolio":"0.3","finalValue":299639,"totalReturn":"2896.4","entered":2421,"skipped":0,"total":2421,"hitRate":"100.0","winRate":"62.0","peakConcurrent":270,"maxDD":"3.7","avgIdleCash":"91.0"},"30":{"betSize":30,"pctOfPortfolio":"0.3","finalValue":357567,"totalReturn":"3475.7","entered":2421,"skipped":0,"total":2421,"hitRate":"100.0","winRate":"62.0","peakConcurrent":270,"maxDD":"4.2","avgIdleCash":"89.2"},"40":{"betSize":40,"pctOfPortfolio":"0.4","finalValue":473423,"totalReturn":"4634.2","entered":2421,"skipped":0,"total":2421,"hitRate":"100.0","winRate":"62.0","peakConcurrent":270,"maxDD":"5.1","avgIdleCash":"85.6"},"50":{"betSize":50,"pctOfPortfolio":"0.5","finalValue":589278,"totalReturn":"5792.8","entered":2421,"skipped":0,"total":2421,"hitRate":"100.0","winRate":"62.0","peakConcurrent":270,"maxDD":"5.7","avgIdleCash":"82.0"},"65":{"betSize":65,"pctOfPortfolio":"0.7","finalValue":763062,"totalReturn":"7530.6","entered":2421,"skipped":0,"total":2421,"hitRate":"100.0","winRate":"62.0","peakConcurrent":270,"maxDD":"6.5","avgIdleCash":"76.6"},"75":{"betSize":75,"pctOfPortfolio":"0.8","finalValue":878918,"totalReturn":"8689.2","entered":2421,"skipped":0,"total":2421,"hitRate":"100.0","winRate":"62.0","peakConcurrent":270,"maxDD":"7.0","avgIdleCash":"73.0"},"100":{"betSize":100,"pctOfPortfolio":"1.0","finalValue":1168557,"totalReturn":"11585.6","entered":2421,"skipped":0,"total":2421,"hitRate":"100.0","winRate":"62.0","peakConcurrent":270,"maxDD":"7.8","avgIdleCash":"64.0"},"125":{"betSize":125,"pctOfPortfolio":"1.3","finalValue":1458196,"totalReturn":"14482.0","entered":2421,"skipped":0,"total":2421,"hitRate":"100.0","winRate":"62.0","peakConcurrent":270,"maxDD":"8.4","avgIdleCash":"55.0"},"150":{"betSize":150,"pctOfPortfolio":"1.5","finalValue":1747835,"totalReturn":"17378.4","entered":2421,"skipped":0,"total":2421,"hitRate":"100.0","winRate":"62.0","peakConcurrent":270,"maxDD":"8.9","avgIdleCash":"46.0"},"200":{"betSize":200,"pctOfPortfolio":"2.0","finalValue":2325888,"totalReturn":"23158.9","entered":2380,"skipped":41,"total":2421,"hitRate":"98.3","winRate":"62.0","peakConcurrent":270,"maxDD":"11.1","avgIdleCash":"28.0"},"250":{"betSize":250,"pctOfPortfolio":"2.5","finalValue":2894017,"totalReturn":"28840.2","entered":2344,"skipped":77,"total":2421,"hitRate":"96.8","winRate":"61.9","peakConcurrent":270,"maxDD":"13.0","avgIdleCash":"10.0"},"300":{"betSize":300,"pctOfPortfolio":"3.0","finalValue":2829488,"totalReturn":"28194.9","entered":1689,"skipped":732,"total":2421,"hitRate":"69.8","winRate":"61.6","peakConcurrent":246,"maxDD":"22.4","avgIdleCash":"-8.0"},"400":{"betSize":400,"pctOfPortfolio":"4.0","finalValue":3023744,"totalReturn":"30137.4","entered":1076,"skipped":1345,"total":2421,"hitRate":"44.4","winRate":"60.5","peakConcurrent":169,"maxDD":"24.1","avgIdleCash":"-20.0"},"500":{"betSize":500,"pctOfPortfolio":"5.0","finalValue":3763350,"totalReturn":"37533.5","entered":958,"skipped":1463,"total":2421,"hitRate":"39.6","winRate":"60.4","peakConcurrent":160,"maxDD":"25.5","avgIdleCash":"-50.0"},"750":{"betSize":750,"pctOfPortfolio":"7.5","finalValue":5629462,"totalReturn":"56194.6","entered":839,"skipped":1582,"total":2421,"hitRate":"34.7","winRate":"60.1","peakConcurrent":154,"maxDD":"23.7","avgIdleCash":"-125.0"},"1000":{"betSize":1000,"pctOfPortfolio":"10.0","finalValue":7450352,"totalReturn":"74403.5","entered":682,"skipped":1739,"total":2421,"hitRate":"28.2","winRate":"60.6","peakConcurrent":139,"maxDD":"28.3","avgIdleCash":"-180.0"}},"1Y":{"1":{"betSize":1,"pctOfPortfolio":"0.0","finalValue":109938,"totalReturn":"999.4","entered":3033,"skipped":0,"total":3033,"hitRate":"100.0","winRate":"60.3","peakConcurrent":270,"maxDD":"0.2","avgIdleCash":"99.6"},"2":{"betSize":2,"pctOfPortfolio":"0.0","finalValue":209876,"totalReturn":"1998.8","entered":3033,"skipped":0,"total":3033,"hitRate":"100.0","winRate":"60.3","peakConcurrent":270,"maxDD":"0.3","avgIdleCash":"99.3"},"5":{"betSize":5,"pctOfPortfolio":"0.1","finalValue":509690,"totalReturn":"4996.9","entered":3033,"skipped":0,"total":3033,"hitRate":"100.0","winRate":"60.3","peakConcurrent":270,"maxDD":"0.8","avgIdleCash":"98.2"},"10":{"betSize":10,"pctOfPortfolio":"0.1","finalValue":1009379,"totalReturn":"9993.8","entered":3033,"skipped":0,"total":3033,"hitRate":"100.0","winRate":"60.3","peakConcurrent":270,"maxDD":"1.7","avgIdleCash":"96.4"},"15":{"betSize":15,"pctOfPortfolio":"0.1","finalValue":1509069,"totalReturn":"14990.7","entered":3033,"skipped":0,"total":3033,"hitRate":"100.0","winRate":"60.3","peakConcurrent":270,"maxDD":"2.5","avgIdleCash":"94.6"},"20":{"betSize":20,"pctOfPortfolio":"0.2","finalValue":2008758,"totalReturn":"19987.6","entered":3033,"skipped":0,"total":3033,"hitRate":"100.0","winRate":"60.3","peakConcurrent":270,"maxDD":"3.2","avgIdleCash":"92.8"},"25":{"betSize":25,"pctOfPortfolio":"0.3","finalValue":2508448,"totalReturn":"24984.5","entered":3033,"skipped":0,"total":3033,"hitRate":"100.0","winRate":"60.3","peakConcurrent":270,"maxDD":"4.0","avgIdleCash":"91.0"},"30":{"betSize":30,"pctOfPortfolio":"0.3","finalValue":3008138,"totalReturn":"29981.4","entered":3033,"skipped":0,"total":3033,"hitRate":"100.0","winRate":"60.3","peakConcurrent":270,"maxDD":"4.8","avgIdleCash":"89.2"},"40":{"betSize":40,"pctOfPortfolio":"0.4","finalValue":4007517,"totalReturn":"39975.2","entered":3033,"skipped":0,"total":3033,"hitRate":"100.0","winRate":"60.3","peakConcurrent":270,"maxDD":"6.2","avgIdleCash":"85.6"},"50":{"betSize":50,"pctOfPortfolio":"0.5","finalValue":5006896,"totalReturn":"49969.0","entered":3033,"skipped":0,"total":3033,"hitRate":"100.0","winRate":"60.3","peakConcurrent":270,"maxDD":"7.6","avgIdleCash":"82.0"},"65":{"betSize":65,"pctOfPortfolio":"0.7","finalValue":6505965,"totalReturn":"64959.6","entered":3033,"skipped":0,"total":3033,"hitRate":"100.0","winRate":"60.3","peakConcurrent":270,"maxDD":"9.6","avgIdleCash":"76.6"},"75":{"betSize":75,"pctOfPortfolio":"0.8","finalValue":7505344,"totalReturn":"74953.4","entered":3033,"skipped":0,"total":3033,"hitRate":"100.0","winRate":"60.3","peakConcurrent":270,"maxDD":"10.9","avgIdleCash":"73.0"},"100":{"betSize":100,"pctOfPortfolio":"1.0","finalValue":10003793,"totalReturn":"99937.9","entered":3032,"skipped":1,"total":3033,"hitRate":"100.0","winRate":"60.3","peakConcurrent":270,"maxDD":"13.8","avgIdleCash":"64.0"},"125":{"betSize":125,"pctOfPortfolio":"1.3","finalValue":1575589,"totalReturn":"15655.9","entered":3012,"skipped":21,"total":3033,"hitRate":"99.3","winRate":"60.4","peakConcurrent":270,"maxDD":"16.6","avgIdleCash":"55.0"},"150":{"betSize":150,"pctOfPortfolio":"1.5","finalValue":1872496,"totalReturn":"18625.0","entered":2998,"skipped":35,"total":3033,"hitRate":"98.8","winRate":"60.4","peakConcurrent":270,"maxDD":"18.0","avgIdleCash":"46.0"},"200":{"betSize":200,"pctOfPortfolio":"2.0","finalValue":2422123,"totalReturn":"24121.2","entered":2982,"skipped":51,"total":3033,"hitRate":"98.3","winRate":"60.4","peakConcurrent":270,"maxDD":"19.6","avgIdleCash":"28.0"},"250":{"betSize":250,"pctOfPortfolio":"2.5","finalValue":3023322,"totalReturn":"30133.2","entered":2970,"skipped":63,"total":3033,"hitRate":"97.9","winRate":"60.4","peakConcurrent":270,"maxDD":"22.6","avgIdleCash":"10.0"},"300":{"betSize":300,"pctOfPortfolio":"3.0","finalValue":3627630,"totalReturn":"36176.3","entered":2954,"skipped":79,"total":3033,"hitRate":"97.4","winRate":"60.5","peakConcurrent":270,"maxDD":"22.5","avgIdleCash":"-8.0"},"400":{"betSize":400,"pctOfPortfolio":"4.0","finalValue":4835849,"totalReturn":"48258.5","entered":2942,"skipped":91,"total":3033,"hitRate":"97.0","winRate":"60.6","peakConcurrent":270,"maxDD":"22.8","avgIdleCash":"-44.0"},"500":{"betSize":500,"pctOfPortfolio":"5.0","finalValue":6043525,"totalReturn":"60335.2","entered":2937,"skipped":96,"total":3033,"hitRate":"96.8","winRate":"60.6","peakConcurrent":270,"maxDD":"23.7","avgIdleCash":"-80.0"},"750":{"betSize":750,"pctOfPortfolio":"7.5","finalValue":9063359,"totalReturn":"90533.6","entered":2926,"skipped":107,"total":3033,"hitRate":"96.5","winRate":"60.7","peakConcurrent":270,"maxDD":"25.1","avgIdleCash":"-170.0"},"1000":{"betSize":1000,"pctOfPortfolio":"10.0","finalValue":11753604,"totalReturn":"117436.0","entered":2803,"skipped":230,"total":3033,"hitRate":"92.4","winRate":"60.6","peakConcurrent":270,"maxDD":"30.2","avgIdleCash":"-260.0"}},"ALL":{"1":{"betSize":1,"pctOfPortfolio":"0.0","finalValue":129566,"totalReturn":"1195.7","entered":3693,"skipped":0,"total":3693,"hitRate":"100.0","winRate":"61.8","peakConcurrent":311,"maxDD":"0.1","avgIdleCash":"99.6"},"2":{"betSize":2,"pctOfPortfolio":"0.0","finalValue":249133,"totalReturn":"2391.3","entered":3693,"skipped":0,"total":3693,"hitRate":"100.0","winRate":"61.8","peakConcurrent":311,"maxDD":"0.2","avgIdleCash":"99.3"},"5":{"betSize":5,"pctOfPortfolio":"0.1","finalValue":607832,"totalReturn":"5978.3","entered":3693,"skipped":0,"total":3693,"hitRate":"100.0","winRate":"61.8","peakConcurrent":311,"maxDD":"0.6","avgIdleCash":"98.2"},"10":{"betSize":10,"pctOfPortfolio":"0.1","finalValue":1205664,"totalReturn":"11956.6","entered":3693,"skipped":0,"total":3693,"hitRate":"100.0","winRate":"61.8","peakConcurrent":311,"maxDD":"1.2","avgIdleCash":"96.4"},"15":{"betSize":15,"pctOfPortfolio":"0.1","finalValue":1803495,"totalReturn":"17935.0","entered":3693,"skipped":0,"total":3693,"hitRate":"100.0","winRate":"61.8","peakConcurrent":311,"maxDD":"1.7","avgIdleCash":"94.6"},"20":{"betSize":20,"pctOfPortfolio":"0.2","finalValue":2401327,"totalReturn":"23913.3","entered":3693,"skipped":0,"total":3693,"hitRate":"100.0","winRate":"61.8","peakConcurrent":311,"maxDD":"2.3","avgIdleCash":"92.8"},"25":{"betSize":25,"pctOfPortfolio":"0.3","finalValue":2999159,"totalReturn":"29891.6","entered":3693,"skipped":0,"total":3693,"hitRate":"100.0","winRate":"61.8","peakConcurrent":311,"maxDD":"2.8","avgIdleCash":"91.0"},"30":{"betSize":30,"pctOfPortfolio":"0.3","finalValue":3596991,"totalReturn":"35869.9","entered":3693,"skipped":0,"total":3693,"hitRate":"100.0","winRate":"61.8","peakConcurrent":311,"maxDD":"3.3","avgIdleCash":"89.2"},"40":{"betSize":40,"pctOfPortfolio":"0.4","finalValue":4792654,"totalReturn":"47826.5","entered":3693,"skipped":0,"total":3693,"hitRate":"100.0","winRate":"61.8","peakConcurrent":311,"maxDD":"4.2","avgIdleCash":"85.6"},"50":{"betSize":50,"pctOfPortfolio":"0.5","finalValue":5988275,"totalReturn":"59782.8","entered":3681,"skipped":12,"total":3693,"hitRate":"99.7","winRate":"61.7","peakConcurrent":299,"maxDD":"5.0","avgIdleCash":"82.0"},"65":{"betSize":65,"pctOfPortfolio":"0.7","finalValue":7781763,"totalReturn":"77717.6","entered":3629,"skipped":64,"total":3693,"hitRate":"98.3","winRate":"61.4","peakConcurrent":270,"maxDD":"6.2","avgIdleCash":"76.6"},"75":{"betSize":75,"pctOfPortfolio":"0.8","finalValue":8962813,"totalReturn":"89528.1","entered":3582,"skipped":111,"total":3693,"hitRate":"97.0","winRate":"61.3","peakConcurrent":270,"maxDD":"6.9","avgIdleCash":"73.0"},"100":{"betSize":100,"pctOfPortfolio":"1.0","finalValue":11809610,"totalReturn":"117996.1","entered":3535,"skipped":158,"total":3693,"hitRate":"95.7","winRate":"60.9","peakConcurrent":270,"maxDD":"8.5","avgIdleCash":"64.0"},"125":{"betSize":125,"pctOfPortfolio":"1.3","finalValue":14748821,"totalReturn":"147388.2","entered":3502,"skipped":191,"total":3693,"hitRate":"94.8","winRate":"60.8","peakConcurrent":270,"maxDD":"9.9","avgIdleCash":"55.0"},"150":{"betSize":150,"pctOfPortfolio":"1.5","finalValue":17683746,"totalReturn":"176737.5","entered":3471,"skipped":222,"total":3693,"hitRate":"94.0","winRate":"60.8","peakConcurrent":270,"maxDD":"11.1","avgIdleCash":"46.0"},"200":{"betSize":200,"pctOfPortfolio":"2.0","finalValue":22351519,"totalReturn":"223415.2","entered":3455,"skipped":238,"total":3693,"hitRate":"93.6","winRate":"60.8","peakConcurrent":270,"maxDD":"13.1","avgIdleCash":"28.0"},"250":{"betSize":250,"pctOfPortfolio":"2.5","finalValue":27902893,"totalReturn":"278928.9","entered":3433,"skipped":260,"total":3693,"hitRate":"93.0","winRate":"60.7","peakConcurrent":270,"maxDD":"14.6","avgIdleCash":"10.0"},"300":{"betSize":300,"pctOfPortfolio":"3.0","finalValue":33350380,"totalReturn":"333403.8","entered":3425,"skipped":268,"total":3693,"hitRate":"92.7","winRate":"60.7","peakConcurrent":270,"maxDD":"15.9","avgIdleCash":"-8.0"},"400":{"betSize":400,"pctOfPortfolio":"4.0","finalValue":44374796,"totalReturn":"443648.0","entered":3408,"skipped":285,"total":3693,"hitRate":"92.3","winRate":"60.5","peakConcurrent":270,"maxDD":"17.8","avgIdleCash":"-44.0"},"500":{"betSize":500,"pctOfPortfolio":"5.0","finalValue":55234196,"totalReturn":"552242.0","entered":3319,"skipped":374,"total":3693,"hitRate":"89.9","winRate":"60.1","peakConcurrent":270,"maxDD":"19.9","avgIdleCash":"-80.0"},"750":{"betSize":750,"pctOfPortfolio":"7.5","finalValue":82724371,"totalReturn":"827143.7","entered":3262,"skipped":431,"total":3693,"hitRate":"88.3","winRate":"59.9","peakConcurrent":270,"maxDD":"15.9","avgIdleCash":"-170.0"},"1000":{"betSize":1000,"pctOfPortfolio":"10.0","finalValue":110332131,"totalReturn":"1103221.3","entered":3246,"skipped":447,"total":3693,"hitRate":"87.9","winRate":"59.9","peakConcurrent":270,"maxDD":"20.9","avgIdleCash":"-260.0"}}};
