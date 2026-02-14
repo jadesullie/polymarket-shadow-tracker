@@ -364,7 +364,7 @@ canvas{width:100%!important;height:300px!important}
       <div style="margin-bottom:20px">
         <div style="font-size:0.95rem;font-weight:700;margin-bottom:8px">🔴 Positions Closed Today <span id="dsCloseCount" style="font-size:0.75rem;color:var(--text-muted);font-weight:500"></span></div>
         <div class="table-wrap">
-          <table><thead><tr><th>Trader</th><th>Market</th><th>Side</th><th>Outcome</th><th>P&L</th></tr></thead>
+          <table><thead><tr><th>Trader</th><th>Market</th><th>Side</th><th>Exit</th><th>Outcome</th><th>P&L</th></tr></thead>
           <tbody id="dsClosuresBody"></tbody></table>
         </div>
       </div>
@@ -85107,8 +85107,9 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
     $('dsClosuresBody').innerHTML = todayClosures.length ? todayClosures.map(t => {
       const outcomeColor = t.outcome === 'Profit' ? 'var(--green,#00c853)' : 'var(--red,#ff1744)';
       const outcomeLabel = t.outcome === 'Profit' ? 'WIN' : 'LOSS';
-      return `<tr><td>${t.trader}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${t.market}</td><td>${t.side}</td><td style="color:${outcomeColor};font-weight:600">${outcomeLabel}</td><td>${fmtPnl(t.profit)}</td></tr>`;
-    }).join('') : '<tr><td colspan="5" style="color:var(--text-muted);text-align:center;padding:12px">No closures</td></tr>';
+      const exitBadge = t.exitType === 'SELL' ? '<span style="color:#ff9800;font-size:0.7rem;font-weight:600">SELL</span>' : '<span style="color:#4caf50;font-size:0.7rem;font-weight:600">REDEEM</span>';
+      return `<tr><td>${t.trader}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${t.market}</td><td>${t.side}</td><td>${exitBadge}</td><td style="color:${outcomeColor};font-weight:600">${outcomeLabel}</td><td>${fmtPnl(t.profit)}</td></tr>`;
+    }).join('') : '<tr><td colspan="6" style="color:var(--text-muted);text-align:center;padding:12px">No closures</td></tr>';
 
     // Open positions
     $('dsOpenCount').textContent = `(${open.length})`;
