@@ -370,7 +370,7 @@ canvas{width:100%!important;height:300px!important}
       <div style="margin-bottom:20px">
         <div style="font-size:0.95rem;font-weight:700;margin-bottom:8px">🟢 Buys <span id="dsBuyCount" style="font-size:0.75rem;color:var(--text-muted);font-weight:500"></span></div>
         <div class="table-wrap">
-          <table><thead><tr><th>Trader</th><th>Market</th><th>Side</th><th>Price</th><th>Amount</th></tr></thead>
+          <table><thead><tr><th>Trader</th><th>Market</th><th>Side</th><th>Price</th><th>Whale $</th><th>Our Bet</th></tr></thead>
           <tbody id="dsBuysBody"></tbody></table>
         </div>
       </div>
@@ -379,7 +379,7 @@ canvas{width:100%!important;height:300px!important}
       <div style="margin-bottom:20px">
         <div style="font-size:0.95rem;font-weight:700;margin-bottom:8px">🟠 Sells <span id="dsSellCount" style="font-size:0.75rem;color:var(--text-muted);font-weight:500"></span></div>
         <div class="table-wrap">
-          <table><thead><tr><th>Trader</th><th>Market</th><th>Side</th><th>Price</th><th>Amount</th></tr></thead>
+          <table><thead><tr><th>Trader</th><th>Market</th><th>Side</th><th>Price</th><th>Whale $</th><th>Our P&L</th></tr></thead>
           <tbody id="dsSellsBody"></tbody></table>
         </div>
       </div>
@@ -388,7 +388,7 @@ canvas{width:100%!important;height:300px!important}
       <div style="margin-bottom:20px">
         <div style="font-size:0.95rem;font-weight:700;margin-bottom:8px">💰 Redemptions <span id="dsRedeemCount" style="font-size:0.75rem;color:var(--text-muted);font-weight:500"></span></div>
         <div class="table-wrap">
-          <table><thead><tr><th>Trader</th><th>Market</th><th>Side</th><th>Amount</th></tr></thead>
+          <table><thead><tr><th>Trader</th><th>Market</th><th>Side</th><th>Whale $</th><th>Our P&L</th></tr></thead>
           <tbody id="dsRedeemsBody"></tbody></table>
         </div>
       </div>
@@ -85399,14 +85399,64 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
     const sellVol = sells.reduce((s, e) => s + e.sz, 0);
     const redeemVol = redeems.reduce((s, e) => s + e.sz, 0);
 
-    // Summary cards
+    // Simulate our positions for this day's events
+    const sim = await getSimStateForDay(currentIdx);
+    renderSimCards(sim);
+
+    // Annotate buys with our simulated bet size
+    // Re-simulate just today's events to track per-event allocation
+    const prevSim = currentIdx > 0 ? await getSimStateForDay(currentIdx - 1) : initSimState();
+    let simCash = prevSim.cash;
+    const simPositions = new Map(prevSim.positions);
+    for (const ev of events) {
+      if (ev.t === 'B') {
+        const portVal = simCash + Array.from(simPositions.values()).reduce((s, p) => s + p.cost, 0);
+        const betSize = computeBetSize(portVal);
+        const cost = Math.min(betSize, simCash);
+        ev._ourBet = cost > 0 ? cost : 0;
+        ev._skipped = cost <= 0;
+        if (cost > 0) {
+          simCash -= cost;
+          const key = `${ev.tr}|${ev.m}|${ev.s}`;
+          const ex = simPositions.get(key);
+          if (ex) { ex.cost += cost; } else { simPositions.set(key, { cost, shares: cost / ev.p }); }
+        }
+      } else if (ev.t === 'S') {
+        const key = `${ev.tr}|${ev.m}|${ev.s}`;
+        const pos = simPositions.get(key);
+        if (pos) {
+          const sellRatio = Math.min(1, ev.sz / pos.cost);
+          const soldCost = pos.cost * sellRatio;
+          const proceeds = (pos.shares * sellRatio) * ev.p;
+          ev._ourPnl = proceeds - soldCost;
+          simCash += proceeds;
+          if (sellRatio >= 0.999) simPositions.delete(key);
+          else { pos.cost -= soldCost; pos.shares -= pos.shares * sellRatio; }
+        }
+      } else if (ev.t === 'R') {
+        const key = `${ev.tr}|${ev.m}|${ev.s}`;
+        const pos = simPositions.get(key);
+        if (pos) {
+          const proceeds = pos.shares * 1.0;
+          ev._ourPnl = proceeds - pos.cost;
+          simCash += proceeds;
+          simPositions.delete(key);
+        }
+      }
+    }
+
+    const ourBuyVol = buys.reduce((s, e) => s + (e._ourBet || 0), 0);
+    const enteredCount = buys.filter(e => !e._skipped).length;
+    const skippedCount = buys.filter(e => e._skipped).length;
+
+    // Summary cards — show OUR activity, not trader volumes
     const cards = [
       { label: 'Total Events', value: String(events.length), color: 'var(--accent)' },
-      { label: '🟢 Buys', value: `${buys.length}`, sub: fmtUsd(buyVol), color: '#00c853' },
-      { label: '🟠 Sells', value: `${sells.length}`, sub: fmtUsd(sellVol), color: '#ff9800' },
-      { label: '💰 Redeems', value: `${redeems.length}`, sub: fmtUsd(redeemVol), color: '#4caf50' },
-      { label: 'Buy Volume', value: fmtUsd(buyVol), color: '' },
-      { label: 'Net Flow', value: (redeemVol + sellVol - buyVol >= 0 ? '+' : '') + fmtUsd(redeemVol + sellVol - buyVol), color: (redeemVol + sellVol - buyVol) >= 0 ? '#00c853' : '#ff1744' },
+      { label: '🟢 Our Buys', value: `${enteredCount}/${buys.length}`, sub: fmtUsd(ourBuyVol) + ' deployed', color: 'var(--positive, #10b981)' },
+      { label: '⏭️ Skipped', value: String(skippedCount), sub: 'No cash available', color: 'var(--text-muted)' },
+      { label: '🟠 Sells', value: `${sells.length}`, sub: fmtUsd(sellVol) + ' (trader vol)', color: '#ff9800' },
+      { label: '💰 Redeems', value: `${redeems.length}`, sub: fmtUsd(redeemVol) + ' (trader vol)', color: 'var(--positive, #10b981)' },
+      { label: 'Whale Volume', value: fmtUsd(buyVol), sub: 'Trader buy volume', color: 'var(--text-muted)' },
     ];
 
     $('dsTotals').innerHTML = cards.map(c => `
@@ -85433,25 +85483,25 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
       return `<a href="${url}" target="_blank" style="color:var(--text-primary);text-decoration:none;border-bottom:1px dotted var(--text-muted)">${title}</a>`;
     }
 
-    $('dsBuysBody').innerHTML = buys.length ? buys.map(e => `
-      <tr><td>${traderLink(e.tr)}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${marketLink(e.m, e.u)}</td><td>${e.s}</td><td class="mono">${e.p.toFixed(3)}</td><td class="mono">$${fmt(e.sz)}</td></tr>
-    `).join('') : '<tr><td colspan="5" style="color:var(--text-muted);text-align:center;padding:12px">No buys</td></tr>';
+    $('dsBuysBody').innerHTML = buys.length ? buys.map(e => {
+      const ourBetStr = e._skipped ? '<span style="color:var(--text-muted);font-size:0.75rem">SKIP</span>' : `<span style="color:var(--positive,#10b981)">$${fmt(e._ourBet||0)}</span>`;
+      const rowStyle = e._skipped ? 'opacity:0.4' : '';
+      return `<tr style="${rowStyle}"><td>${traderLink(e.tr)}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${marketLink(e.m, e.u)}</td><td>${e.s}</td><td class="mono">${e.p.toFixed(3)}</td><td class="mono">$${fmt(e.sz)}</td><td class="mono">${ourBetStr}</td></tr>`;
+    }).join('') : '<tr><td colspan="6" style="color:var(--text-muted);text-align:center;padding:12px">No buys</td></tr>';
 
     // Sells table
     $('dsSellCount').textContent = `(${sells.length} — $${fmt(sellVol)})`;
-    $('dsSellsBody').innerHTML = sells.length ? sells.map(e => `
-      <tr><td>${traderLink(e.tr)}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${marketLink(e.m, e.u)}</td><td>${e.s}</td><td class="mono">${e.p.toFixed(3)}</td><td class="mono">$${fmt(e.sz)}</td></tr>
-    `).join('') : '<tr><td colspan="5" style="color:var(--text-muted);text-align:center;padding:12px">No sells</td></tr>';
+    $('dsSellsBody').innerHTML = sells.length ? sells.map(e => {
+      const pnlStr = e._ourPnl != null ? `<span style="color:${e._ourPnl >= 0 ? 'var(--positive,#10b981)' : 'var(--negative,#ef4444)'}">${e._ourPnl >= 0 ? '+' : ''}$${fmt(Math.abs(e._ourPnl))}</span>` : '<span style="color:var(--text-muted)">—</span>';
+      return `<tr><td>${traderLink(e.tr)}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${marketLink(e.m, e.u)}</td><td>${e.s}</td><td class="mono">${e.p.toFixed(3)}</td><td class="mono">$${fmt(e.sz)}</td><td class="mono">${pnlStr}</td></tr>`;
+    }).join('') : '<tr><td colspan="6" style="color:var(--text-muted);text-align:center;padding:12px">No sells</td></tr>';
 
     // Redeems table
     $('dsRedeemCount').textContent = `(${redeems.length} — $${fmt(redeemVol)})`;
-    $('dsRedeemsBody').innerHTML = redeems.length ? redeems.map(e => `
-      <tr><td>${traderLink(e.tr)}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${marketLink(e.m, e.u)}</td><td>${e.s || '—'}</td><td class="mono">$${fmt(e.sz)}</td></tr>
-    `).join('') : '<tr><td colspan="4" style="color:var(--text-muted);text-align:center;padding:12px">No redemptions</td></tr>';
-
-    // Portfolio simulation
-    const sim = await getSimStateForDay(currentIdx);
-    renderSimCards(sim);
+    $('dsRedeemsBody').innerHTML = redeems.length ? redeems.map(e => {
+      const pnlStr = e._ourPnl != null ? `<span style="color:${e._ourPnl >= 0 ? 'var(--positive,#10b981)' : 'var(--negative,#ef4444)'}">${e._ourPnl >= 0 ? '+' : ''}$${fmt(Math.abs(e._ourPnl))}</span>` : '<span style="color:var(--text-muted)">—</span>';
+      return `<tr><td>${traderLink(e.tr)}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${marketLink(e.m, e.u)}</td><td>${e.s || '—'}</td><td class="mono">$${fmt(e.sz)}</td><td class="mono">${pnlStr}</td></tr>`;
+    }).join('') : '<tr><td colspan="5" style="color:var(--text-muted);text-align:center;padding:12px">No redemptions</td></tr>';
   }
 
   // Event listeners
