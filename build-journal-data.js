@@ -6,9 +6,19 @@
 const fs = require('fs');
 const path = require('path');
 
+// Build name lookup from both DB and TRADERS in index.html
 const tradersDb = JSON.parse(fs.readFileSync('../memory/polymarket-traders-db.json', 'utf8'));
 const traderNames = {};
-tradersDb.forEach(t => { traderNames[t.address.toLowerCase()] = t.name; });
+tradersDb.forEach(t => { if (t.username) traderNames[t.address.toLowerCase()] = t.username; });
+
+// Also extract TRADERS from index.html
+const html = fs.readFileSync('index.html', 'utf8');
+const tradersMatch = html.match(/const TRADERS = (\[.*?\]);/s);
+if (tradersMatch) {
+  const traders = JSON.parse(tradersMatch[1]);
+  traders.forEach(t => { if (t.username) traderNames[t.address.toLowerCase()] = t.username; });
+}
+console.log('Name mappings:', Object.keys(traderNames).length);
 
 const dir = 'data/raw-trades';
 const files = fs.readdirSync(dir).filter(f => f.endsWith('.json'));
