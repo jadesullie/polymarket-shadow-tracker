@@ -301,6 +301,7 @@ canvas{width:100%!important;height:300px!important}
           <button id="dsNext" style="padding:10px 24px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);cursor:pointer;font-family:inherit;font-size:1rem;font-weight:600">Next ▶</button>
         </div>
       </div>
+    <div id="dsStickyNavSpacer" style="height:70px"></div>
 
     <div id="dayStepperJournal">
       <!-- Settings -->
@@ -83801,6 +83802,11 @@ function handleRoute() {
   const viewMap = { '': 'dashboard', 'dashboard': 'dashboard', 'positions': 'positions', 'alerts': 'alerts', 'journal': 'journal', 'simulation': 'simulation' };
   const view = viewMap[path] || 'dashboard';
   document.getElementById('view-' + view).classList.add('active');
+  // Show/hide fixed journal nav
+  const stickyNav = document.getElementById('dsStickyNav');
+  const spacer = document.getElementById('dsStickyNavSpacer');
+  if (stickyNav) stickyNav.style.display = view === 'journal' ? '' : 'none';
+  if (spacer) spacer.style.display = view === 'journal' ? '' : 'none';
   const tab = document.querySelector(`[data-view="${view}"]`);
   if (tab) tab.classList.add('active');
   document.title = (view === 'dashboard' ? 'Dashboard' : view.charAt(0).toUpperCase() + view.slice(1)) + ' — Shadow Index';
