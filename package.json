@@ -1,0 +1,12 @@
+{
+  "name": "polymarket-shadow-tracker",
+  "version": "1.0.0",
+  "description": "Polymarket Shadow Index — Track political/crypto insider traders",
+  "scripts": {
+    "track": "node tracker.js",
+    "dev": "npx serve ."
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}

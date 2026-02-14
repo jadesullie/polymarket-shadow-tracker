@@ -1,0 +1,1720 @@
+{
+  "startDate": "2026-02-14",
+  "startTimestamp": 1771048800000,
+  "traders": {
+    "0x448861155279dbf833d041b963e3ac854599e319": {
+      "username": "Flipadelphia",
+      "cluster": "iran",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0xa8ebd84263575ba4c861cd2acd1b2d09facc01c7": {
+      "username": "Alexparker",
+      "cluster": "iran",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0xf2f6af4f27ec2dcf4072095ab804016e14cd5817": {
+      "username": "gopfan2",
+      "cluster": "mixed",
+      "risk": "HIGH",
+      "closedCount": 4,
+      "closedSlugs": [
+        "will-antnio-jos-seguro-win-the-second-round-by-2530",
+        "will-the-iranian-regime-fall-by-the-end-of-2026",
+        "khamenei-out-as-supreme-leader-of-iran-by-june-30-747",
+        "will-2026-be-the-fifth-hottest-year-on-record"
+      ]
+    },
+    "0xdbade4c82fb72780a0db9a38f821d8671aba9c95": {
+      "username": "SwissMiss",
+      "cluster": "iran",
+      "risk": "HIGH",
+      "closedCount": 4,
+      "closedSlugs": [
+        "ufc-cod3-cam7-2026-01-31",
+        "ufc-jam4-qui2-2026-01-31",
+        "ufc-tai1-tal2-2026-01-31",
+        "ufc-oba-jon21-2026-01-31"
+      ]
+    },
+    "0x095dcfb123a4bc035ee6b0d624bab0cc964352cf": {
+      "username": "Extra-Large-Begonia",
+      "cluster": "iran",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x9d84ce0306f8551e02efef1680475fc0f1dc1344": {
+      "username": "ImJustKen",
+      "cluster": "fed",
+      "risk": "HIGH",
+      "closedCount": 10,
+      "closedSlugs": [
+        "us-strikes-iran-by-june-30-2026-699-664-723-485-753-218-567-164-387-443-377-384-159-973-494-631-694-956-361-443-224-518-537-678-486-386-275-153-976-862-149-897-221-522-378-575-993-365-444",
+        "russia-x-ukraine-ceasefire-by-june-30-2026",
+        "will-the-fed-decrease-interest-rates-by-25-bps-after-the-march-2026-meeting",
+        "will-alexandria-ocasio-cortez-win-the-2028-us-presidential-election",
+        "will-sinners-win-best-picture-at-the-98th-academy-awards",
+        "will-inga-ibsdotter-lilleaas-win-best-supporting-actress-at-the-98th-academy-awards",
+        "us-anti-cartel-ground-operation-in-mexico-by-march-31",
+        "will-stephen-a-smith-win-the-2028-democratic-presidential-nomination-914",
+        "will-us-or-israel-strike-iran-by-february-28-2026-766",
+        "republican-house-odds-up-or-down-this-week"
+      ]
+    },
+    "0x96489abcb9f583d6835c8ef95ffc923d05a86825": {
+      "username": "anoin123",
+      "cluster": "iran",
+      "risk": "HIGH",
+      "closedCount": 1,
+      "closedSlugs": [
+        "will-claude-5-be-released-by-february-14-2026-449"
+      ]
+    },
+    "0x7744bfd749a70020d16a1fcbac1d064761c9999e": {
+      "username": "chungguskhan",
+      "cluster": "fed",
+      "risk": "HIGH",
+      "closedCount": 6,
+      "closedSlugs": [
+        "khamenei-out-as-supreme-leader-of-iran-by-march-31",
+        "will-seguro-win-all-of-portugals-districts",
+        "another-us-government-shutdown-by-february-14",
+        "starmer-out-by-february-28-2026-352-692",
+        "nfl-sea-ne-2026-02-08",
+        "will-joo-cotrim-figueiredo-win-the-2026-portugal-presidential-election-643"
+      ]
+    },
+    "0xdc03d611e5bcc9f1c87edb95edeb91671471804c": {
+      "username": "denizz",
+      "cluster": "iran",
+      "risk": "HIGH",
+      "closedCount": 3,
+      "closedSlugs": [
+        "will-peoples-party-pple-win-the-most-seats-in-the-2026-thai-legislative-election",
+        "will-andr-ventura-win-the-2026-portugal-presidential-election",
+        "will-trump-nominate-judy-shelton-as-the-next-fed-chair"
+      ]
+    },
+    "0x90ed5bffbffbfc344aa1195572d89719a398b5bc": {
+      "username": "failstober",
+      "cluster": "mixed",
+      "risk": "MEDIUM",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x3d1ecf16942939b3603c2539a406514a40b504d0": {
+      "username": "edenmoon",
+      "cluster": "fed",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0xd64e1a97d46f2ba860a56470ac6f47e5bcda5516": {
+      "username": "uprightuser",
+      "cluster": "mixed",
+      "risk": "LOW",
+      "closedCount": 1,
+      "closedSlugs": [
+        "will-bangladesh-nationalist-party-win-the-most-seats-in-the-bangladesh-parliamentary-election"
+      ]
+    },
+    "0x689ae12e11aa489adb3605afd8f39040ff52779e": {
+      "username": "Annica",
+      "cluster": "elon",
+      "risk": "MEDIUM",
+      "closedCount": 1,
+      "closedSlugs": [
+        "elon-musk-of-tweets-february-6-february-13-500-519"
+      ]
+    },
+    "0x0c0e270cf879583d6a0142fc817e05b768d0434e": {
+      "username": "TheSpiritofUkraine>UMA",
+      "cluster": "mixed",
+      "risk": "MEDIUM",
+      "closedCount": 3,
+      "closedSlugs": [
+        "democratic-presidential-nominee-2028",
+        "will-donald-trump-jr-win-the-2028-us-presidential-election",
+        "will-ivanka-trump-win-the-2028-republican-presidential-nomination"
+      ]
+    },
+    "0x1f2dd6d473f3e824cd2f8a89d9c69fb96f6ad0cf": {
+      "username": "Fredi9999",
+      "cluster": "election2024",
+      "risk": "EXTREME",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x43372356634781eea88d61bbdd7824cdce958882": {
+      "username": "jocpolitic",
+      "cluster": "mixed",
+      "risk": "HIGH",
+      "closedCount": 6,
+      "closedSlugs": [
+        "lol-we-lng-2026-02-11-game3",
+        "sea-pis-mil-2026-02-13-mil",
+        "epl-che-lee-2026-02-10-spread-home-1pt5",
+        "will-the-iranian-regime-fall-by-the-end-of-2026",
+        "epl-mac-ful-2026-02-11-mac",
+        "lol-ig1-omg-2026-02-11"
+      ]
+    },
+    "0xbaa2bcb5439e985ce4ccf815b4700027d1b92c73": {
+      "username": "Magamyman",
+      "cluster": "mixed",
+      "risk": "MEDIUM",
+      "closedCount": 17,
+      "closedSlugs": [
+        "khamenei-out-as-supreme-leader-of-iran-by-march-31",
+        "khamenei-out-as-supreme-leader-of-iran-by-june-30-747",
+        "another-us-government-shutdown-by-february-14",
+        "israel-strikes-iran-by-february-28-2026",
+        "will-cardi-b-perform-during-the-super-bowl-lx-halftime-show",
+        "israel-x-hamas-ceasefire-phase-ii-by-march-31-117-352",
+        "will-the-iranian-regime-fall-by-june-30",
+        "will-israel-launch-a-major-ground-offensive-in-lebanon-by-march-31",
+        "iran-strike-on-us-military-by-january-31",
+        "us-x-iran-nuclear-talks-resume-by-march-31",
+        "will-the-us-next-strike-iran-on-january-31-2026-et-836",
+        "will-israel-strike-gaza-on-february-10-2026",
+        "iran-strike-on-us-military-by-february-28",
+        "iran-strike-on-israel-by-february-28",
+        "israel-x-hamas-ceasefire-cancelled-by-june-30",
+        "will-hamas-agree-to-disarm-by-march-31-966",
+        "will-there-be-another-us-government-shutdown-by-january-31"
+      ]
+    },
+    "0x94a428cfa4f84b264e01f70d93d02bc96cb36356": {
+      "username": "GCottrell93",
+      "cluster": "election2024",
+      "risk": "MEDIUM",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x56687bf447db6ffa42ffe2204a05edaa20f55839": {
+      "username": "Theo4",
+      "cluster": "election2024",
+      "risk": "EXTREME",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x885783760858e1bd5dd09a3c3f916cfa251ac270": {
+      "username": "BetTom42",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x23786fdad0073692157c6d7dc81f281843a35fcb": {
+      "username": "mikatrade77",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0xe9ad918c7678cd38b12603a762e638a5d1ee7091": {
+      "username": "walletmobile",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 1,
+      "closedSlugs": [
+        "will-donald-trump-win-the-2024-us-presidential-election"
+      ]
+    },
+    "0x863134d00841b2e200492805a01e1e2f5defaa53": {
+      "username": "RepTrump",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x16f91db2592924cfed6e03b7e5cb5bb1e32299e3": {
+      "username": "Jenzigo",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x8119010a6e589062aa03583bb3f39ca632d9f887": {
+      "username": "PrincessCaro",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x78b9ac44a6d7d7a076c14e0ad518b301b63c6b76": {
+      "username": "Len9311238",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x033a07b3de5947eab4306676ad74eb546da30d50": {
+      "username": "RandomGenius",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0xd235973291b2b75ff4070e9c0b01728c520b0f29": {
+      "username": "zxgngl",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 1,
+      "closedSlugs": [
+        "will-the-republican-candidate-win-nevada-by-3pt0-4pt0"
+      ]
+    },
+    "0xd0c042c08f755ff940249f62745e82d356345565": {
+      "username": "alexmulti",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0xd31a2ea0b5f9a10c2eb78dcc36df016497d5386e": {
+      "username": "DarthVooncer",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 1,
+      "closedSlugs": [
+        "will-joe-biden-win-the-2024-democratic-presidential-nomination"
+      ]
+    },
+    "0xba664f999a18dce0aac6af698af434924a24f59d": {
+      "username": "bizyugo",
+      "cluster": "political-economy",
+      "risk": "HIGH",
+      "closedCount": 3,
+      "closedSlugs": [
+        "over-4b-committed-to-the-megaeth-public-sale-752-459-935-742-742",
+        "will-jesus-christ-return-before-gta-vi-665",
+        "megaeth-250m-pre-deposit-bridge-filled-in-15min"
+      ]
+    },
+    "0xd7f85d0eb0fe0732ca38d9107ad0d4d01b1289e4": {
+      "username": "tdrhrhhd",
+      "cluster": "political-economy",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x5bffcf561bcae83af680ad600cb99f1184d6ffbe": {
+      "username": "YatSen",
+      "cluster": "polymath",
+      "risk": "MEDIUM",
+      "closedCount": 5,
+      "closedSlugs": [
+        "will-stable-launch-a-token-in-2025",
+        "ufc-val-zha-2025-11-15",
+        "megaeth-market-cap-fdv-2b-one-day-after-launch-392-656-565-965-418",
+        "edgex-fdv-above-1b-one-day-after-launch",
+        "kinetiq-fdv-above-150m-one-day-after-launch"
+      ]
+    },
+    "0x63ce342161250d705dc0b16df89036c8e5f9ba9a": {
+      "username": "0x8dxd",
+      "cluster": "crypto",
+      "risk": "MEDIUM",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x2bf64b86b64c315d879571b07a3b76629e467cd0": {
+      "username": "BabaTrump",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x0562c423912e325f83fa79df55085979e1f5594f": {
+      "username": "trezorisbest",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 2,
+      "closedSlugs": [
+        "gop-wins-popular-vote-by-1-2",
+        "will-pierre-poilievre-be-the-next-canadian-prime-minister"
+      ]
+    },
+    "0x7058c8a7cec79010b1927d05837dcf25f1a53505": {
+      "username": "deetown",
+      "cluster": "politics",
+      "risk": "MEDIUM",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0xed2239a9150c3920000d0094d28fa51c7db03dd0": {
+      "username": "Michie",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0xf705fa045201391d9632b7f3cde06a5e24453ca7": {
+      "username": "0xf705",
+      "cluster": "crypto",
+      "risk": "MEDIUM",
+      "closedCount": 4,
+      "closedSlugs": [
+        "xrp-above-1pt4-on-february-6",
+        "will-solana-dip-to-30-in-february-2026",
+        "solana-above-90-on-february-6",
+        "will-ethereum-dip-to-1500-by-december-31-2026"
+      ]
+    },
+    "0x051b16ffac0f10a8df96b93cc03facce011ea5e5": {
+      "username": "SVN88",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0xcc500cbcc8b7cf5bd21975ebbea34f21b5644c82": {
+      "username": "justdance",
+      "cluster": "crypto-macro",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0xee50a31c3f5a7c77824b12a941a54388a2827ed6": {
+      "username": "0xafEe",
+      "cluster": "tech",
+      "risk": "HIGH",
+      "closedCount": 1,
+      "closedSlugs": [
+        "will-trump-release-the-epstein-files-by-november-30"
+      ]
+    },
+    "0x2728d99b2405a52db60160837e130b3ba3c1a83c": {
+      "username": "WindWalk3",
+      "cluster": "politics",
+      "risk": "MEDIUM",
+      "closedCount": 27,
+      "closedSlugs": [
+        "will-2-of-votes-go-to-3rd-party-candidates-in-us-election",
+        "lord-miles-completes-40-day-water-fast-in-the-dessert",
+        "will-trump-win-30-or-more-of-black-men",
+        "will-either-kamala-or-trump-win-every-swing-state",
+        "will-there-be-between-16-and-20-named-storms-during-atlantic-hurricane-season",
+        "trump-increase-share-of-black-voters",
+        "will-a-republican-win-virginia-in-the-2024-us-presidential-election",
+        "will-trump-win-florida-by-8-points",
+        "kamala-rust-belt-swing-state-sweep",
+        "will-trump-win-iowa-by-12-points",
+        "will-kamala-harris-win-maryland-by-the-largest-margin",
+        "will-jill-stein-get-1-of-the-popular-vote",
+        "will-kamala-win-60-or-more-of-women",
+        "will-trump-get-more-votes-than-2020",
+        "will-a-republican-win-wisconsin-presidential-election",
+        "trump-wins-ends-ukraine-war-in-90-days",
+        "will-trump-lose-new-york-by-less-then-10-points",
+        "record-turnout-in-2024-presidential-election",
+        "will-the-democratic-candidate-win-iowa-by-1-2pt0",
+        "trumps-margin-of-victory-higher-in-florida-or-alaska",
+        "will-trump-win-wyoming-by-50-points",
+        "who-will-win-women",
+        "will-3rd-parties-write-ins-cost-kamala-michigan",
+        "who-will-win-late-deciders",
+        "will-the-ap-call-the-election-on-november-7",
+        "who-will-win-white-women",
+        "will-another-movie-gross-most-in-2024"
+      ]
+    },
+    "0x44c1dfe43260c94ed4f1d00de2e1f80fb113ebc1": {
+      "username": "aenews2",
+      "cluster": "polymath",
+      "risk": "MEDIUM",
+      "closedCount": 3,
+      "closedSlugs": [
+        "will-solv-energy-incs-market-cap-be-less-than-3pt8b-at-market-close-on-ipo-day",
+        "will-the-government-shutdown-last-30-days-or-more-558-354-297-785-675",
+        "will-the-government-shutdown-last-3-days-or-more-472-292-194-673"
+      ]
+    },
+    "0x1f1d38f54a615d1c43c77e3b109bd01f56e163d9": {
+      "username": "Sandra.rachkova",
+      "cluster": "politics",
+      "risk": "MEDIUM",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x000d257d2dc7616feaef4ae0f14600fdf50a758e": {
+      "username": "scottilicious",
+      "cluster": "polymath",
+      "risk": "MEDIUM",
+      "closedCount": 19,
+      "closedSlugs": [
+        "will-andr-ventura-win-the-2026-portugal-presidential-election",
+        "will-gavin-newsom-win-the-2028-democratic-presidential-nomination-568",
+        "another-us-government-shutdown-by-february-14",
+        "will-trump-acquire-greenland-before-2027",
+        "khamenei-out-as-supreme-leader-of-iran-by-january-31",
+        "will-wesley-hunt-win-the-2026-republican-primary",
+        "will-the-us-acquire-any-part-of-greenland-in-2026",
+        "will-tim-walz-resign-by-january-31",
+        "will-there-be-another-us-government-shutdown-by-january-31",
+        "will-israel-strike-2-countries-in-2026",
+        "tim-walz-charged-by-march-31",
+        "us-recognizes-machado-as-leader-of-venezuela-by-january-31",
+        "will-mara-corina-machado-be-the-leader-of-venezuela-end-of-2026",
+        "jeffrey-epstein-foul-play-confirmed-in-2025",
+        "us-evacuates-baghdad-embassy-by-january-31",
+        "venezuela-election-scheduled-by-january-31-2026",
+        "congress-authorizes-military-force-against-venezuela-by-january-31",
+        "will-the-government-shutdown-last-30-days-or-more-558-354-297-785-675",
+        "maduro-trial-scheduled-by-january-31"
+      ]
+    },
+    "0xd42f6a1634a3707e27cbae14ca966068e5d1047d": {
+      "username": "Apsalar",
+      "cluster": "mixed",
+      "risk": "MEDIUM",
+      "closedCount": 4,
+      "closedSlugs": [
+        "will-the-minnesota-timberwolves-win-the-2025-nba-finals",
+        "will-ukraine-agree-to-give-up-russian-territory-in-kursk",
+        "will-shohei-ohtani-win-the-2025-nl-mvp",
+        "maduro-out-in-2025-411"
+      ]
+    },
+    "0x8861f0bb5e0c19474ba73beeadc13ed8915beed6": {
+      "username": "yjcr",
+      "cluster": "politics",
+      "risk": "MEDIUM",
+      "closedCount": 5,
+      "closedSlugs": [
+        "will-lee-jae-myung-be-elected-the-next-president-of-south-korea",
+        "will-iran-close-the-strait-of-hormuz-before-july",
+        "khamenei-out-as-supreme-leader-of-iran-by-july-31",
+        "israel-x-iran-ceasefire-before-july",
+        "will-tesla-launch-a-driverless-robtotaxi-service-before-july"
+      ]
+    },
+    "0x589222a5124a96765443b97a3498d89ffd824ad2": {
+      "username": "PurpleThunderBicycleMountain",
+      "cluster": "crypto",
+      "risk": "LOW",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x40324412290b9d311f03b707467c61d88cf141a2": {
+      "username": "AnonHorses",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 5,
+      "closedSlugs": [
+        "will-kamala-harris-win-the-2024-democratic-presidential-nomination",
+        "will-biden-complete-his-term-as-president",
+        "will-kamala-harris-be-the-2024-democratic-vp-nominee",
+        "will-donald-trump-win-the-2024-us-presidential-election",
+        "will-donald-trump-win-the-popular-vote-in-the-2024-presidential-election"
+      ]
+    },
+    "0x4a38e6e0330c2463fb5ac2188a620634039abfe8": {
+      "username": "stonksgoup",
+      "cluster": "crypto",
+      "risk": "LOW",
+      "closedCount": 2,
+      "closedSlugs": [
+        "will-ethereum-hit-7000-by-december-31-733-852",
+        "solana-above-180-on-september-10"
+      ]
+    },
+    "0x55be7aa03ecfbe37aa5460db791205f7ac9ddca3": {
+      "username": "coinman2",
+      "cluster": "crypto",
+      "risk": "LOW",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x889e7f0464c72eb8cda1525ebc12b6aaba9d09e0": {
+      "username": "BowlOfPunch",
+      "cluster": "polymath",
+      "risk": "MEDIUM",
+      "closedCount": 8,
+      "closedSlugs": [
+        "will-ken-paxton-win-the-2026-republican-primary",
+        "will-trump-nominate-judy-shelton-as-the-next-fed-chair",
+        "will-graham-platner-be-the-democratic-nominee-for-senate-in-maine",
+        "khamenei-out-as-supreme-leader-of-iran-by-march-31",
+        "will-the-iranian-regime-fall-by-march-31",
+        "will-china-invades-taiwan-before-gta-vi-716",
+        "khamenei-out-as-supreme-leader-of-iran-by-june-30-747",
+        "gta-vi-released-before-june-2026"
+      ]
+    },
+    "0xebf79787ab928c803cbef6fa8e0abe42b9e1da78": {
+      "username": "0xa95bfdb",
+      "cluster": "crypto",
+      "risk": "LOW",
+      "closedCount": 1,
+      "closedSlugs": [
+        "bitcoin-above-106k-on-september-5"
+      ]
+    },
+    "0xcf0d7f69cf162918b33fc1ea7449583fa537132d": {
+      "username": "rabs",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 5,
+      "closedSlugs": [
+        "will-the-democratic-candidate-win-the-new-york-city-mayoral-election",
+        "will-andrew-cuomo-win-manhattan-in-the-new-york-city-mayoral-democratic-primary",
+        "will-zohran-mamdani-win-the-bronx-in-the-2025-new-york-city-mayoral-general-election",
+        "will-andrew-cuomo-win-the-2025-nyc-mayoral-election",
+        "ap-calls-nyc-mayoral-dem-primary-before-2-am"
+      ]
+    },
+    "0xe5c8026239919339b988fdb150a7ef4ea196d3e7": {
+      "username": "bama124",
+      "cluster": "political-economy",
+      "risk": "MEDIUM",
+      "closedCount": 15,
+      "closedSlugs": [
+        "will-donald-trump-win-the-popular-vote-in-the-2024-presidential-election",
+        "will-biden-complete-his-term-as-president",
+        "will-kamala-drop-out-before-election",
+        "kamala-swap-at-dnc",
+        "will-kamala-drop-out-in-august",
+        "tim-walz-out-as-democratic-vp-nominee",
+        "fed-decreases-interest-rates-by-50-bps-after-september-2024-meeting",
+        "will-biden-announce-resignation-by-august-31",
+        "no-ethereum-all-time-high-in-2024",
+        "will-bitcoin-hit-100k-in-2024",
+        "will-kamala-harris-win-the-2024-us-presidential-election",
+        "trump-sentenced-to-prison",
+        "ethereum-all-time-high-in-2024",
+        "will-trump-drop-out-of-presidential-race",
+        "will-the-chiefs-win-super-bowl-2025"
+      ]
+    },
+    "0x3cf3e8d5427aed066a7a5926980600f6c3cf87b3": {
+      "username": "50Whence",
+      "cluster": "polymath",
+      "risk": "MEDIUM",
+      "closedCount": 20,
+      "closedSlugs": [
+        "democrats-win-popular-vote-by-5-6",
+        "will-another-state-be-the-closest-state",
+        "fed-decreases-interest-rates-by-75-bps-after-january-2025-meeting",
+        "will-republicans-have-between-210-and-214-seats-in-house-after-election",
+        "will-ivanka-trump-be-a-member-of-the-trump-administration",
+        "will-jill-stein-get-the-most-votes-of-any-3rd-party-candidate",
+        "trump-declassifies-diddy-list",
+        "will-biden-resign-in-2024",
+        "will-biden-complete-his-term-as-president",
+        "will-a-nuclear-weapon-detonate-in-2024",
+        "trump-in-jail-before-inauguration",
+        "will-biden-pardon-diddy",
+        "will-trumps-hush-money-conviction-be-overturned",
+        "supreme-court-vacancy-in-2024",
+        "will-a-democrat-win-pennsylvania-us-senate-election",
+        "will-republicans-have-51-seats-in-senate-after-election",
+        "will-trump-pardon-hunter-biden",
+        "fed-decreases-interest-rates-by-25-bps-after-december-2024-meeting",
+        "will-trump-repeal-presidential-term-limits",
+        "will-there-be-175000000-or-more-votes-cast-in-the-us-presidential-election"
+      ]
+    },
+    "0x275575bb11522eb29f82fe0a601d7c4dc94b5016": {
+      "username": "zerosmart",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 5,
+      "closedSlugs": [
+        "khamenei-out-as-supreme-leader-of-iran-in-2025",
+        "iran-nuke-in-2025",
+        "will-the-price-of-bitcoin-be-greater-than-103000-on-may-9",
+        "will-jack-ciattarelli-win-the-new-jersey-governor-election-in-2025",
+        "eth-updown-15m-1760786100"
+      ]
+    },
+    "0x9d333d3122c0e38de533b2e59343a92df9e1fa02": {
+      "username": "TL307",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x64f8d315efd2d03897a03985fc42719f56952daa": {
+      "username": "JulianP",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0xf9f5581d4d7a599b8e2f8d1b1b0e29ca0218227a": {
+      "username": "Alhambra1",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 1,
+      "closedSlugs": [
+        "which-party-will-win-the-2024-united-states-presidential-election"
+      ]
+    },
+    "0x73f8dd50a114884493dbf4a5ea1503f96f348234": {
+      "username": "DrillBabyDrill",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 1,
+      "closedSlugs": [
+        "will-donald-trump-win-the-popular-vote-in-the-2024-presidential-election"
+      ]
+    },
+    "0x28065f1b88027422274fb33e1e22bf3dad5736e7": {
+      "username": "Circus",
+      "cluster": "crypto",
+      "risk": "LOW",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0xd1acd3925d895de9aec98ff95f3a30c5279d08d5": {
+      "username": "Kickstand7",
+      "cluster": "polymath",
+      "risk": "MEDIUM",
+      "closedCount": 14,
+      "closedSlugs": [
+        "will-nikola-jokic-win-the-20252026-nba-mvp",
+        "another-us-government-shutdown-by-february-14",
+        "maduro-out-by-january-31-2026-318",
+        "nfl-gb-chi-2025-12-20",
+        "cfb-mia-txam-2025-12-20",
+        "us-x-venezuela-military-engagement-by-january-15-2026-392",
+        "will-trump-release-the-epstein-files-by-december-19-771",
+        "nfl-ne-bal-2025-12-21",
+        "will-the-broncos-win-the-afc-championship-1",
+        "will-the-us-invade-venezuela-by-january-31-2026",
+        "nfl-la-chi-2026-01-18",
+        "nfl-buf-cle-2025-12-21",
+        "nfl-ind-hou-2026-01-04",
+        "nfl-min-nyg-2025-12-21"
+      ]
+    },
+    "0x7177a7f5c216809c577c50c77b12aae81f81ddef": {
+      "username": "kcnyekchno",
+      "cluster": "politics-culture",
+      "risk": "LOW",
+      "closedCount": 2,
+      "closedSlugs": [
+        "khamenei-out-as-supreme-leader-of-iran-by-january-31",
+        "will-1-fed-rate-cut-happen-in-2026"
+      ]
+    },
+    "0x24c8cf69a0e0a17eee21f69d29752bfa32e823e1": {
+      "username": "debased",
+      "cluster": "polymath",
+      "risk": "MEDIUM",
+      "closedCount": 1,
+      "closedSlugs": [
+        "will-trump-nominate-judy-shelton-as-the-next-fed-chair"
+      ]
+    },
+    "0xd0d6053c3c37e727402d84c14069780d360993aa": {
+      "username": "k9Q2mX4L8A7ZP3R",
+      "cluster": "crypto",
+      "risk": "LOW",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x6031b6eed1c97e853c6e0f03ad3ce3529351f96d": {
+      "username": "gabagool22",
+      "cluster": "crypto",
+      "risk": "LOW",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0xaaab8bf3bd469688d5e09bffeae8f8bf780a8eb2": {
+      "username": "022221",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 2,
+      "closedSlugs": [
+        "will-kamala-harris-win-the-2024-democratic-presidential-nomination",
+        "will-biden-complete-his-term-as-president"
+      ]
+    },
+    "0x25e64cd559e8c46a888d8ebfa47d4490e810cc9f": {
+      "username": "lsck",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 7,
+      "closedSlugs": [
+        "yoon-out-as-president-of-south-korea-before-april",
+        "will-0-justices-on-south-koreas-constitutional-court-vote-for-yoons-impeachment-before-may",
+        "yoon-released-from-custody-before-april",
+        "yoon-out-as-president-of-south-korea-in-2024",
+        "will-microstrategy-hold-400k-btc-before-2025",
+        "will-final-fantasy-7-rebirth-win-game-of-the-year",
+        "oscars-best-picture-will-anora-win-best-picture-at-the-2025-oscars"
+      ]
+    },
+    "0xed107a85a4585a381e48c7f7ca4144909e7dd2e5": {
+      "username": "bobe2",
+      "cluster": "polymath",
+      "risk": "MEDIUM",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0xd4c38e00d99e16f4799550bdbc76faa3606e899f": {
+      "username": "eeaa",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x8795bcb2fe129d1ea3e3d73bc13a3d8078047544": {
+      "username": "ciro2",
+      "cluster": "polymath",
+      "risk": "MEDIUM",
+      "closedCount": 6,
+      "closedSlugs": [
+        "will-d4vd-be-the-1-searched-person-on-google-this-year",
+        "will-trump-release-the-epstein-files-by-december-19-771",
+        "no-change-in-fed-interest-rates-after-december-2025-meeting",
+        "will-daniel-baluta-finish-second-in-the-2025-bucharest-mayoral-by-election",
+        "will-pope-leo-xiv-be-times-person-of-the-year-for-2025",
+        "will-jake-paul-win-his-boxing-match-against-anthony-joshua"
+      ]
+    },
+    "0x8b5a7da2fdf239b51b9c68a2a1a35bb156d200f2": {
+      "username": "Joe-Biden",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 1,
+      "closedSlugs": [
+        "ucl-fcb-oly-2025-10-21-fcb"
+      ]
+    },
+    "0x7f69983eb28245bba0d5083502a78744a8f66162": {
+      "username": "Account88888",
+      "cluster": "crypto",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x9f47f1fcb1701bf9eaf31236ad39875e5d60af93": {
+      "username": "TheGuru",
+      "cluster": "mixed",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x090a0d3fc9d68d3e16db70e3460e3e4b510801b4": {
+      "username": "slight-",
+      "cluster": "political-economy",
+      "risk": "MEDIUM",
+      "closedCount": 26,
+      "closedSlugs": [
+        "khamenei-out-as-supreme-leader-of-iran-by-march-31",
+        "will-trump-nominate-kevin-hassett-as-the-next-fed-chair",
+        "khamenei-out-as-supreme-leader-of-iran-by-june-30-747",
+        "will-the-boston-celtics-win-the-2026-nba-finals",
+        "will-ldp-win-a-majority-in-the-2026-japanese-snap-election",
+        "russia-x-ukraine-ceasefire-by-march-31-2026",
+        "billionaire-one-time-wealth-tax-passes-in-california-election-2026",
+        "will-the-supreme-court-rule-in-favor-of-trumps-tariffs",
+        "will-bitcoin-reach-90k-in-february-2026",
+        "khamenei-out-as-supreme-leader-of-iran-by-february-28",
+        "will-james-talarico-be-the-democratic-nominee-for-senate-in-texas",
+        "will-elon-musk-buy-ryanair",
+        "us-x-iran-meeting-by-february-6-2026",
+        "will-sam-darnold-win-the-super-bowl-lx-mvp",
+        "will-wesley-hunt-win-the-2026-republican-primary",
+        "will-the-next-prime-minister-of-hungary-be-pter-magyar",
+        "russia-x-ukraine-ceasefire-by-june-30-2026",
+        "ukraine-election-called-by-march-31-2026",
+        "china-x-taiwan-military-clash-before-2027",
+        "ukraine-election-held-by-june-30-2026-465-757",
+        "will-the-democratic-party-control-the-senate-after-the-2026-midterm-elections",
+        "another-us-government-shutdown-by-february-14",
+        "will-thomas-massie-be-the-republican-nominee-for-ky-04",
+        "starmer-out-by-june-30-2026-862-594",
+        "pro-football-championship-octopus",
+        "super-bowl-lx-safety"
+      ]
+    },
+    "0x1823757d22022f81a8fa1536d63101fe458884d8": {
+      "username": "farmyboi",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 1,
+      "closedSlugs": [
+        "will-kamala-harris-win-the-popular-vote-in-the-2024-presidential-election"
+      ]
+    },
+    "0xca72a747f0e4007d75e3067ffd12fc12000b7637": {
+      "username": "Trunp",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 1,
+      "closedSlugs": [
+        "will-donald-trump-win-the-2024-us-presidential-election"
+      ]
+    },
+    "0x4a49ce5fe2d6faadbc0b279c4d2bd5f41665285e": {
+      "username": "doooooooooge",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 1,
+      "closedSlugs": [
+        "will-donald-trump-win-the-2024-us-presidential-election"
+      ]
+    },
+    "0xa2f1fecf1cc7db65a46588f764b6691533052d22": {
+      "username": "elPolloLoco",
+      "cluster": "mixed",
+      "risk": "LOW",
+      "closedCount": 13,
+      "closedSlugs": [
+        "will-ethereum-dip-to-1200-in-february-2026",
+        "will-solana-dip-to-60-in-february-2026",
+        "will-bitcoin-reach-74k-february-9-15",
+        "lol-dk-drx-2026-02-07-game2",
+        "lol-tes-we-2026-02-10",
+        "lol-ig1-nip-2026-02-10",
+        "lol-tt-lng-2026-02-11-game3",
+        "lol-edg-omg-2026-02-11-game3",
+        "will-bitcoin-dip-to-55k-in-february-2026-644-513-935",
+        "nba-2025-26-atlantic-division-winner-boston-celtics",
+        "lol-ns-dnf-2026-02-07",
+        "will-ethereum-reach-2400-february-2-8",
+        "will-bitcoin-reach-86k-february-2-8"
+      ]
+    },
+    "0x7c3db723f1d4d8cb9c550095203b686cb11e5c6b": {
+      "username": "Car",
+      "cluster": "polymath",
+      "risk": "MEDIUM",
+      "closedCount": 10,
+      "closedSlugs": [
+        "will-trump-nominate-judy-shelton-as-the-next-fed-chair",
+        "will-trumps-meeting-with-netanyahu-not-air-536-717-855",
+        "us-strike-on-somalia-by-february-14",
+        "will-solv-energy-incs-market-cap-be-greater-than-5pt4b-at-market-close-on-ipo-day",
+        "bitcoin-up-or-down-on-february-12",
+        "will-israel-strike-gaza-on-february-10-2026",
+        "bitcoin-up-or-down-on-february-13",
+        "spx-up-or-down-on-february-13-2026",
+        "btc-updown-5m-1770863400",
+        "will-trump-and-netanyahu-only-be-photographed-together-by-february-13-2026"
+      ]
+    },
+    "0xcb3143ee858e14d0b3fe40ffeaea78416e646b02": {
+      "username": "0xCB3143ee",
+      "cluster": "economics",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x80cd8310aa624521e9e1b2b53b568cafb0ef0273": {
+      "username": "HaileyWelch",
+      "cluster": "crypto",
+      "risk": "LOW",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0xe00740bce98a594e26861838885ab310ec3b548c": {
+      "username": "distinct-baguette",
+      "cluster": "crypto",
+      "risk": "LOW",
+      "closedCount": 2,
+      "closedSlugs": [
+        "sol-updown-15m-1771016400",
+        "btc-updown-15m-1771015500"
+      ]
+    },
+    "0x1070ee77f3d191241ccc716d0f9c2654343c9124": {
+      "username": "KimballDavies",
+      "cluster": "crypto",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x8a4c788f043023b8b28a762216d037e9f148532b": {
+      "username": "theo5",
+      "cluster": "politics-culture",
+      "risk": "MEDIUM",
+      "closedCount": 6,
+      "closedSlugs": [
+        "khamenei-out-as-supreme-leader-of-iran-by-january-31",
+        "will-openai-have-the-top-ai-model-on-december-31",
+        "will-trump-release-the-epstein-files-by-december-19-771",
+        "odds-trump-acquires-greenland-before-2027-hit-30-by-march-31-645",
+        "khamenei-out-as-supreme-leader-of-iran-by-december-31-2026",
+        "xai-ipo-before-2027"
+      ]
+    },
+    "0xd3a6e523c440f94f9259398fbcf7b5cc5ccffd55": {
+      "username": "operationcastle",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 2,
+      "closedSlugs": [
+        "khamenei-out-as-supreme-leader-of-iran-by-january-31",
+        "will-sanae-takaichi-be-the-prime-minister-of-japan-as-a-result-of-the-2026-snap-election"
+      ]
+    },
+    "0x2a923d2f6edbc894e76357104e654b27a0d9071e": {
+      "username": "02a923d",
+      "cluster": "crypto",
+      "risk": "LOW",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x8749194e5105c97c3d134e974e103b44eea44ea4": {
+      "username": "0x066423",
+      "cluster": "crypto",
+      "risk": "LOW",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x509587cbb541251c74f261df3421f1fcc9fdc97c": {
+      "username": "BuckMySalls",
+      "cluster": "political-economy",
+      "risk": "MEDIUM",
+      "closedCount": 14,
+      "closedSlugs": [
+        "will-trump-nominate-kevin-warsh-as-the-next-fed-chair",
+        "will-the-christian-democratic-appeal-win-the-most-seats-in-the-2025-netherlands-parliamentary-election",
+        "will-daniel-baluta-be-the-next-mayor-of-bucharest",
+        "will-trump-refrain-from-announcing-a-next-fed-chair-in-2025",
+        "atp-alcaraz-fritz-2025-11-09",
+        "will-oscar-piastri-be-the-2025-drivers-champion",
+        "will-russia-capture-siversk-by-december-31-132-853-373",
+        "will-hyperliquid-hit-55-in-2025-178-267-799",
+        "fed-decreases-interest-rates-by-25-bps-after-december-2025-meeting",
+        "nothing-ever-happens-jerome-powell-edition",
+        "will-trump-meet-with-putin-by-november-30",
+        "will-ethereum-dip-to-3000-by-december-31",
+        "us-x-venezuela-military-engagement-by-december-31-391-819-722-945-174-285-817-971-353-859-836-598-255-382-192-983",
+        "atp-shelton-augeral-2025-11-11"
+      ]
+    },
+    "0x0e9b9cb7ee710b57fbcbefdcb518a3a986a16e75": {
+      "username": "8BlocksCapital",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 27,
+      "closedSlugs": [
+        "will-kamala-harris-win-the-2024-us-presidential-election",
+        "will-a-republican-win-iowa-in-the-2024-us-presidential-election",
+        "will-a-republican-win-texas-in-the-2024-us-presidential-election",
+        "will-a-republican-win-georgia-presidential-election",
+        "will-kamala-harris-win-every-swing-state",
+        "will-a-republican-win-north-carolina-presidential-election",
+        "will-a-republican-win-alaska-in-the-2024-us-presidential-election",
+        "will-a-democrat-win-pennsylvania-presidential-election",
+        "will-mamdani-get-over-50-of-the-vote-in-the-general-mayoral-election",
+        "will-the-democratic-candidate-win-iowa-by-1-2pt0",
+        "us-presidential-election-democrats-win-a-solid-red-state",
+        "will-a-democrat-win-virginia-in-the-2024-us-presidential-election",
+        "will-a-republican-win-wisconsin-presidential-election",
+        "kamala-harris-blowout-victory",
+        "dems-flip-a-2020-trump-state",
+        "will-andrew-cuomo-win-second-place-in-the-2025-nyc-mayoral-election",
+        "will-lando-norris-be-the-2025-drivers-champion",
+        "will-a-republican-win-florida-in-the-2024-us-presidential-election",
+        "will-zohran-mamdani-win-the-2025-nyc-mayoral-election",
+        "which-party-will-control-the-us-senate-after-the-2024-election",
+        "will-zohran-mamdani-win-by-10-20",
+        "will-a-republican-win-new-hampshire-in-the-2024-us-presidential-election",
+        "will-kamala-harris-win-the-popular-vote-in-the-2024-presidential-election",
+        "will-lewis-hamilton-win-the-las-vegas-grand-prix",
+        "will-a-democrat-win-maine-in-the-2024-us-presidential-election",
+        "will-a-republican-win-new-jersey-in-the-2024-us-presidential-election",
+        "will-a-democrat-win-kentucky-in-the-2024-us-presidential-election"
+      ]
+    },
+    "0x10b30364936b03d26b3fd01a63d1f991454b40d4": {
+      "username": "0x10B303",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 6,
+      "closedSlugs": [
+        "will-polymarket-us-go-live-in-2025",
+        "will-trump-acquire-greenland-before-2027",
+        "cfb-ntx-tulane-2025-12-05",
+        "bitcoin-up-or-down-on-november-25",
+        "will-ethereum-dip-to-2600-in-november-2025",
+        "fed-decreases-interest-rates-by-25-bps-after-december-2025-meeting"
+      ]
+    },
+    "0x4d3e59470cd241c4382cabbd2bfd10037cce58c7": {
+      "username": "ScamWick",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 27,
+      "closedSlugs": [
+        "fed-increases-interest-rates-by-25-bps-after-may-2025-meeting",
+        "will-kim-boo-kyum-be-elected-the-next-president-of-south-korea",
+        "will-anton-pisaroglu-win-the-romanian-presidential-election",
+        "will-2-fed-rate-cuts-happen-in-2025",
+        "will-the-candidate-from-the-new-future-party-win-the-south-korean-presidential-election",
+        "zelenskyy-out-as-ukraine-president-before-july",
+        "fed-decreases-interest-rates-by-25-bps-after-june-2025-meeting",
+        "will-microsoft-buy-tiktok",
+        "us-national-bitcoin-reserve-in-2025",
+        "israel-x-hamas-ceasefire-before-july-2025",
+        "gaza-mass-population-relocation-in-2025",
+        "russia-x-ukraine-ceasefire-before-june",
+        "us-iran-nuclear-deal-before-july",
+        "trump-ends-taxes-on-tips-before-august",
+        "will-person-b-be-next-national-security-advisor",
+        "nothing-ever-happens-may",
+        "will-iran-enrich-uranium-to-90-before-june",
+        "us-treasury-transactions-on-blockchain-in-2025",
+        "will-rafa-trzaskowski-be-the-next-president-of-poland",
+        "israel-military-action-against-iran-before-july",
+        "will-china-invade-taiwan-in-2025",
+        "israel-and-saudi-arabia-normalize-relations-in-2025",
+        "us-x-iran-nuclear-deal-in-2025",
+        "will-trump-remove-10-blanket-tariff-before-july",
+        "will-sam-altman-get-openai-equity-in-2025",
+        "will-the-us-acquire-canadian-territory-in-2025",
+        "will-reconciliation-bill-be-passed-by-july-31-738-824-696"
+      ]
+    },
+    "0x7caeeadf0421f75e60945a839b8716080891fb5c": {
+      "username": "issathegreat",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 1,
+      "closedSlugs": [
+        "will-donald-trump-win-the-2024-us-presidential-election"
+      ]
+    },
+    "0x1f1dd8cf3d2c653edbdf319b81079bd753409a6f": {
+      "username": "A1d29",
+      "cluster": "crypto",
+      "risk": "LOW",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x128a251f2300694ae6ea9d77e076ea8ea4e097c2": {
+      "username": "monchi",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0xdb7513a3c54d579d64ee64c948c85d2f27620252": {
+      "username": "UnRektCapital",
+      "cluster": "mixed",
+      "risk": "LOW",
+      "closedCount": 2,
+      "closedSlugs": [
+        "russia-x-ukraine-ceasefire-in-2025",
+        "will-putin-meet-with-trump-by-first-100-days"
+      ]
+    },
+    "0x5248313731287b61d714ab9df655442d6ed28aa2": {
+      "username": "0x8bc3ad",
+      "cluster": "crypto",
+      "risk": "LOW",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x629bc4a1e53e1d475beb7ea3d388791e96dd995a": {
+      "username": "lava-lava",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 2,
+      "closedSlugs": [
+        "will-trump-acquire-greenland-before-2027",
+        "will-there-be-another-us-government-shutdown-by-january-31"
+      ]
+    },
+    "0xd218e474776403a330142299f7796e8ba32eb5c9": {
+      "username": "cigarettes",
+      "cluster": "polymath",
+      "risk": "MEDIUM",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x2adf85be1f25a77ca407cf031bd00d735c05d89c": {
+      "username": "brockthebaby",
+      "cluster": "crypto",
+      "risk": "LOW",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0xd73d208bb247d64df5cc8ba3100aee95bc91213a": {
+      "username": "xeroror",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 1,
+      "closedSlugs": [
+        "will-donald-trump-win-the-2024-us-presidential-election"
+      ]
+    },
+    "0xb33d95f62714c3522ac133de55ba941927fe0392": {
+      "username": "hgg333",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x9a73373b3f0e4af0f91eab0f1919edccb898f447": {
+      "username": "KK123",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 1,
+      "closedSlugs": [
+        "will-donald-trump-win-the-2024-us-presidential-election"
+      ]
+    },
+    "0x79f293c48f651baa31c8086a228102f57b127620": {
+      "username": "notgonnatrickme",
+      "cluster": "political-economy",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0xe9c6312464b52aa3eff13d822b003282075995c9": {
+      "username": "kingofcoinflips",
+      "cluster": "crypto",
+      "risk": "LOW",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x01542a212c9696da5b409cae879143b8966115a8": {
+      "username": "0x01542a",
+      "cluster": "crypto",
+      "risk": "LOW",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x71edffd0d70a1da823ff07a3c6fc81457294d338": {
+      "username": "pako",
+      "cluster": "economics",
+      "risk": "HIGH",
+      "closedCount": 25,
+      "closedSlugs": [
+        "will-the-10-year-treasury-yield-hit-4pt6-in-2025",
+        "nothing-ever-happens-microstrategy",
+        "will-microstrategys-nav-reach-2-by-december-31-468",
+        "will-bitcoin-reach-170000-by-december-31-2025-215",
+        "nicols-maduro-seen-in-public-by-january-5",
+        "will-the-10-year-treasury-yield-dip-below-3pt8-in-2025-395",
+        "will-bad-bunny-rank-in-googles-top-5-most-searched-people-of-2025",
+        "fed-emergency-rate-cut-in-2025",
+        "will-jd-vance-announce-presidential-run-in-2025",
+        "will-trump-make-no-announcement-by-december-31-to-replace-lisa-cook",
+        "jerome-powell-out-as-fed-chair-by-may-14-2026",
+        "jerome-powell-out-from-fed-board-by-may-30",
+        "maduro-trial-scheduled-by-january-31",
+        "will-alphabet-be-the-third-largest-company-in-the-world-by-market-cap-on-november-30",
+        "will-the-january-2026-fomc-decision-result-in-no-change-with-2-dissents-222",
+        "bitcoin-all-time-high-by-december-31-2026",
+        "will-ethereum-dip-to-1300-by-december-31-455-941-866-736-589",
+        "us-x-venezuela-ceasefire-by-january-31",
+        "will-trump-try-to-fire-powell-in-2025",
+        "nothing-ever-happens-january-581",
+        "will-there-be-another-us-government-shutdown-by-january-31",
+        "us-national-bitcoin-reserve-before-2027",
+        "will-trump-sue-powell-by-march-31",
+        "russian-strike-on-poland-by-june-30",
+        "will-china-invade-taiwan-before-2027"
+      ]
+    },
+    "0x6f2628a8ac6e3f7bd857657d5316c33822ced136": {
+      "username": "0x6f2628a",
+      "cluster": "crypto",
+      "risk": "LOW",
+      "closedCount": 1,
+      "closedSlugs": [
+        "will-the-price-of-bitcoin-be-between-88000-90000-on-january-4"
+      ]
+    },
+    "0xfeb581080aee6dc26c264a647b30a9cd44d5a393": {
+      "username": "completion",
+      "cluster": "mixed",
+      "risk": "LOW",
+      "closedCount": 2,
+      "closedSlugs": [
+        "will-ethereum-hit-5000-by-december-31-796-376",
+        "will-bitcoin-hit-100k-or-130k-first"
+      ]
+    },
+    "0x6e4ec81dce3c1c0713781bb392a14ec5dc50ec98": {
+      "username": "eastcoast",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x8df306b761d8e4f95ffa21a2d5d36fd330fe887a": {
+      "username": "492LdDfWP1",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 1,
+      "closedSlugs": [
+        "romania-presidential-election-winner-will-nicuor-dan-win-the-romanian-presidential-election"
+      ]
+    },
+    "0x31a56e9e690c621ed21de08cb559e9524cdb8ed9": {
+      "username": "0x31a56e",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 2,
+      "closedSlugs": [
+        "trump-invokes-war-powers-against-venezuela-by-january-31-134-583",
+        "will-the-us-invade-venezuela-by-january-31-2026"
+      ]
+    },
+    "0xbdb05a6bf32b701e28338c13c873b43fcb1af688": {
+      "username": "trumppppp..",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 2,
+      "closedSlugs": [
+        "will-donald-trump-win-the-2024-us-presidential-election",
+        "will-a-republican-win-pennsylvania-presidential-election"
+      ]
+    },
+    "0xe43c7b9adddeaf01ba16bc3c5b27f034407801ad": {
+      "username": "larpas",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 1,
+      "closedSlugs": [
+        "will-kamala-harris-win-the-2024-us-presidential-election"
+      ]
+    },
+    "0x226bf1220731af372b1e7d572959414f31b4cad6": {
+      "username": "botbot",
+      "cluster": "mixed",
+      "risk": "LOW",
+      "closedCount": 3,
+      "closedSlugs": [
+        "cbb-hou-byu-2026-02-07",
+        "nba-sas-gsw-2026-02-11-spread-away-8pt5",
+        "cbb-fl-ga-2026-02-10"
+      ]
+    },
+    "0x9708fd9556116218fd29c778e9d81d255b61925b": {
+      "username": "uppp",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0xfb1c3c1ab4fb2d0cbcbb9538c8d4d357dd95963e": {
+      "username": "0xfb1c3c",
+      "cluster": "crypto",
+      "risk": "LOW",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0xc8ab97a9089a9ff7e6ef0688e6e591a066946418": {
+      "username": "ArmageddonRewardsBilly",
+      "cluster": "crypto-macro",
+      "risk": "LOW",
+      "closedCount": 16,
+      "closedSlugs": [
+        "will-tsla-close-between-390-and-395-week-february-13-2026",
+        "will-nvda-close-between-190-and-195-week-february-13-2026",
+        "gc-hit-7000-high-jun-2026-433-244-291",
+        "us-strikes-iran-by-february-20-2026-151-468-624-297-614-778-872-127-349-448-499-337-826-553",
+        "starmer-out-by-february-28-2026-352-692",
+        "will-open-close-between-3-and-4-week-february-13-2026",
+        "will-norway-win-the-most-medals-in-the-2026-winter-olympics",
+        "rut-up-or-down-on-february-13-2026",
+        "will-trump-endorse-mara-corina-machado-for-venezuela-president-in-2026-314",
+        "will-the-upper-bound-of-the-target-federal-funds-rate-be-1pt0-at-the-end-of-2026-434",
+        "us-agrees-to-give-ukraine-security-guarantee-by-june-30",
+        "spx-opens-up-or-down-on-february-13-2026",
+        "polymarket-surpasses-robinhood-on-similar-web-in-2026",
+        "will-david-copperfield-be-named-in-newly-released-epstein-files-by-february-28",
+        "googl-up-or-down-on-february-13-2026",
+        "aapl-up-or-down-on-february-13-2026"
+      ]
+    },
+    "0x0f1b8f81fdcb47b6c3292b8dbf6c2c16b3c4d367": {
+      "username": "manwithahat",
+      "cluster": "crypto",
+      "risk": "LOW",
+      "closedCount": 2,
+      "closedSlugs": [
+        "will-solana-reach-200-in-july-523-977-471",
+        "will-the-price-of-bitcoin-be-between-114k-and-116k-on-august-1"
+      ]
+    },
+    "0x7dc64a570c7b76831cf25e31c526f2337a050fa2": {
+      "username": "hovan",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x33f6e35dcbe0d5881f19d723335f87cb56f68003": {
+      "username": "xAjMk",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x751a2b86cab503496efd325c8344e10159349ea1": {
+      "username": "Sharky6999",
+      "cluster": "crypto",
+      "risk": "LOW",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0xeffcc79a8572940cee2238b44eac89f2c48fda88": {
+      "username": "FirstOrder",
+      "cluster": "crypto",
+      "risk": "LOW",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x1cfc6f041b5b8dad3c14b867be8482a69d45b8e0": {
+      "username": "86shin",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x27aed7b479101b7436dcf04cd4a26f3d6bd8bf32": {
+      "username": "SuperApe",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x71a70f24538d885d1b45f9cea158a2cdf2e56fcf": {
+      "username": "easyclap",
+      "cluster": "crypto",
+      "risk": "LOW",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x08ce2678c929934de9edea698a998aea9dbc295e": {
+      "username": "scoobydoolover",
+      "cluster": "economics",
+      "risk": "HIGH",
+      "closedCount": 5,
+      "closedSlugs": [
+        "fed-decreases-interest-rates-by-50-bps-after-december-2025-meeting",
+        "will-2-fed-rate-cuts-happen-in-2025",
+        "fed-derivative-no-change-or-25bp-cut-favored-on-monday",
+        "lighter-market-cap-fdv-2b-one-day-after-launch-332",
+        "will-polymarket-us-go-live-in-2025"
+      ]
+    },
+    "0x5739ddf8672627ce076eff5f444610a250075f1a": {
+      "username": "hopedieslast",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 10,
+      "closedSlugs": [
+        "will-russia-capture-kostyantynivka-by-december-31-2026-936-942",
+        "will-russia-capture-siversk-by-december-31-132-853-373",
+        "will-the-iranian-regime-fall-by-march-31",
+        "ukraine-signs-peace-deal-with-russia-before-2027",
+        "khamenei-out-as-supreme-leader-of-iran-by-june-30-747",
+        "us-x-venezuela-military-engagement-by-december-31-391-819-722-945-174-285-817-971-353-859-836-598-255-382-192-983",
+        "ukraine-signs-peace-deal-with-russia-by-march-31",
+        "will-russia-capture-slovainsk-by-2027",
+        "eu-agrees-use-of-russian-assets-to-fund-ukraine-by-december-31",
+        "another-us-military-action-against-iran-before-2026"
+      ]
+    },
+    "0xe34fa89ce3a484cb9543a6f116133ffad8b9d79c": {
+      "username": "vrooo0m",
+      "cluster": "crypto",
+      "risk": "LOW",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0xe5a565a0564dc54159e503ca74925835f00585c3": {
+      "username": "deker",
+      "cluster": "politics",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0xbcd6358b674834ec8101c238ec0d52540f0c0790": {
+      "username": "inducedchance",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x68469ab9009f2783e243a1d0957f4cdd8939b797": {
+      "username": "jokerfucker",
+      "cluster": "crypto",
+      "risk": "LOW",
+      "closedCount": 2,
+      "closedSlugs": [
+        "xi-jinping-out-in-2025",
+        "will-bitcoin-dip-to-80k-in-november-2025-899"
+      ]
+    },
+    "0x09abc5845c024a4f9a3abff29d95057e6b20e832": {
+      "username": "5332321",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 11,
+      "closedSlugs": [
+        "will-joe-biden-win-the-2024-democratic-presidential-nomination",
+        "will-chris-christie-win-the-2024-us-presidential-election",
+        "will-biden-complete-his-term-as-president",
+        "will-biden-drop-out-of-presidential-race",
+        "will-pierre-poilievre-be-the-next-canadian-prime-minister",
+        "russia-x-ukraine-ceasefire-before-july",
+        "khamenei-out-as-supreme-leader-of-iran-by-friday",
+        "khamenei-out-as-supreme-leader-of-iran-by-june-30",
+        "will-tim-walz-be-d-nom-for-vp-on-election-day",
+        "starmer-out-before-july",
+        "will-the-us-confirm-that-aliens-exist-in-2025"
+      ]
+    },
+    "0xe1055b4b4c1342281bf5cba7d18074f8126f9cb3": {
+      "username": "Bammer",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 12,
+      "closedSlugs": [
+        "will-trump-release-the-epstein-files-by-december-19-771",
+        "tiktok-sale-announced-in-2025-386-821-248",
+        "khamenei-out-as-supreme-leader-of-iran-by-january-31",
+        "trump-declassifies-ufo-files-in-2025",
+        "will-wicked-for-good-have-the-second-best-domestic-opening-weekend-in-2025",
+        "will-salvador-alejandro-csar-nasralla-salum-win-the-2025-honduras-presidential-election",
+        "over-20000-eth-committed-to-the-aztec-public-sale",
+        "israel-strikes-iran-by-january-23-2026",
+        "no-change-in-fed-interest-rates-after-january-2026-meeting",
+        "will-ai-be-on-the-time-2025-person-of-the-year-shortlist",
+        "will-apple-be-the-largest-company-in-the-world-by-market-cap-on-december-31-2025",
+        "israel-strikes-iran-by-january-26-2026"
+      ]
+    },
+    "0x68c24bf4a8ad4d79a6fe4b8eec6f93a02dfd1711": {
+      "username": "mombil",
+      "cluster": "political-economy",
+      "risk": "LOW",
+      "closedCount": 11,
+      "closedSlugs": [
+        "us-strikes-iran-by-february-28-2026-227-967-547-688-589-491-592-418-452-924-384-915-464-672-196-157-993-596-269-535-381-391-471-256-988-997-296-225-762-973",
+        "will-ken-paxton-win-the-2026-republican-primary",
+        "us-x-iran-nuclear-talks-resume-by-march-31",
+        "will-4-fed-rate-cuts-happen-in-2026",
+        "will-jasmine-crockett-be-the-democratic-nominee-for-senate-in-texas",
+        "will-don-lemon-be-criminally-charged",
+        "will-the-government-shutdown-last-6-days-or-more-888",
+        "march-fed-derivative-25bps-cut-flips-pause-by-feb-28",
+        "ukraine-election-called-by-june-30-2026-392",
+        "will-there-be-at-least-600-measles-cases-in-the-us-by-january-31-2026",
+        "will-brazil-join-the-board-of-peace"
+      ]
+    },
+    "0x6b88b6a431c5ec9b3afdb76e69393d0404909856": {
+      "username": "sweetspea",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x063aeee10fbfd55b6def10da28e87a601e7deb4b": {
+      "username": "noovd",
+      "cluster": "mixed",
+      "risk": "MEDIUM",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0xe639e41094bbeae18f3e6d1790c17299183f082a": {
+      "username": "0xe639e4",
+      "cluster": "mixed",
+      "risk": "HIGH",
+      "closedCount": 4,
+      "closedSlugs": [
+        "will-trump-remove-jerome-powell",
+        "will-trump-sign-the-epstein-disclosure-bill-on-november-19",
+        "will-kabuto-1st-edition-card-hit-100-by-december-31",
+        "will-zootopia-2-be-the-top-grossing-movie-of-2025"
+      ]
+    },
+    "0xf9e60f3fd62105dac25f15643979bd59eefb53ef": {
+      "username": "KOTech",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0xd205ced392d30c050e42b0fe0a08787b7583859a": {
+      "username": "NotGambid",
+      "cluster": "finance",
+      "risk": "HIGH",
+      "closedCount": 2,
+      "closedSlugs": [
+        "will-kamala-harris-win-the-2024-us-presidential-election",
+        "bitcoin-etf-approved-by-jan-15"
+      ]
+    },
+    "0x6bab41a0dc40d6dd4c1a915b8c01969479fd1292": {
+      "username": "Dropper",
+      "cluster": "polymath",
+      "risk": "MEDIUM",
+      "closedCount": 3,
+      "closedSlugs": [
+        "no-change-in-fed-interest-rates-after-january-2026-meeting",
+        "will-trump-acquire-greenland-before-2027",
+        "will-witkoff-meet-with-iranian-officials-by-february-28"
+      ]
+    },
+    "0xb84304b56cb1e1d492708cd8c3c7796c08211b3f": {
+      "username": "0xCarneyAsada",
+      "cluster": "politics",
+      "risk": "LOW",
+      "closedCount": 9,
+      "closedSlugs": [
+        "no-change-in-fed-interest-rates-after-may-2025-meeting",
+        "will-trump-say-crypto-or-bitcoin-this-week-987",
+        "will-lee-jun-seok-be-elected-the-next-president-of-south-korea",
+        "bitcoin-up-or-down-on-april-26",
+        "will-george-simion-win-by-over-18",
+        "will-the-liberalnational-coalition-win-less-than-45-seats",
+        "pierre-poilievre-out-as-leader-of-conservatives-in-2025",
+        "trump-x-ukraine-mineral-deal-signed-before-june",
+        "will-karol-nawrocki-be-the-next-president-of-poland"
+      ]
+    },
+    "0x8e9eedf20dfa70956d49f608a205e402d9df38e4": {
+      "username": "Karajan",
+      "cluster": "finance-macro",
+      "risk": "HIGH",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0xf693bac0b9a42c5df41792673020ba7385ffe96c": {
+      "username": "btc-lu",
+      "cluster": "crypto",
+      "risk": "LOW",
+      "closedCount": 0,
+      "closedSlugs": []
+    },
+    "0x96b59f71f635da5da031e3e93448c54fe226f5e7": {
+      "username": "ExhaustedBoyBilly",
+      "cluster": "crypto-macro",
+      "risk": "LOW",
+      "closedCount": 20,
+      "closedSlugs": [
+        "russia-x-ukraine-ceasefire-by-january-31-2026",
+        "lighter-fdv-above-2b-one-day-after-launch",
+        "will-sanae-takaichi-be-the-prime-minister-of-japan-as-a-result-of-the-2026-snap-election",
+        "will-trump-talk-to-vladimir-putin-in-january",
+        "will-bitcoin-dip-to-75000-by-december-31-2025-515",
+        "will-donald-trump-say-nuclear-3-times-during-israel-president-events-on-december-29",
+        "will-satoshi-move-any-bitcoin-in-2025",
+        "will-solana-dip-to-70-before-2026-964-284-717-446-486",
+        "will-spacexs-market-cap-be-between-800b-and-900b-at-market-close-on-ipo-day",
+        "will-the-us-acquire-any-part-of-greenland-in-2026",
+        "will-logan-pauls-psa-10-pokmon-illustrator-sale-price-be-over-4-million",
+        "will-the-logan-paul-1st-edition-charizard-sale-price-be-over-700k-862",
+        "will-sza-release-a-new-song-in-2025",
+        "will-there-be-another-us-government-shutdown-by-january-31",
+        "khamenei-out-as-supreme-leader-of-iran-by-june-30-747",
+        "ukraine-officially-agrees-to-a-us-backed-ceasefire-framework-in-2025",
+        "will-kevin-warsh-be-formally-nominated-to-be-chair-of-the-federal-reserve-by-february-18-2026-264",
+        "will-trump-nominate-kevin-warsh-as-the-next-fed-chair",
+        "will-us-or-israel-strike-iran-by-january-9-2026",
+        "nothing-ever-happens-january"
+      ]
+    },
+    "0x2aac99d0ee5b8d95fbd48e16ce37d90bbd7f1b36": {
+      "username": "lijialijia2020",
+      "cluster": "economics",
+      "risk": "HIGH",
+      "closedCount": 11,
+      "closedSlugs": [
+        "will-mikie-sherrill-win-by-9-12",
+        "no-change-in-fed-interest-rates-after-january-2026-meeting",
+        "bank-of-japan-increases-interest-rates-by-25-bps-after-december-2025-meeting",
+        "will-trump-nominate-christopher-waller-as-the-next-fed-chair",
+        "us-government-funding-lapse-on-october-1",
+        "will-jack-ciattarelli-win-the-new-jersey-governor-election-in-2025",
+        "us-recession-in-2025",
+        "will-jorge-tuto-quiroga-win-the-2025-bolivia-presidential-election",
+        "will-china-invade-taiwan-in-2025",
+        "will-the-supreme-court-rule-in-favor-of-trumps-tariffs",
+        "will-china-unban-bitcoin-in-2025"
+      ]
+    },
+    "0xe25b9180f5687aa85bd94ee309bb72a464320f1b": {
+      "username": "WordleAddict",
+      "cluster": "polymath",
+      "risk": "MEDIUM",
+      "closedCount": 7,
+      "closedSlugs": [
+        "khamenei-out-as-supreme-leader-of-iran-by-january-31",
+        "will-seguro-win-all-of-portugals-districts",
+        "will-trump-acquire-greenland-before-2027",
+        "will-us-or-israel-strike-iran-by-january-31-2026",
+        "another-us-government-shutdown-by-february-14",
+        "us-strikes-iran-by-february-9-2026-113-751",
+        "cbb-txs-alcst-2026-01-17"
+      ]
+    },
+    "0xfffe4013adfe325c6e02d36dc66e091f5476f52c": {
+      "username": "therealbatman",
+      "cluster": "finance-macro",
+      "risk": "HIGH",
+      "closedCount": 2,
+      "closedSlugs": [
+        "will-donald-trump-win-the-popular-vote-in-the-2024-presidential-election",
+        "will-biden-complete-his-term-as-president"
+      ]
+    },
+    "0xc02147dee42356b7a4edbb1c35ac4ffa95f61fa8": {
+      "username": "Eatpraylove",
+      "cluster": "political-economy",
+      "risk": "MEDIUM",
+      "closedCount": 18,
+      "closedSlugs": [
+        "will-trump-nominate-kevin-warsh-as-the-next-fed-chair",
+        "russia-x-ukraine-ceasefire-by-march-31-2026",
+        "us-strikes-iran-by-february-20-2026-151-468-624-297-614-778-872-127-349-448-499-337-826-553",
+        "khamenei-out-as-supreme-leader-of-iran-by-march-31",
+        "will-the-us-acquire-any-part-of-greenland-in-2026",
+        "will-bitcoin-reach-100000-by-december-31-2026-571",
+        "russia-x-ukraine-ceasefire-by-june-30-2026",
+        "will-the-fed-increase-interest-rates-by-25-bps-after-the-march-2026-meeting",
+        "will-the-supreme-court-rule-in-favor-of-trumps-tariffs",
+        "will-the-iranian-regime-fall-by-march-31",
+        "another-us-government-shutdown-by-february-14",
+        "2026-balance-of-power-d-senate-r-house-692",
+        "will-the-new-england-patriots-win-super-bowl-2026",
+        "will-trump-endorse-mara-corina-machado-for-venezuela-president-in-2026-314",
+        "nfl-sea-ne-2026-02-08",
+        "will-the-iranian-regime-fall-by-june-30",
+        "will-tit-me-pregunt-be-played-first-at-the-super-bowl-halftime-show",
+        "will-anthropic-run-an-ad-during-super-bowl-lx"
+      ]
+    }
+  },
+  "strategies": {
+    "equalWeight": {
+      "capital": 10000,
+      "trades": 0,
+      "wins": 0,
+      "maxCap": 10000
+    },
+    "sharpeWeighted": {
+      "capital": 10000,
+      "trades": 0,
+      "wins": 0,
+      "maxCap": 10000
+    },
+    "optimal": {
+      "capital": 10000,
+      "trades": 0,
+      "wins": 0,
+      "maxCap": 10000
+    }
+  }
+}

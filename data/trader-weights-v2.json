@@ -1,0 +1,770 @@
+{
+  "0x68469ab9009f2783e243a1d0957f4cdd8939b797": {
+    "username": "jokerfucker",
+    "sharpe3m": -0.213,
+    "sharpe6m": -0.213,
+    "sharpe1y": -0.213,
+    "recommendedWeight": 0.075,
+    "tier": "D"
+  },
+  "0x0f1b8f81fdcb47b6c3292b8dbf6c2c16b3c4d367": {
+    "username": "manwithahat",
+    "sharpe3m": 1.226,
+    "sharpe6m": 1.226,
+    "sharpe1y": 1.226,
+    "recommendedWeight": 0.919,
+    "tier": "A"
+  },
+  "0x09abc5845c024a4f9a3abff29d95057e6b20e832": {
+    "username": "5332321",
+    "sharpe3m": 0,
+    "sharpe6m": 1.0,
+    "sharpe1y": -0.531,
+    "recommendedWeight": 0.145,
+    "tier": "C"
+  },
+  "0x000d257d2dc7616feaef4ae0f14600fdf50a758e": {
+    "username": "scottilicious",
+    "sharpe3m": 0.231,
+    "sharpe6m": 0.231,
+    "sharpe1y": 0.231,
+    "recommendedWeight": 0.231,
+    "tier": "C"
+  },
+  "0xd3a6e523c440f94f9259398fbcf7b5cc5ccffd55": {
+    "username": "operationcastle",
+    "sharpe3m": -0.628,
+    "sharpe6m": -0.628,
+    "sharpe1y": -0.628,
+    "recommendedWeight": 0.075,
+    "tier": "D"
+  },
+  "0x551e72eda42a5ab39d6d78239a1d9bbb5db6b0e0": {
+    "username": "0x551e72ed",
+    "sharpe3m": -0.888,
+    "sharpe6m": -1.091,
+    "sharpe1y": -1.091,
+    "recommendedWeight": 0.05,
+    "tier": "D"
+  },
+  "0x2728d99b2405a52db60160837e130b3ba3c1a83c": {
+    "username": "WindWalk3",
+    "sharpe3m": 0,
+    "sharpe6m": 1.429,
+    "sharpe1y": 1.429,
+    "recommendedWeight": 1.072,
+    "tier": "B"
+  },
+  "0xdb8d7baf8a05fb0d36f7405a64a37255752e5a52": {
+    "username": "0xdb8d7baf",
+    "sharpe3m": -1.106,
+    "sharpe6m": -1.106,
+    "sharpe1y": -1.348,
+    "recommendedWeight": 0.05,
+    "tier": "D"
+  },
+  "0x275575bb11522eb29f82fe0a601d7c4dc94b5016": {
+    "username": "zerosmart",
+    "sharpe3m": 1.0,
+    "sharpe6m": 0.18,
+    "sharpe1y": 0.613,
+    "recommendedWeight": 2.03,
+    "tier": "B"
+  },
+  "0x7177a7f5c216809c577c50c77b12aae81f81ddef": {
+    "username": "kcnyekchno",
+    "sharpe3m": 1.368,
+    "sharpe6m": 1.368,
+    "sharpe1y": 1.368,
+    "recommendedWeight": 0.684,
+    "tier": "A"
+  },
+  "0x68c24bf4a8ad4d79a6fe4b8eec6f93a02dfd1711": {
+    "username": "mombil",
+    "sharpe3m": 0.553,
+    "sharpe6m": 0.553,
+    "sharpe1y": 0.553,
+    "recommendedWeight": 0.277,
+    "tier": "B"
+  },
+  "0x25e64cd559e8c46a888d8ebfa47d4490e810cc9f": {
+    "username": "lsck",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 1.612,
+    "recommendedWeight": 0.967,
+    "tier": "C"
+  },
+  "0x9a73373b3f0e4af0f91eab0f1919edccb898f447": {
+    "username": "KK123",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 0,
+    "recommendedWeight": 0.075,
+    "tier": "C"
+  },
+  "0x29d683970afb6f722ea1f9d4417c7ee7057cd57f": {
+    "username": "0x29d68397",
+    "sharpe3m": 1.0,
+    "sharpe6m": 1.0,
+    "sharpe1y": -0.691,
+    "recommendedWeight": 0.331,
+    "tier": "B"
+  },
+  "0xebf79787ab928c803cbef6fa8e0abe42b9e1da78": {
+    "username": "0xa95bfdb",
+    "sharpe3m": 0,
+    "sharpe6m": 1.0,
+    "sharpe1y": 1.0,
+    "recommendedWeight": 0.375,
+    "tier": "B"
+  },
+  "0xc02147dee42356b7a4edbb1c35ac4ffa95f61fa8": {
+    "username": "Eatpraylove",
+    "sharpe3m": 0.229,
+    "sharpe6m": 0.229,
+    "sharpe1y": 0.229,
+    "recommendedWeight": 0.229,
+    "tier": "C"
+  },
+  "0xe25b9180f5687aa85bd94ee309bb72a464320f1b": {
+    "username": "WordleAddict",
+    "sharpe3m": 1.018,
+    "sharpe6m": 1.018,
+    "sharpe1y": 1.018,
+    "recommendedWeight": 1.018,
+    "tier": "A"
+  },
+  "0xf2f6af4f27ec2dcf4072095ab804016e14cd5817": {
+    "username": "gopfan2",
+    "sharpe3m": 0.262,
+    "sharpe6m": 0.262,
+    "sharpe1y": 0.262,
+    "recommendedWeight": 0.524,
+    "tier": "C"
+  },
+  "0xcf0d7f69cf162918b33fc1ea7449583fa537132d": {
+    "username": "rabs",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 0.471,
+    "recommendedWeight": 0.075,
+    "tier": "C"
+  },
+  "0x8861f0bb5e0c19474ba73beeadc13ed8915beed6": {
+    "username": "yjcr",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 0.398,
+    "recommendedWeight": 0.15,
+    "tier": "C"
+  },
+  "0xd73d208bb247d64df5cc8ba3100aee95bc91213a": {
+    "username": "xeroror",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 0,
+    "recommendedWeight": 0.075,
+    "tier": "C"
+  },
+  "0xe1e7036279433715711a65fc3254a8af558c5fb6": {
+    "username": "0xe1e70362",
+    "sharpe3m": 0,
+    "sharpe6m": -0.642,
+    "sharpe1y": -1.28,
+    "recommendedWeight": 0.05,
+    "tier": "D"
+  },
+  "0x1823757d22022f81a8fa1536d63101fe458884d8": {
+    "username": "farmyboi",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 0,
+    "recommendedWeight": 0.075,
+    "tier": "C"
+  },
+  "0x0c0e270cf879583d6a0142fc817e05b768d0434e": {
+    "username": "TheSpiritofUkraine>UMA",
+    "sharpe3m": -207.401,
+    "sharpe6m": -207.401,
+    "sharpe1y": -207.401,
+    "recommendedWeight": 0.1,
+    "tier": "D"
+  },
+  "0x73f8dd50a114884493dbf4a5ea1503f96f348234": {
+    "username": "DrillBabyDrill",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 0,
+    "recommendedWeight": 0.3,
+    "tier": "C"
+  },
+  "0xf9f5581d4d7a599b8e2f8d1b1b0e29ca0218227a": {
+    "username": "Alhambra1",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 0,
+    "recommendedWeight": 0.075,
+    "tier": "C"
+  },
+  "0xd64e1a97d46f2ba860a56470ac6f47e5bcda5516": {
+    "username": "uprightuser",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 0,
+    "recommendedWeight": 0.05,
+    "tier": "C"
+  },
+  "0xbaa2bcb5439e985ce4ccf815b4700027d1b92c73": {
+    "username": "Magamyman",
+    "sharpe3m": 0.463,
+    "sharpe6m": 0.463,
+    "sharpe1y": 0.463,
+    "recommendedWeight": 0.463,
+    "tier": "C"
+  },
+  "0x7744bfd749a70020d16a1fcbac1d064761c9999e": {
+    "username": "chungguskhan",
+    "sharpe3m": 0.455,
+    "sharpe6m": 0.455,
+    "sharpe1y": 0.455,
+    "recommendedWeight": 1.365,
+    "tier": "C"
+  },
+  "0xca72a747f0e4007d75e3067ffd12fc12000b7637": {
+    "username": "Trunp",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 0,
+    "recommendedWeight": 0.075,
+    "tier": "C"
+  },
+  "0x226bf1220731af372b1e7d572959414f31b4cad6": {
+    "username": "botbot",
+    "sharpe3m": -0.423,
+    "sharpe6m": -0.423,
+    "sharpe1y": -0.423,
+    "recommendedWeight": 0.05,
+    "tier": "D"
+  },
+  "0x4d3e59470cd241c4382cabbd2bfd10037cce58c7": {
+    "username": "ScamWick",
+    "sharpe3m": -0.213,
+    "sharpe6m": -0.794,
+    "sharpe1y": 0.25,
+    "recommendedWeight": 0.075,
+    "tier": "D"
+  },
+  "0x8e5c0cc55cda93d6cae14becb3b738a44dcaa68a": {
+    "username": "0x8e5c0cc5",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": -0.57,
+    "recommendedWeight": 0.05,
+    "tier": "D"
+  },
+  "0x96b59f71f635da5da031e3e93448c54fe226f5e7": {
+    "username": "ExhaustedBoyBilly",
+    "sharpe3m": 0.28,
+    "sharpe6m": 0.28,
+    "sharpe1y": 0.28,
+    "recommendedWeight": 0.14,
+    "tier": "C"
+  },
+  "0x8795bcb2fe129d1ea3e3d73bc13a3d8078047544": {
+    "username": "ciro2",
+    "sharpe3m": 0.27,
+    "sharpe6m": 0.27,
+    "sharpe1y": 0.27,
+    "recommendedWeight": 0.27,
+    "tier": "C"
+  },
+  "0xd31a2ea0b5f9a10c2eb78dcc36df016497d5386e": {
+    "username": "DarthVooncer",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 0,
+    "recommendedWeight": 0.3,
+    "tier": "C"
+  },
+  "0x2aac99d0ee5b8d95fbd48e16ce37d90bbd7f1b36": {
+    "username": "lijialijia2020",
+    "sharpe3m": -0.037,
+    "sharpe6m": -0.097,
+    "sharpe1y": -0.097,
+    "recommendedWeight": 0.2,
+    "tier": "D"
+  },
+  "0x44c1dfe43260c94ed4f1d00de2e1f80fb113ebc1": {
+    "username": "aenews2",
+    "sharpe3m": 0.644,
+    "sharpe6m": 0.644,
+    "sharpe1y": 0.644,
+    "recommendedWeight": 0.644,
+    "tier": "B"
+  },
+  "0x509587cbb541251c74f261df3421f1fcc9fdc97c": {
+    "username": "BuckMySalls",
+    "sharpe3m": -0.292,
+    "sharpe6m": 0.154,
+    "sharpe1y": 0.154,
+    "recommendedWeight": 0.1,
+    "tier": "D"
+  },
+  "0x31a56e9e690c621ed21de08cb559e9524cdb8ed9": {
+    "username": "0x31a56e",
+    "sharpe3m": 1.564,
+    "sharpe6m": 1.564,
+    "sharpe1y": 1.564,
+    "recommendedWeight": 4.692,
+    "tier": "S"
+  },
+  "0xdb7513a3c54d579d64ee64c948c85d2f27620252": {
+    "username": "UnRektCapital",
+    "sharpe3m": 1.0,
+    "sharpe6m": 1.0,
+    "sharpe1y": 7.041,
+    "recommendedWeight": 1.104,
+    "tier": "S"
+  },
+  "0x40324412290b9d311f03b707467c61d88cf141a2": {
+    "username": "AnonHorses",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 0,
+    "recommendedWeight": 0.075,
+    "tier": "C"
+  },
+  "0xa2f1fecf1cc7db65a46588f764b6691533052d22": {
+    "username": "elPolloLoco",
+    "sharpe3m": 0.453,
+    "sharpe6m": 0.453,
+    "sharpe1y": 0.453,
+    "recommendedWeight": 0.227,
+    "tier": "C"
+  },
+  "0x629bc4a1e53e1d475beb7ea3d388791e96dd995a": {
+    "username": "lava-lava",
+    "sharpe3m": -5.096,
+    "sharpe6m": -5.096,
+    "sharpe1y": -5.096,
+    "recommendedWeight": 0.075,
+    "tier": "D"
+  },
+  "0x43372356634781eea88d61bbdd7824cdce958882": {
+    "username": "jocpolitic",
+    "sharpe3m": 0.48,
+    "sharpe6m": 0.48,
+    "sharpe1y": 0.48,
+    "recommendedWeight": 0.96,
+    "tier": "C"
+  },
+  "0xee50a31c3f5a7c77824b12a941a54388a2827ed6": {
+    "username": "0xafEe",
+    "sharpe3m": 1.0,
+    "sharpe6m": 1.0,
+    "sharpe1y": 1.0,
+    "recommendedWeight": 3.0,
+    "tier": "A"
+  },
+  "0xc8ab97a9089a9ff7e6ef0688e6e591a066946418": {
+    "username": "ArmageddonRewardsBilly",
+    "sharpe3m": 0.411,
+    "sharpe6m": 0.411,
+    "sharpe1y": 0.411,
+    "recommendedWeight": 0.205,
+    "tier": "C"
+  },
+  "0x3cf3e8d5427aed066a7a5926980600f6c3cf87b3": {
+    "username": "50Whence",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 0.995,
+    "recommendedWeight": 0.199,
+    "tier": "C"
+  },
+  "0x0e9b9cb7ee710b57fbcbefdcb518a3a986a16e75": {
+    "username": "8BlocksCapital",
+    "sharpe3m": -0.63,
+    "sharpe6m": -0.133,
+    "sharpe1y": -0.133,
+    "recommendedWeight": 0.3,
+    "tier": "D"
+  },
+  "0x6bab41a0dc40d6dd4c1a915b8c01969479fd1292": {
+    "username": "Dropper",
+    "sharpe3m": 0.019,
+    "sharpe6m": 0.019,
+    "sharpe1y": 0.019,
+    "recommendedWeight": 0.1,
+    "tier": "C"
+  },
+  "0x090a0d3fc9d68d3e16db70e3460e3e4b510801b4": {
+    "username": "slight-",
+    "sharpe3m": 0.062,
+    "sharpe6m": 0.062,
+    "sharpe1y": 0.062,
+    "recommendedWeight": 0.1,
+    "tier": "C"
+  },
+  "0xe5c8026239919339b988fdb150a7ef4ea196d3e7": {
+    "username": "bama124",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 0,
+    "recommendedWeight": 0.1,
+    "tier": "C"
+  },
+  "0x96489abcb9f583d6835c8ef95ffc923d05a86825": {
+    "username": "anoin123",
+    "sharpe3m": 1.0,
+    "sharpe6m": 1.0,
+    "sharpe1y": 1.0,
+    "recommendedWeight": 3.0,
+    "tier": "A"
+  },
+  "0x889e7f0464c72eb8cda1525ebc12b6aaba9d09e0": {
+    "username": "BowlOfPunch",
+    "sharpe3m": 0.589,
+    "sharpe6m": 0.589,
+    "sharpe1y": 0.589,
+    "recommendedWeight": 0.589,
+    "tier": "B"
+  },
+  "0x10b30364936b03d26b3fd01a63d1f991454b40d4": {
+    "username": "0x10B303",
+    "sharpe3m": 0.162,
+    "sharpe6m": 0.162,
+    "sharpe1y": 0.162,
+    "recommendedWeight": 0.121,
+    "tier": "C"
+  },
+  "0xfffadf38a520cd5a0035ff52d7fceb436a08864b": {
+    "username": "0xfffadf38",
+    "sharpe3m": -0.403,
+    "sharpe6m": -0.501,
+    "sharpe1y": -0.542,
+    "recommendedWeight": 0.05,
+    "tier": "D"
+  },
+  "0x6f2628a8ac6e3f7bd857657d5316c33822ced136": {
+    "username": "0x6f2628a",
+    "sharpe3m": 1.0,
+    "sharpe6m": 1.0,
+    "sharpe1y": 1.0,
+    "recommendedWeight": 0.75,
+    "tier": "A"
+  },
+  "0xe1055b4b4c1342281bf5cba7d18074f8126f9cb3": {
+    "username": "Bammer",
+    "sharpe3m": 0.381,
+    "sharpe6m": 0.381,
+    "sharpe1y": 0.381,
+    "recommendedWeight": 0.286,
+    "tier": "C"
+  },
+  "0x08ce2678c929934de9edea698a998aea9dbc295e": {
+    "username": "scoobydoolover",
+    "sharpe3m": 0.353,
+    "sharpe6m": 0.353,
+    "sharpe1y": 0.353,
+    "recommendedWeight": 0.706,
+    "tier": "C"
+  },
+  "0x0562c423912e325f83fa79df55085979e1f5594f": {
+    "username": "trezorisbest",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 0,
+    "recommendedWeight": 0.3,
+    "tier": "C"
+  },
+  "0x6139c42e48cf190e67a0a85d492413b499336b7a": {
+    "username": "0x6139c42e",
+    "sharpe3m": -0.641,
+    "sharpe6m": -0.641,
+    "sharpe1y": -0.641,
+    "recommendedWeight": 0.05,
+    "tier": "D"
+  },
+  "0x24c8cf69a0e0a17eee21f69d29752bfa32e823e1": {
+    "username": "debased",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 0,
+    "recommendedWeight": 0.1,
+    "tier": "C"
+  },
+  "0x5739ddf8672627ce076eff5f444610a250075f1a": {
+    "username": "hopedieslast",
+    "sharpe3m": 0.077,
+    "sharpe6m": 0.073,
+    "sharpe1y": 0.073,
+    "recommendedWeight": 0.075,
+    "tier": "C"
+  },
+  "0xe9ad918c7678cd38b12603a762e638a5d1ee7091": {
+    "username": "walletmobile",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 0,
+    "recommendedWeight": 0.3,
+    "tier": "C"
+  },
+  "0x689ae12e11aa489adb3605afd8f39040ff52779e": {
+    "username": "Annica",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 0,
+    "recommendedWeight": 0.1,
+    "tier": "C"
+  },
+  "0xd1acd3925d895de9aec98ff95f3a30c5279d08d5": {
+    "username": "Kickstand7",
+    "sharpe3m": 0.371,
+    "sharpe6m": 0.371,
+    "sharpe1y": 0.371,
+    "recommendedWeight": 0.371,
+    "tier": "C"
+  },
+  "0xfffe4013adfe325c6e02d36dc66e091f5476f52c": {
+    "username": "therealbatman",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 0,
+    "recommendedWeight": 0.2,
+    "tier": "C"
+  },
+  "0xdfe3fedc5c7679be42c3d393e99d4b55247b73c4": {
+    "username": "0xdfe3fedc",
+    "sharpe3m": -0.343,
+    "sharpe6m": -0.343,
+    "sharpe1y": -0.343,
+    "recommendedWeight": 0.05,
+    "tier": "D"
+  },
+  "0xd235973291b2b75ff4070e9c0b01728c520b0f29": {
+    "username": "zxgngl",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 0,
+    "recommendedWeight": 0.3,
+    "tier": "C"
+  },
+  "0x5bffcf561bcae83af680ad600cb99f1184d6ffbe": {
+    "username": "YatSen",
+    "sharpe3m": 0.444,
+    "sharpe6m": 0.444,
+    "sharpe1y": 0.444,
+    "recommendedWeight": 0.444,
+    "tier": "C"
+  },
+  "0xfeb581080aee6dc26c264a647b30a9cd44d5a393": {
+    "username": "completion",
+    "sharpe3m": 1.0,
+    "sharpe6m": 1.551,
+    "sharpe1y": 1.551,
+    "recommendedWeight": 0.638,
+    "tier": "A"
+  },
+  "0x9d84ce0306f8551e02efef1680475fc0f1dc1344": {
+    "username": "ImJustKen",
+    "sharpe3m": 0.406,
+    "sharpe6m": 0.406,
+    "sharpe1y": 0.406,
+    "recommendedWeight": 1.218,
+    "tier": "C"
+  },
+  "0x8a4c788f043023b8b28a762216d037e9f148532b": {
+    "username": "theo5",
+    "sharpe3m": 0.039,
+    "sharpe6m": 0.039,
+    "sharpe1y": 0.039,
+    "recommendedWeight": 0.1,
+    "tier": "C"
+  },
+  "0xb74711992caf6d04fa55eecc46b8efc95311b050": {
+    "username": "0xb7471199",
+    "sharpe3m": -0.645,
+    "sharpe6m": -0.554,
+    "sharpe1y": -0.554,
+    "recommendedWeight": 0.05,
+    "tier": "D"
+  },
+  "0xdc03d611e5bcc9f1c87edb95edeb91671471804c": {
+    "username": "denizz",
+    "sharpe3m": 0.753,
+    "sharpe6m": 0.753,
+    "sharpe1y": 0.753,
+    "recommendedWeight": 2.259,
+    "tier": "B"
+  },
+  "0x7caeeadf0421f75e60945a839b8716080891fb5c": {
+    "username": "issathegreat",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 0,
+    "recommendedWeight": 0.075,
+    "tier": "C"
+  },
+  "0xd42f6a1634a3707e27cbae14ca966068e5d1047d": {
+    "username": "Apsalar",
+    "sharpe3m": 1.0,
+    "sharpe6m": 1.009,
+    "sharpe1y": 0.865,
+    "recommendedWeight": 0.976,
+    "tier": "B"
+  },
+  "0xf705fa045201391d9632b7f3cde06a5e24453ca7": {
+    "username": "0xf705",
+    "sharpe3m": -0.377,
+    "sharpe6m": -0.377,
+    "sharpe1y": -0.377,
+    "recommendedWeight": 0.15,
+    "tier": "D"
+  },
+  "0xe639e41094bbeae18f3e6d1790c17299183f082a": {
+    "username": "0xe639e4",
+    "sharpe3m": 1.241,
+    "sharpe6m": -0.1,
+    "sharpe1y": 0.182,
+    "recommendedWeight": 1.254,
+    "tier": "B"
+  },
+  "0x71edffd0d70a1da823ff07a3c6fc81457294d338": {
+    "username": "pako",
+    "sharpe3m": 0.391,
+    "sharpe6m": 0.391,
+    "sharpe1y": 0.391,
+    "recommendedWeight": 0.782,
+    "tier": "C"
+  },
+  "0x4a38e6e0330c2463fb5ac2188a620634039abfe8": {
+    "username": "stonksgoup",
+    "sharpe3m": 0,
+    "sharpe6m": 1.031,
+    "sharpe1y": 1.031,
+    "recommendedWeight": 0.387,
+    "tier": "B"
+  },
+  "0xd205ced392d30c050e42b0fe0a08787b7583859a": {
+    "username": "NotGambid",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 1.0,
+    "recommendedWeight": 0.4,
+    "tier": "C"
+  },
+  "0xf743f416caa37f672e8434a9132f681a8fa0ac84": {
+    "username": "0xf743f416",
+    "sharpe3m": 0,
+    "sharpe6m": -0.548,
+    "sharpe1y": -0.446,
+    "recommendedWeight": 0.05,
+    "tier": "D"
+  },
+  "0x2bd2574062fb6d8556ddb1050955f43dd9d4c21b": {
+    "username": "0x2bd25740",
+    "sharpe3m": -1.362,
+    "sharpe6m": -1.497,
+    "sharpe1y": -1.497,
+    "recommendedWeight": 0.05,
+    "tier": "D"
+  },
+  "0xbdb05a6bf32b701e28338c13c873b43fcb1af688": {
+    "username": "trumppppp..",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 0,
+    "recommendedWeight": 0.075,
+    "tier": "C"
+  },
+  "0xba664f999a18dce0aac6af698af434924a24f59d": {
+    "username": "bizyugo",
+    "sharpe3m": 0,
+    "sharpe6m": -1.077,
+    "sharpe1y": -1.077,
+    "recommendedWeight": 0.2,
+    "tier": "D"
+  },
+  "0x8df306b761d8e4f95ffa21a2d5d36fd330fe887a": {
+    "username": "492LdDfWP1",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 1.0,
+    "recommendedWeight": 0.15,
+    "tier": "C"
+  },
+  "0x4a49ce5fe2d6faadbc0b279c4d2bd5f41665285e": {
+    "username": "doooooooooge",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 0,
+    "recommendedWeight": 0.075,
+    "tier": "C"
+  },
+  "0xaaab8bf3bd469688d5e09bffeae8f8bf780a8eb2": {
+    "username": "022221",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 0,
+    "recommendedWeight": 0.075,
+    "tier": "C"
+  },
+  "0x8b5a7da2fdf239b51b9c68a2a1a35bb156d200f2": {
+    "username": "Joe-Biden",
+    "sharpe3m": 0,
+    "sharpe6m": 1.0,
+    "sharpe1y": 1.0,
+    "recommendedWeight": 0.375,
+    "tier": "B"
+  },
+  "0xb84304b56cb1e1d492708cd8c3c7796c08211b3f": {
+    "username": "0xCarneyAsada",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 0.183,
+    "recommendedWeight": 0.075,
+    "tier": "C"
+  },
+  "0xe899b5ea69afb161da7a35597b6fe70398860899": {
+    "username": "0xe899b5ea",
+    "sharpe3m": -0.215,
+    "sharpe6m": -0.215,
+    "sharpe1y": -0.215,
+    "recommendedWeight": 0.05,
+    "tier": "D"
+  },
+  "0xdbade4c82fb72780a0db9a38f821d8671aba9c95": {
+    "username": "SwissMiss",
+    "sharpe3m": 1.532,
+    "sharpe6m": 1.532,
+    "sharpe1y": 1.532,
+    "recommendedWeight": 4.596,
+    "tier": "S"
+  },
+  "0x7c3db723f1d4d8cb9c550095203b686cb11e5c6b": {
+    "username": "Car",
+    "sharpe3m": 0.775,
+    "sharpe6m": 0.775,
+    "sharpe1y": 0.775,
+    "recommendedWeight": 0.775,
+    "tier": "B"
+  },
+  "0xe43c7b9adddeaf01ba16bc3c5b27f034407801ad": {
+    "username": "larpas",
+    "sharpe3m": 0,
+    "sharpe6m": 0,
+    "sharpe1y": 0,
+    "recommendedWeight": 0.075,
+    "tier": "C"
+  },
+  "0x1e1f17412069c0736adfaadf8ee7f46e5612c855": {
+    "username": "0x1e1f1741",
+    "sharpe3m": -0.583,
+    "sharpe6m": -0.583,
+    "sharpe1y": -0.583,
+    "recommendedWeight": 0.05,
+    "tier": "D"
+  }
+}

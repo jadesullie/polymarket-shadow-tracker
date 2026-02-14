@@ -1,0 +1,8 @@
+.vercel
+node_modules
+data/raw-trades/
+data/snapshots/
+data/poller.log
+data/poller-error.log
+data/poll-state.json
+data/pending-discord-alert.txt

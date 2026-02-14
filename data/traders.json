@@ -1,0 +1,1334 @@
+[
+  {
+    "username": "chungguskhan",
+    "address": "0x7744bfd749a70020d16a1fcbac1d064761c9999e",
+    "profileUrl": "https://polymarket.com/@chungguskhan",
+    "twitter": "@tenad0me",
+    "pnl": 469000,
+    "volume": 6100000,
+    "activePositionsValue": 667500,
+    "predictions": 372,
+    "joinDate": "2025-11",
+    "categories": [
+      "politics",
+      "geopolitics",
+      "fed",
+      "crypto",
+      "tech"
+    ],
+    "activePositions": [
+      {
+        "market": "CA billionaire wealth tax",
+        "side": "NO",
+        "size": 269000
+      },
+      {
+        "market": "Trump nominates Kevin Warsh as Fed chair",
+        "side": "YES",
+        "size": 138000
+      },
+      {
+        "market": "Trump nominates Judy Shelton as Fed chair",
+        "side": "NO",
+        "size": 44000
+      },
+      {
+        "market": "Ken Paxton TX Republican Primary",
+        "side": "YES",
+        "size": 40000
+      },
+      {
+        "market": "Israel strikes Iran by March 31",
+        "side": "NO",
+        "size": 34000
+      },
+      {
+        "market": "US strikes Iran by June 30",
+        "side": "NO",
+        "size": 31000
+      },
+      {
+        "market": "Elon Musk buys Ryanair",
+        "side": "NO",
+        "size": 26000
+      },
+      {
+        "market": "Khamenei out as Supreme Leader by June 30",
+        "side": "NO",
+        "size": 18000
+      },
+      {
+        "market": "SpaceX public ticker $STAR",
+        "side": "NO",
+        "size": 13000
+      }
+    ],
+    "insiderRisk": "HIGH",
+    "edgeThesis": "Diversified political trader with Fed, Iran, Elon/SpaceX, and crypto policy edge. Early mover on sensitive markets. Also ranked #4 crypto biggest wins.",
+    "cluster": "fed",
+    "closedPositions": [
+      {
+        "market": "Will Trump nominate Kevin Warsh as the next Fed chair?",
+        "side": "Yes",
+        "pnl": 53887,
+        "outcome": "Won",
+        "entryPrice": 0.948,
+        "exitPrice": 0.9432,
+        "date": "2026-02-13"
+      },
+      {
+        "market": "Will SOLV Energy, Inc.'s market cap be greater than $5.4B at market close on IPO day?",
+        "side": "Yes",
+        "pnl": 17279,
+        "outcome": "Won",
+        "entryPrice": 0.7198,
+        "exitPrice": 0.979,
+        "date": "2026-02-13"
+      },
+      {
+        "market": "Government shutdown on Saturday?",
+        "side": "No",
+        "pnl": 7278,
+        "outcome": "Won",
+        "entryPrice": 0.6844,
+        "exitPrice": 0.7983,
+        "date": "2026-02-13"
+      }
+    ]
+  },
+  {
+    "username": "anoin123",
+    "address": "0x96489abcb9f583d6835c8ef95ffc923d05a86825",
+    "profileUrl": "https://polymarket.com/@anoin123",
+    "twitter": null,
+    "pnl": 1270000,
+    "volume": 10900000,
+    "activePositionsValue": 6300000,
+    "predictions": 249,
+    "joinDate": "2025-12",
+    "categories": [
+      "geopolitics"
+    ],
+    "activePositions": [
+      {
+        "market": "US strikes Iran by Feb 13",
+        "side": "NO",
+        "size": 771000
+      },
+      {
+        "market": "US strikes Iran by Feb 28",
+        "side": "NO",
+        "size": 661000
+      },
+      {
+        "market": "US strikes Iran by March 31",
+        "side": "NO",
+        "size": 445000
+      },
+      {
+        "market": "US or Israel strikes Iran by Feb 15",
+        "side": "NO",
+        "size": 444000
+      },
+      {
+        "market": "Khamenei out by March 31",
+        "side": "NO",
+        "size": 316000
+      },
+      {
+        "market": "Khamenei out by Feb 28",
+        "side": "NO",
+        "size": 294000
+      },
+      {
+        "market": "US strikes Iran by June 30",
+        "side": "NO",
+        "size": 288000
+      },
+      {
+        "market": "US strikes Iran by Feb 20",
+        "side": "NO",
+        "size": 265000
+      },
+      {
+        "market": "US or Israel strikes Iran by Feb 28",
+        "side": "NO",
+        "size": 241000
+      }
+    ],
+    "insiderRisk": "HIGH",
+    "edgeThesis": "Exclusively Iran geopolitics. $6.3M concentrated betting NO on all Iran escalation across multiple timeframes. Deep intelligence/diplomatic knowledge or massive directional de-escalation bet.",
+    "cluster": "iran",
+    "closedPositions": []
+  },
+  {
+    "username": "ImJustKen",
+    "address": "0x9d84ce0306f8551e02efef1680475fc0f1dc1344",
+    "profileUrl": "https://polymarket.com/@ImJustKen",
+    "twitter": null,
+    "pnl": 1800000,
+    "volume": 354600000,
+    "activePositionsValue": 1200000,
+    "predictions": 9389,
+    "joinDate": "2022-01",
+    "categories": [
+      "politics",
+      "geopolitics",
+      "fed"
+    ],
+    "activePositions": [
+      {
+        "market": "Trump nominates Warsh as Fed chair",
+        "side": "YES",
+        "size": 379000
+      },
+      {
+        "market": "Trump nominates Shelton as Fed chair",
+        "side": "NO",
+        "size": 146000
+      },
+      {
+        "market": "US strikes Iran by June 30",
+        "side": "NO",
+        "size": 52000
+      },
+      {
+        "market": "Khamenei leaves Iran by March 31",
+        "side": "NO",
+        "size": 44000
+      },
+      {
+        "market": "Starmer out by Feb 28",
+        "side": "NO",
+        "size": 41000
+      },
+      {
+        "market": "US strikes Iran by Feb 28",
+        "side": "NO",
+        "size": 32000
+      },
+      {
+        "market": "US strikes Iran by March 31",
+        "side": "NO",
+        "size": 29000
+      },
+      {
+        "market": "Russia x Ukraine ceasefire by end of 2026",
+        "side": "YES",
+        "size": 22000
+      },
+      {
+        "market": "Israel strikes Iran by March 31",
+        "side": "NO",
+        "size": 17000
+      }
+    ],
+    "insiderRisk": "HIGH",
+    "edgeThesis": "Massive veteran trader (Jan 2022, $354M volume). Fed nominations, Iran/Israel, Ukraine ceasefire, UK politics. Sustained profitability suggests sophisticated intelligence or modeling.",
+    "cluster": "fed",
+    "closedPositions": [
+      {
+        "market": "Russia x Ukraine ceasefire by June 30, 2026?",
+        "side": "Yes",
+        "pnl": 3169,
+        "outcome": "Won",
+        "entryPrice": 0.23,
+        "exitPrice": 0.2425,
+        "date": "2026-02-13"
+      },
+      {
+        "market": "Will the Fed decrease interest rates by 25 bps after the March 2026 meeting?",
+        "side": "No",
+        "pnl": 511,
+        "outcome": "Won",
+        "entryPrice": 0.92,
+        "exitPrice": 0.94,
+        "date": "2026-02-13"
+      },
+      {
+        "market": "U.S. anti-cartel ground operation in Mexico by March 31?",
+        "side": "No",
+        "pnl": 361,
+        "outcome": "Won",
+        "entryPrice": 0.81,
+        "exitPrice": 0.84,
+        "date": "2026-02-13"
+      },
+      {
+        "market": "Will there be no change in Fed interest rates after the March 2026 meeting?",
+        "side": "Yes",
+        "pnl": 256,
+        "outcome": "Won",
+        "entryPrice": 0.91,
+        "exitPrice": 0.92,
+        "date": "2026-02-13"
+      },
+      {
+        "market": "Jesus Christ return before 2027 Odds >5% February 17, 12-1 AM?",
+        "side": "Yes",
+        "pnl": 40,
+        "outcome": "Won",
+        "entryPrice": 0.11,
+        "exitPrice": 0.15,
+        "date": "2026-02-13"
+      }
+    ]
+  },
+  {
+    "username": "Extra-Large-Begonia",
+    "address": "0x095dcfb123a4bc035ee6b0d624bab0cc964352cf",
+    "profileUrl": "https://polymarket.com/@Contrarian%20-%207451",
+    "twitter": null,
+    "pnl": 93500,
+    "volume": null,
+    "activePositionsValue": 1800000,
+    "predictions": 412,
+    "joinDate": "2020-12",
+    "categories": [
+      "geopolitics",
+      "fed"
+    ],
+    "activePositions": [
+      {
+        "market": "Khamenei out by Feb 28",
+        "side": "NO",
+        "size": 150000
+      },
+      {
+        "market": "US strikes Iran by Feb 13",
+        "side": "NO",
+        "size": 135000
+      },
+      {
+        "market": "US strikes Iran by March 31",
+        "side": "NO",
+        "size": 120000
+      },
+      {
+        "market": "Fed decrease rates 50+ bps March",
+        "side": "NO",
+        "size": 102000
+      },
+      {
+        "market": "Russia x Ukraine ceasefire by March 31",
+        "side": "NO",
+        "size": 101000
+      },
+      {
+        "market": "Fed increase rates 25+ bps March",
+        "side": "NO",
+        "size": 98000
+      },
+      {
+        "market": "No change Fed rates March",
+        "side": "YES",
+        "size": 97000
+      },
+      {
+        "market": "Khamenei out by March 31",
+        "side": "NO",
+        "size": 94000
+      },
+      {
+        "market": "Trump nominates Christopher Waller as Fed chair",
+        "side": "NO",
+        "size": 80000
+      }
+    ],
+    "insiderRisk": "HIGH",
+    "edgeThesis": "Very early Polymarket account (Dec 2020). Consistent NO bettor on escalation and rate changes. $1.8M diversified across Iran, Fed, Ukraine.",
+    "cluster": "iran",
+    "closedPositions": []
+  },
+  {
+    "username": "SwissMiss",
+    "address": "0xdbade4c82fb72780a0db9a38f821d8671aba9c95",
+    "profileUrl": "https://polymarket.com/@SwissMiss",
+    "twitter": null,
+    "pnl": 192000,
+    "volume": null,
+    "activePositionsValue": 1900000,
+    "predictions": 766,
+    "joinDate": "2024-01",
+    "categories": [
+      "geopolitics",
+      "politics"
+    ],
+    "activePositions": [
+      {
+        "market": "Khamenei out by March 31",
+        "side": "NO",
+        "size": 388000
+      },
+      {
+        "market": "Russia x Ukraine ceasefire by March 31",
+        "side": "NO",
+        "size": 242000
+      },
+      {
+        "market": "The Rock wins 2028 presidential election",
+        "side": "NO",
+        "size": 222000
+      },
+      {
+        "market": "Khamenei out by Feb 28",
+        "side": "NO",
+        "size": 196000
+      },
+      {
+        "market": "Russia x Ukraine ceasefire by end of 2026",
+        "side": "NO",
+        "size": 125000
+      },
+      {
+        "market": "Iranian regime falls by March 31",
+        "side": "NO",
+        "size": 77000
+      },
+      {
+        "market": "US strikes Iran by Feb 28",
+        "side": "NO",
+        "size": 58000
+      },
+      {
+        "market": "Russia x Ukraine ceasefire by June 30",
+        "side": "NO",
+        "size": 58000
+      },
+      {
+        "market": "US strikes Iran by Feb 13",
+        "side": "NO",
+        "size": 56000
+      }
+    ],
+    "insiderRisk": "HIGH",
+    "edgeThesis": "$1.9M concentrated in Iran regime change and Ukraine ceasefire markets. Strong contrarian/status-quo bettor betting neither regime change nor ceasefire happens soon.",
+    "cluster": "iran",
+    "closedPositions": []
+  },
+  {
+    "username": "Flipadelphia",
+    "address": "0x448861155279dbf833d041b963e3ac854599e319",
+    "profileUrl": "https://polymarket.com/@Flipadelphia",
+    "twitter": null,
+    "pnl": 139000,
+    "volume": null,
+    "activePositionsValue": 814500,
+    "predictions": 2450,
+    "joinDate": "2022-10",
+    "categories": [
+      "geopolitics",
+      "politics"
+    ],
+    "activePositions": [
+      {
+        "market": "Khamenei out by March 31",
+        "side": "NO",
+        "size": 211000
+      },
+      {
+        "market": "US strikes Iran by Feb 13",
+        "side": "NO",
+        "size": 164000
+      },
+      {
+        "market": "US strikes Iran daily/weekly NO bets",
+        "side": "NO",
+        "size": 60000
+      },
+      {
+        "market": "Next PM of Hungary is P\u00e9ter Magyar",
+        "side": "YES",
+        "size": 28000
+      },
+      {
+        "market": "US not striking Iran by Feb 28",
+        "side": "YES",
+        "size": 27000
+      }
+    ],
+    "insiderRisk": "HIGH",
+    "edgeThesis": "Iran specialist with European politics edge (Hungary PM bet). Concentrated Iran NO positions.",
+    "cluster": "iran",
+    "closedPositions": [
+      {
+        "market": "US strikes Iran by February 14, 2026?",
+        "side": "No",
+        "pnl": 0,
+        "outcome": "Lost",
+        "entryPrice": 0.98,
+        "exitPrice": 0.98,
+        "date": "2026-02-12"
+      }
+    ]
+  },
+  {
+    "username": "Alexparker",
+    "address": "0xa8ebd84263575ba4c861cd2acd1b2d09facc01c7",
+    "profileUrl": "https://polymarket.com/@Alexparker",
+    "twitter": null,
+    "pnl": 101000,
+    "volume": null,
+    "activePositionsValue": 695900,
+    "predictions": 92,
+    "joinDate": "2025-11",
+    "categories": [
+      "geopolitics",
+      "politics"
+    ],
+    "activePositions": [
+      {
+        "market": "Khamenei out by Feb 28",
+        "side": "NO",
+        "size": 298000
+      },
+      {
+        "market": "Khamenei out by March 31",
+        "side": "NO",
+        "size": 252000
+      },
+      {
+        "market": "Next PM of Hungary is P\u00e9ter Magyar",
+        "side": "NO",
+        "size": 93000
+      },
+      {
+        "market": "Khamenei out in 2026",
+        "side": "NO",
+        "size": 22000
+      },
+      {
+        "market": "Russia x Ukraine ceasefire by Feb 28",
+        "side": "NO",
+        "size": 17000
+      },
+      {
+        "market": "US acquires Greenland in 2026",
+        "side": "YES",
+        "size": 5000
+      },
+      {
+        "market": "Supreme Court rules favor of Trump tariffs",
+        "side": "YES",
+        "size": 275
+      }
+    ],
+    "insiderRisk": "HIGH",
+    "edgeThesis": "Massive concentrated Iran/regime bets. Also trades Trump tariff Supreme Court case and Greenland acquisition. Recent joiner with strong early performance.",
+    "cluster": "iran",
+    "closedPositions": []
+  },
+  {
+    "username": "denizz",
+    "address": "0xdc03d611e5bcc9f1c87edb95edeb91671471804c",
+    "profileUrl": "https://polymarket.com/@denizz",
+    "twitter": null,
+    "pnl": 101000,
+    "volume": null,
+    "activePositionsValue": 574600,
+    "predictions": 637,
+    "joinDate": "2024-09",
+    "categories": [
+      "geopolitics",
+      "politics"
+    ],
+    "activePositions": [
+      {
+        "market": "US invades Venezuela by March 31",
+        "side": "NO",
+        "size": 162000
+      },
+      {
+        "market": "Iranian regime falls before 2027",
+        "side": "NO",
+        "size": 91000
+      },
+      {
+        "market": "Khamenei out in 2026",
+        "side": "NO",
+        "size": 61000
+      },
+      {
+        "market": "US strikes Iran by Feb 28",
+        "side": "NO",
+        "size": 40000
+      },
+      {
+        "market": "US strikes Iran by June 30",
+        "side": "NO",
+        "size": 37000
+      },
+      {
+        "market": "Israel x Iran ceasefire broken by March 31",
+        "side": "NO",
+        "size": 23000
+      },
+      {
+        "market": "Iranian regime falls by March 31",
+        "side": "NO",
+        "size": 15000
+      },
+      {
+        "market": "US or Israel strikes Iran by Feb 28",
+        "side": "NO",
+        "size": 14000
+      }
+    ],
+    "insiderRisk": "HIGH",
+    "edgeThesis": "Venezuela invasion + Iran concentration. $162K NO on Venezuela invasion is extremely specific. Consistent status-quo bettor.",
+    "cluster": "iran",
+    "closedPositions": [
+      {
+        "market": "Will Bhumjaithai Party (BJT) win the most seats in the 2026 Thai legislative election?",
+        "side": "Yes",
+        "pnl": 45843,
+        "outcome": "Won",
+        "entryPrice": 0.2348,
+        "exitPrice": 0.99,
+        "date": "2026-02-08"
+      },
+      {
+        "market": "Will Ant\u00f3nio Jos\u00e9 Seguro win the second round by 20\u201330%?",
+        "side": "No",
+        "pnl": 2166,
+        "outcome": "Won",
+        "entryPrice": 0.73,
+        "exitPrice": 0.81,
+        "date": "2026-02-08"
+      },
+      {
+        "market": "Will Jasmine Crockett be the Democratic nominee for Senate in Texas?",
+        "side": "No",
+        "pnl": 1155,
+        "outcome": "Won",
+        "entryPrice": 0.7773,
+        "exitPrice": 0.62,
+        "date": "2026-02-13"
+      }
+    ]
+  },
+  {
+    "username": "failstober",
+    "address": "0x90ed5bffbffbfc344aa1195572d89719a398b5bc",
+    "profileUrl": "https://polymarket.com/@failstober",
+    "twitter": null,
+    "pnl": 255000,
+    "volume": null,
+    "activePositionsValue": 386000,
+    "predictions": 619,
+    "joinDate": "2025-11",
+    "categories": [
+      "fed",
+      "politics",
+      "geopolitics"
+    ],
+    "activePositions": [
+      {
+        "market": "Trump nominates Shelton as Fed chair",
+        "side": "NO",
+        "size": 137000
+      },
+      {
+        "market": "Gavin Newsom 2028 Dem nomination",
+        "side": "NO",
+        "size": 57000
+      },
+      {
+        "market": "Gavin Newsom 2028 Dem nomination",
+        "side": "YES",
+        "size": 23000
+      },
+      {
+        "market": "Khamenei out by March 31",
+        "side": "NO",
+        "size": 21000
+      },
+      {
+        "market": "Trump acquires Greenland before 2027",
+        "side": "NO",
+        "size": 13000
+      },
+      {
+        "market": "Elon Musk tweet count bets",
+        "side": "YES",
+        "size": 13000
+      },
+      {
+        "market": "AOC wins 2028 Dem nomination",
+        "side": "YES",
+        "size": 12000
+      },
+      {
+        "market": "US strikes Iran by March 31",
+        "side": "NO",
+        "size": 10000
+      },
+      {
+        "market": "Arsenal wins EPL",
+        "side": "YES",
+        "size": 8000
+      }
+    ],
+    "insiderRisk": "MEDIUM",
+    "edgeThesis": "Diversified political bettor with hedging strategy (hedged Newsom position). Fed chair + Greenland + 2028 elections + Elon monitoring.",
+    "cluster": "mixed",
+    "closedPositions": [
+      {
+        "market": "Will Elon Musk post 360-379 tweets from February 6 to February 13, 2026?",
+        "side": "Yes",
+        "pnl": 793,
+        "outcome": "Won",
+        "entryPrice": 0.3056,
+        "exitPrice": 0.494,
+        "date": "2026-02-13"
+      },
+      {
+        "market": "Will Elon Musk post 500-519 tweets from February 6 to February 13, 2026?",
+        "side": "Yes",
+        "pnl": 14,
+        "outcome": "Won",
+        "entryPrice": 0.001,
+        "exitPrice": 0.0014,
+        "date": "2026-02-13"
+      }
+    ]
+  },
+  {
+    "username": "gopfan2",
+    "address": "0xf2f6af4f27ec2dcf4072095ab804016e14cd5817",
+    "profileUrl": "https://polymarket.com/@gopfan2",
+    "twitter": null,
+    "pnl": 113000,
+    "volume": null,
+    "activePositionsValue": 750700,
+    "predictions": 1698,
+    "joinDate": "2024-08",
+    "categories": [
+      "fed",
+      "politics",
+      "crypto",
+      "climate"
+    ],
+    "activePositions": [
+      {
+        "market": "Trump nominates Shelton as Fed chair",
+        "side": "NO",
+        "size": 187000
+      },
+      {
+        "market": "Portugal elections \u2014 Seguro wins all districts",
+        "side": "YES",
+        "size": 107000
+      },
+      {
+        "market": "No player wins tennis Calendar Grand Slam",
+        "side": "YES",
+        "size": 84000
+      },
+      {
+        "market": "United Russia gains most seats in next Russian parliamentary election",
+        "side": "YES",
+        "size": 84000
+      },
+      {
+        "market": "Newsom wins 2028 presidential election",
+        "side": "YES",
+        "size": 32000
+      },
+      {
+        "market": "Bitcoin dip to $60K in Feb",
+        "side": "NO",
+        "size": 23000
+      },
+      {
+        "market": "2026 second-hottest year on record",
+        "side": "YES",
+        "size": 22000
+      },
+      {
+        "market": "Bitcoin dip to $55K in Feb",
+        "side": "NO",
+        "size": 21000
+      },
+      {
+        "market": "Portugal Seguro second round margin",
+        "side": "YES",
+        "size": 15000
+      }
+    ],
+    "insiderRisk": "HIGH",
+    "edgeThesis": "Unusually broad international political knowledge: Russian parliamentary elections, Fed chair, Bitcoin, Portuguese elections, climate. Diversified across many categories.",
+    "cluster": "mixed",
+    "closedPositions": [
+      {
+        "market": "Will Bangladesh Jamaat-e-Islami win the most seats in the Bangladesh parliamentary election?",
+        "side": "Yes",
+        "pnl": 1121,
+        "outcome": "Won",
+        "entryPrice": 0.12,
+        "exitPrice": 0.2383,
+        "date": "2026-02-12"
+      }
+    ]
+  },
+  {
+    "username": "Theo4",
+    "address": "0x56687bf447db6ffa42ffe2204a05edaa20f55839",
+    "profileUrl": "https://polymarket.com/@Theo4",
+    "twitter": null,
+    "pnl": 22050000,
+    "volume": 43300000,
+    "activePositionsValue": 0.01,
+    "predictions": 14,
+    "joinDate": "2024-10",
+    "categories": [
+      "politics"
+    ],
+    "activePositions": [],
+    "insiderRisk": "EXTREME",
+    "edgeThesis": "Made $22M on just 14 predictions, all 2024 election. Most profitable political trader on Polymarket. Widely suspected French financier with superior polling/modeling. Currently inactive.",
+    "cluster": "election2024",
+    "closedPositions": []
+  },
+  {
+    "username": "Fredi9999",
+    "address": "0x1f2dd6d473f3e824cd2f8a89d9c69fb96f6ad0cf",
+    "profileUrl": "https://polymarket.com/@Fredi9999",
+    "twitter": null,
+    "pnl": 16600000,
+    "volume": 76600000,
+    "activePositionsValue": 0.06,
+    "predictions": 45,
+    "joinDate": "2024-06",
+    "categories": [
+      "politics"
+    ],
+    "activePositions": [],
+    "insiderRisk": "EXTREME",
+    "edgeThesis": "$16.6M profit on 45 predictions. Second most profitable political trader. 2024 election specialist. Currently inactive.",
+    "cluster": "election2024",
+    "closedPositions": []
+  },
+  {
+    "username": "jocpolitic",
+    "address": "0x43372356634781eea88d61bbdd7824cdce958882",
+    "profileUrl": "https://polymarket.com/@jocpolitic",
+    "twitter": null,
+    "pnl": 99000,
+    "volume": null,
+    "activePositionsValue": 131600,
+    "predictions": 58,
+    "joinDate": "2025-12",
+    "categories": [
+      "politics"
+    ],
+    "activePositions": [
+      {
+        "market": "Portugal \u2014 Seguro wins by 30-40%",
+        "side": "YES",
+        "size": 55000
+      },
+      {
+        "market": "Seguro wins all Portugal districts",
+        "side": "YES",
+        "size": 44000
+      },
+      {
+        "market": "John Cornyn wins TX Republican Primary",
+        "side": "NO",
+        "size": 12000
+      },
+      {
+        "market": "James Talarico Dem nominee TX Senate",
+        "side": "YES",
+        "size": 9000
+      },
+      {
+        "market": "Ken Paxton wins TX Republican Primary",
+        "side": "YES",
+        "size": 7000
+      },
+      {
+        "market": "Government shutdown Saturday",
+        "side": "YES",
+        "size": 3000
+      }
+    ],
+    "insiderRisk": "HIGH",
+    "edgeThesis": "Portuguese election specialist with very accurate calls. Name 'jocpolitic' (political game) suspicious. Dec 2025 join, only 58 predictions but high accuracy on international elections.",
+    "cluster": "mixed",
+    "closedPositions": [
+      {
+        "market": "Will AC Milan win on 2026-02-13?",
+        "side": "No",
+        "pnl": 290,
+        "outcome": "Won",
+        "entryPrice": 0.36,
+        "exitPrice": 0.37,
+        "date": "2026-02-13"
+      }
+    ]
+  },
+  {
+    "username": "GCottrell93",
+    "address": "0x94a428cfa4f84b264e01f70d93d02bc96cb36356",
+    "profileUrl": "https://polymarket.com/@GCottrell93",
+    "twitter": null,
+    "pnl": 4180000,
+    "volume": 14200000,
+    "activePositionsValue": 39700,
+    "predictions": 9,
+    "joinDate": "2024-10",
+    "categories": [
+      "politics"
+    ],
+    "activePositions": [
+      {
+        "market": "Starmer out by Feb 28",
+        "side": "YES",
+        "size": 21000
+      },
+      {
+        "market": "JD Vance 2028 Republican nomination",
+        "side": "YES",
+        "size": 18000
+      },
+      {
+        "market": "Dutch government GL/PvdA + D66 + CDA",
+        "side": "YES",
+        "size": 217
+      }
+    ],
+    "insiderRisk": "MEDIUM",
+    "edgeThesis": "Made $4.5M on 2024 election but current bets are losing badly. Election-specific edge that doesn't transfer to other markets.",
+    "cluster": "election2024",
+    "closedPositions": []
+  },
+  {
+    "username": "edenmoon",
+    "address": "0x3d1ecf16942939b3603c2539a406514a40b504d0",
+    "profileUrl": "https://polymarket.com/@edenmoon",
+    "twitter": null,
+    "pnl": 1850000,
+    "volume": 4900000,
+    "activePositionsValue": 176000,
+    "predictions": 17,
+    "joinDate": "2024-04",
+    "categories": [
+      "fed",
+      "crypto"
+    ],
+    "activePositions": [
+      {
+        "market": "Trump nominates Warsh as Fed chair",
+        "side": "YES",
+        "size": 176000
+      }
+    ],
+    "insiderRisk": "HIGH",
+    "edgeThesis": "Fed chair nomination specialist. $176K on a single Fed nomination bet. Very few predictions (17) but high conviction.",
+    "cluster": "fed",
+    "closedPositions": [
+      {
+        "market": "Will Kamala Harris win the 2024 US Presidential Election?",
+        "side": "Yes",
+        "pnl": -12,
+        "outcome": "Lost",
+        "entryPrice": 0.4297,
+        "exitPrice": 0.4293,
+        "date": "2024-11-04"
+      }
+    ]
+  },
+  {
+    "username": "TheSpiritofUkraine>UMA",
+    "address": "0x0c0e270cf879583d6a0142fc817e05b768d0434e",
+    "profileUrl": "https://polymarket.com/@The%20Spirit%20of%20Ukraine%3EUMA",
+    "twitter": null,
+    "pnl": 78000,
+    "volume": null,
+    "activePositionsValue": 613900,
+    "predictions": 970,
+    "joinDate": "2021-08",
+    "categories": [
+      "fed",
+      "politics",
+      "crypto"
+    ],
+    "activePositions": [
+      {
+        "market": "MicroStrategy sells BTC by March 31",
+        "side": "NO",
+        "size": 145000
+      },
+      {
+        "market": "No change Fed rates March",
+        "side": "YES",
+        "size": 85000
+      },
+      {
+        "market": "JD Vance 2028 Republican nomination",
+        "side": "YES",
+        "size": 41000
+      },
+      {
+        "market": "Canada wins most Olympic medals",
+        "side": "NO",
+        "size": 33000
+      },
+      {
+        "market": "AOC 2028 Dem nomination",
+        "side": "NO",
+        "size": 32000
+      },
+      {
+        "market": "Italy gold medals Olympics",
+        "side": "NO",
+        "size": 29000
+      },
+      {
+        "market": "Trump wins 2028 presidential election",
+        "side": "NO",
+        "size": 23000
+      },
+      {
+        "market": "Germany gold medals Olympics",
+        "side": "NO",
+        "size": 22000
+      }
+    ],
+    "insiderRisk": "MEDIUM",
+    "edgeThesis": "Veteran trader since Aug 2021. Mix of crypto corporate actions (MicroStrategy $145K), Fed policy, and 2028 elections. MicroStrategy position could benefit from inside corporate knowledge.",
+    "cluster": "mixed",
+    "closedPositions": []
+  },
+  {
+    "username": "Annica",
+    "address": "0x689ae12e11aa489adb3605afd8f39040ff52779e",
+    "profileUrl": "https://polymarket.com/@Annica",
+    "twitter": null,
+    "pnl": 226000,
+    "volume": null,
+    "activePositionsValue": 184200,
+    "predictions": 1513,
+    "joinDate": "2025-08",
+    "categories": [
+      "politics"
+    ],
+    "activePositions": [
+      {
+        "market": "Elon 360-379 tweets Feb 6-13",
+        "side": "YES",
+        "size": 84000
+      },
+      {
+        "market": "Elon tweet bracket bets Feb 10-17",
+        "side": "YES",
+        "size": 100200
+      }
+    ],
+    "insiderRisk": "MEDIUM",
+    "edgeThesis": "Elon Musk tweet count specialist. Could have bot tracking or inside knowledge of Elon's posting patterns. Sophisticated pattern analysis on a political figure's behavior.",
+    "cluster": "elon",
+    "closedPositions": [
+      {
+        "market": "Will Elon Musk post 40-64 tweets from February 12 to February 14, 2026?",
+        "side": "Yes",
+        "pnl": 914,
+        "outcome": "Won",
+        "entryPrice": 0.3111,
+        "exitPrice": 0.4434,
+        "date": "2026-02-13"
+      },
+      {
+        "market": "Will Elon Musk post 340-359 tweets from February 10 to February 17, 2026?",
+        "side": "Yes",
+        "pnl": 385,
+        "outcome": "Won",
+        "entryPrice": 0.07,
+        "exitPrice": 0.1,
+        "date": "2026-02-13"
+      },
+      {
+        "market": "Will Elon Musk post <40 tweets from February 12 to February 14, 2026?",
+        "side": "Yes",
+        "pnl": 319,
+        "outcome": "Won",
+        "entryPrice": 0.122,
+        "exitPrice": 0.1577,
+        "date": "2026-02-13"
+      },
+      {
+        "market": "Will Elon Musk post 360-379 tweets from February 10 to February 17, 2026?",
+        "side": "Yes",
+        "pnl": 309,
+        "outcome": "Won",
+        "entryPrice": 0.054,
+        "exitPrice": 0.0836,
+        "date": "2026-02-13"
+      },
+      {
+        "market": "Will Elon Musk post 220-239 tweets from February 10 to February 17, 2026?",
+        "side": "Yes",
+        "pnl": 159,
+        "outcome": "Won",
+        "entryPrice": 0.0595,
+        "exitPrice": 0.0789,
+        "date": "2026-02-13"
+      },
+      {
+        "market": "Will Elon Musk post 400-419 tweets from February 10 to February 17, 2026?",
+        "side": "Yes",
+        "pnl": 50,
+        "outcome": "Won",
+        "entryPrice": 0.0279,
+        "exitPrice": 0.04,
+        "date": "2026-02-13"
+      },
+      {
+        "market": "Will Elon Musk post 440-459 tweets from February 6 to February 13, 2026?",
+        "side": "Yes",
+        "pnl": 38,
+        "outcome": "Won",
+        "entryPrice": 0.0041,
+        "exitPrice": 0.0011,
+        "date": "2026-02-13"
+      },
+      {
+        "market": "Will Elon Musk post 380-399 tweets from February 6 to February 13, 2026?",
+        "side": "Yes",
+        "pnl": 5,
+        "outcome": "Won",
+        "entryPrice": 0.2091,
+        "exitPrice": 0.0105,
+        "date": "2026-02-13"
+      },
+      {
+        "market": "Will Elon Musk post 500-519 tweets from February 10 to February 17, 2026?",
+        "side": "Yes",
+        "pnl": 3,
+        "outcome": "Won",
+        "entryPrice": 0.004,
+        "exitPrice": 0.0062,
+        "date": "2026-02-13"
+      }
+    ]
+  },
+  {
+    "username": "Magamyman",
+    "address": "0xbaa2bcb5439e985ce4ccf815b4700027d1b92c73",
+    "profileUrl": "https://polymarket.com/@Magamyman",
+    "twitter": null,
+    "pnl": 86900,
+    "volume": null,
+    "activePositionsValue": 20000,
+    "predictions": 73,
+    "joinDate": "2024-10",
+    "categories": [
+      "fed",
+      "geopolitics",
+      "politics"
+    ],
+    "activePositions": [
+      {
+        "market": "Fed decrease rates 25 bps March",
+        "side": "YES",
+        "size": 6600
+      },
+      {
+        "market": "US recession by end of 2026",
+        "side": "NO",
+        "size": 4900
+      },
+      {
+        "market": "US strikes Iran by March 31",
+        "side": "YES",
+        "size": 4600
+      },
+      {
+        "market": "Supreme Court rules favor of Trump tariffs",
+        "side": "YES",
+        "size": 3700
+      },
+      {
+        "market": "US strikes Iran by Feb 28",
+        "side": "YES",
+        "size": 271
+      }
+    ],
+    "insiderRisk": "MEDIUM",
+    "edgeThesis": "Contrarian \u2014 takes opposite side on Iran (YES on strikes) vs most other political traders. Trump tariff Supreme Court case bet notable. Mixed results.",
+    "cluster": "mixed",
+    "closedPositions": [
+      {
+        "market": "Government shutdown on Saturday?",
+        "side": "No",
+        "pnl": 8525,
+        "outcome": "Won",
+        "entryPrice": 0.3313,
+        "exitPrice": 0.5454,
+        "date": "2026-02-13"
+      },
+      {
+        "market": "Will Cardi B perform during the Super Bowl LX halftime show?",
+        "side": "Yes",
+        "pnl": 3755,
+        "outcome": "Won",
+        "entryPrice": 0.7295,
+        "exitPrice": 0.8773,
+        "date": "2026-02-10"
+      },
+      {
+        "market": "US-Iran nuclear deal by June 30?",
+        "side": "Yes",
+        "pnl": 2259,
+        "outcome": "Won",
+        "entryPrice": 0.2934,
+        "exitPrice": 0.3469,
+        "date": "2026-02-13"
+      },
+      {
+        "market": "Will Israel strike Gaza on February 10, 2026?",
+        "side": "No",
+        "pnl": -642,
+        "outcome": "Lost",
+        "entryPrice": 0.252,
+        "exitPrice": 0.1639,
+        "date": "2026-02-13"
+      },
+      {
+        "market": "US-Iran nuclear deal before 2027?",
+        "side": "No",
+        "pnl": 531,
+        "outcome": "Won",
+        "entryPrice": 0.5791,
+        "exitPrice": 0.59,
+        "date": "2026-02-13"
+      },
+      {
+        "market": "Government shutdown on Saturday?",
+        "side": "Yes",
+        "pnl": -169,
+        "outcome": "Lost",
+        "entryPrice": 0.2142,
+        "exitPrice": 0.2058,
+        "date": "2026-02-13"
+      },
+      {
+        "market": "Will Rauw Alejandro perform during the Super Bowl LX halftime show?",
+        "side": "No",
+        "pnl": 51,
+        "outcome": "Won",
+        "entryPrice": 0.7287,
+        "exitPrice": 0.7898,
+        "date": "2026-02-09"
+      },
+      {
+        "market": "Will Israel strike Gaza on February 10, 2026?",
+        "side": "Yes",
+        "pnl": -5,
+        "outcome": "Lost",
+        "entryPrice": 0.88,
+        "exitPrice": 0.873,
+        "date": "2026-02-13"
+      }
+    ]
+  },
+  {
+    "username": "uprightuser",
+    "address": "0xd64e1a97d46f2ba860a56470ac6f47e5bcda5516",
+    "profileUrl": "https://polymarket.com/@uprightuser",
+    "twitter": null,
+    "pnl": 82000,
+    "volume": null,
+    "activePositionsValue": 247300,
+    "predictions": 67,
+    "joinDate": "2026-02",
+    "categories": [
+      "politics",
+      "crypto"
+    ],
+    "activePositions": [
+      {
+        "market": "Newsom 2028 Dem nomination",
+        "side": "YES",
+        "size": 26500
+      },
+      {
+        "market": "Portugal \u2014 Seguro wins all districts",
+        "side": "YES",
+        "size": 20000
+      },
+      {
+        "market": "JD Vance 2028 Republican nomination",
+        "side": "YES",
+        "size": 14000
+      },
+      {
+        "market": "Starmer out by Feb 28",
+        "side": "NO",
+        "size": 13000
+      },
+      {
+        "market": "JD Vance wins 2028 presidential election",
+        "side": "YES",
+        "size": 10000
+      },
+      {
+        "market": "Newsom 2028 presidential election",
+        "side": "YES",
+        "size": 7000
+      },
+      {
+        "market": "MegaETH market cap >$2B day after launch",
+        "side": "NO",
+        "size": 8000
+      }
+    ],
+    "insiderRisk": "LOW",
+    "edgeThesis": "Brand new account (Feb 2026). Spread across many topics with some large losses. Conviction-based rather than information-based trading.",
+    "cluster": "mixed",
+    "closedPositions": []
+  },
+  {
+    "username": "WickRick",
+    "address": "0x29d683970afb6f722ea1f9d4417c7ee7057cd57f",
+    "profileUrl": "https://polymarket.com/@WickRick",
+    "twitter": null,
+    "pnl": 74800,
+    "volume": null,
+    "activePositionsValue": 9200,
+    "predictions": 13,
+    "joinDate": "2026-01",
+    "categories": [
+      "politics",
+      "geopolitics"
+    ],
+    "activePositions": [
+      {
+        "market": "Starmer out by December 2026",
+        "side": "NO",
+        "size": 4500
+      },
+      {
+        "market": "US strikes Iran by March 31",
+        "side": "NO",
+        "size": 3000
+      },
+      {
+        "market": "Starmer out by June 2026",
+        "side": "NO",
+        "size": 925
+      },
+      {
+        "market": "Government shutdown lasts 1+ days",
+        "side": "YES",
+        "size": 811
+      }
+    ],
+    "insiderRisk": "MEDIUM",
+    "edgeThesis": "Government shutdown specialist. $74.8K biggest win on shutdown timing. Could have Capitol Hill connections. Also trades UK politics and Iran.",
+    "cluster": "mixed",
+    "closedPositions": []
+  }
+]
