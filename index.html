@@ -84983,7 +84983,7 @@ const DAY_STEPPER_DATA = [{"trader":"gopfan2","market":"Will António José Segu
       { label: 'Start of Day', value: fmtUsd(eodValue - dayPnl), color: '' },
       { label: 'Cash Available', value: fmtUsd(cash), color: '' },
       { label: 'Locked in Trades', value: fmtUsd(locked), color: 'var(--accent)' },
-      { label: '# Open Positions', value: String(openPositions.length), color: 'var(--accent)' },
+      { label: '# Open Positions', value: String(open.length), color: 'var(--accent)' },
       { label: "Day's P&L", value: (dayPnl >= 0 ? '+' : '') + fmtUsd(dayPnl), color: dayPnl >= 0 ? 'var(--green,#00c853)' : 'var(--red,#ff1744)' },
       { label: 'Cumulative P&L', value: (cumPnl >= 0 ? '+' : '') + fmtUsd(cumPnl), color: cumPnl >= 0 ? 'var(--green,#00c853)' : 'var(--red,#ff1744)' },
       { label: 'EOD Portfolio', value: fmtUsd(eodValue), color: 'var(--accent)' },
