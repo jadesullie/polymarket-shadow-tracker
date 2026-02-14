@@ -364,39 +364,7 @@ canvas{width:100%!important;height:300px!important}
       </div>
 
       <!-- Day Summary -->
-      <div id="dsDaySummary" style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;margin-bottom:16px;font-size:0.82rem;line-height:1.6;color:var(--text-secondary)"></div>
-
-      <!-- Running Totals -->
-      <div id="dsTotals" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:20px"></div>
-
-      <!-- BUY Events -->
-      <div style="margin-bottom:20px">
-        <div style="font-size:0.95rem;font-weight:700;margin-bottom:8px">🟢 Buys <span id="dsBuyCount" style="font-size:0.75rem;color:var(--text-muted);font-weight:500"></span></div>
-        <div class="table-wrap">
-          <table><thead><tr><th>Trader</th><th>Market</th><th>Side</th><th>Price</th><th>Whale $</th><th>Our Bet</th></tr></thead>
-          <tbody id="dsBuysBody"></tbody></table>
-        </div>
-      </div>
-
-      <!-- SELL Events -->
-      <div style="margin-bottom:20px">
-        <div style="font-size:0.95rem;font-weight:700;margin-bottom:8px">🟠 Sells <span id="dsSellCount" style="font-size:0.75rem;color:var(--text-muted);font-weight:500"></span></div>
-        <div class="table-wrap">
-          <table><thead><tr><th>Trader</th><th>Market</th><th>Side</th><th>Price</th><th>Whale $</th><th>Our P&L</th></tr></thead>
-          <tbody id="dsSellsBody"></tbody></table>
-        </div>
-      </div>
-
-      <!-- REDEEM Events -->
-      <div style="margin-bottom:20px">
-        <div style="font-size:0.95rem;font-weight:700;margin-bottom:8px">💰 Redemptions <span id="dsRedeemCount" style="font-size:0.75rem;color:var(--text-muted);font-weight:500"></span></div>
-        <div class="table-wrap">
-          <table><thead><tr><th>Trader</th><th>Market</th><th>Side</th><th>Whale $</th><th>Our P&L</th></tr></thead>
-          <tbody id="dsRedeemsBody"></tbody></table>
-        </div>
-      </div>
-
-      <!-- Day Summary -->
+      <!-- Day Summary (dynamic collapsible sections) -->
       <div id="dsDaySummary" style="margin-bottom:20px"></div>
     </div>
   </div>
@@ -85484,66 +85452,9 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
       </div>
     `).join('');
 
-    // Day summary bullets
-    {
-      const bullets = [];
-      const locked = Array.from(sim.positions.values()).reduce((s, p) => s + p.cost, 0);
-      const portfolioVal = sim.cash + locked;
-      const roi = ((portfolioVal / getStartingCapital()) - 1) * 100;
-
-      if (enteredCount > 0) {
-        const topBuys = buys.filter(e => !e._skipped).slice(0, 3).map(e => e.m.length > 40 ? e.m.slice(0, 37) + '…' : e.m);
-        const emoji = enteredCount >= 10 ? '🔥' : enteredCount >= 5 ? '📈' : '🎯';
-        bullets.push(`${emoji} Opened <b>${enteredCount}</b> new position${enteredCount > 1 ? 's' : ''} (${fmtUsd(ourBuyVol)} deployed) — ${topBuys.join(', ')}${enteredCount > 3 ? ` +${enteredCount - 3} more` : ''}`);
-      }
-      if (ourSells.length > 0) {
-        const emoji = ourSellPnl > 0 ? '💰' : ourSellPnl < 0 ? '😬' : '🤝';
-        const ourSellCost = ourSells.reduce((s, e) => s + (e._ourCost || 0), 0);
-        const sellRoi = ourSellCost > 0 ? ((ourSellPnl / ourSellCost) * 100).toFixed(0) : 0;
-        const sellPortPct = portfolioVal > 0 ? Math.abs(ourSellPnl / portfolioVal * 100) : 0;
-        const topSells = ourSells.slice(0, 3).map(e => e.m.length > 35 ? e.m.slice(0, 32) + '…' : e.m);
-        const big = sellPortPct >= 10;
-        const line = `${emoji} Closed <b>${ourSells.length}</b> position${ourSells.length > 1 ? 's' : ''} (${fmtUsd(ourSellCost)} invested → <b>${ourSellPnl >= 0 ? '+' : ''}${fmtUsd(ourSellPnl)}</b> P&L, ${sellRoi}% ROI) — ${topSells.join(', ')}`;
-        bullets.push(big ? `<span style="color:var(--text-primary);font-weight:700;font-size:0.9rem">${line}</span>` : line);
-      }
-      if (ourRedeems.length > 0) {
-        const emoji = ourRedeemPnl > 0 ? '🎉' : '📉';
-        const ourRedeemCost = ourRedeems.reduce((s, e) => s + (e._ourCost || 0), 0);
-        const redeemRoi = ourRedeemCost > 0 ? ((ourRedeemPnl / ourRedeemCost) * 100).toFixed(0) : 0;
-        const redeemPortPct = portfolioVal > 0 ? Math.abs(ourRedeemPnl / portfolioVal * 100) : 0;
-        const topRedeems = ourRedeems.slice(0, 3).map(e => e.m.length > 35 ? e.m.slice(0, 32) + '…' : e.m);
-        const big = redeemPortPct >= 10;
-        const line = `${emoji} <b>${ourRedeems.length}</b> market${ourRedeems.length > 1 ? 's' : ''} resolved (${fmtUsd(ourRedeemCost)} invested → <b>${ourRedeemPnl >= 0 ? '+' : ''}${fmtUsd(ourRedeemPnl)}</b> P&L, ${redeemRoi}% ROI) — ${topRedeems.join(', ')}`;
-        bullets.push(big ? `<span style="color:var(--text-primary);font-weight:700;font-size:0.9rem">${line}</span>` : line);
-      }
-      if (noCashCount > 0) {
-        bullets.push(`🚫 Missed <b>${noCashCount}</b> trade${noCashCount > 1 ? 's' : ''} — wallet's empty!`);
-      }
-      if (dupCount > 0) {
-        bullets.push(`♻️ Skipped <b>${dupCount}</b> duplicate${dupCount > 1 ? 's' : ''} — already riding ${dupCount > 1 ? 'those' : 'that'}`);
-      }
-      // Portfolio state
-      const numPos = sim.positions.size;
-      const roiEmoji = roi > 50 ? '🚀' : roi > 10 ? '📊' : roi > 0 ? '✅' : roi > -5 ? '😐' : '🩸';
-      const cashNote = sim.cash < 1 ? 'fully deployed 💪' : `${fmtUsd(sim.cash)} dry powder`;
-      const dayPctMove = portfolioVal > 0 ? Math.abs(sim.dayPnl / (portfolioVal - sim.dayPnl) * 100) : 0;
-      const portLine = `${roiEmoji} Portfolio at <b>${fmtUsd(portfolioVal)}</b> (${roi >= 0 ? '+' : ''}${roi.toFixed(1)}%) — ${numPos} positions open, ${cashNote}`;
-      bullets.push(dayPctMove >= 10 ? `<span style="color:var(--text-primary);font-weight:700;font-size:0.9rem">${portLine}</span>` : portLine);
-
-      if (enteredCount === 0 && ourSells.length === 0 && ourRedeems.length === 0) {
-        bullets.unshift('😴 Quiet day — no action on our positions');
-      }
-
-      $('dsDaySummary').innerHTML = '<div style="font-size:0.7rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">📝 Day Summary</div>' +
-        '<ul style="margin:0;padding-left:18px;list-style:disc">' + bullets.map(b => `<li style="margin-bottom:4px">${b}</li>`).join('') + '</ul>';
-    }
-
-    // Buys table
-    $('dsBuyCount').textContent = `(${buys.length} — $${fmt(buyVol)})`;
-    // Build trader profile lookup
+    // Build trader/market link helpers
     const traderProfileMap = {};
     TRADERS.forEach(t => { if (t.username) traderProfileMap[t.username] = t.profileUrl || `https://polymarket.com/@${t.username}`; });
-
     function traderLink(name) {
       const url = traderProfileMap[name];
       if (url) return `<a href="${url}" target="_blank" style="color:var(--accent);text-decoration:none">${name}</a>`;
@@ -85554,26 +85465,114 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
       return `<a href="${url}" target="_blank" style="color:var(--text-primary);text-decoration:none;border-bottom:1px dotted var(--text-muted)">${title}</a>`;
     }
 
-    $('dsBuysBody').innerHTML = buys.length ? buys.map(e => {
-      const skipLabel = e._skipReason === 'duplicate' ? 'DUP' : 'NO $';
-      const ourBetStr = e._skipped ? `<span style="color:var(--text-muted);font-size:0.75rem">${skipLabel}</span>` : `<span style="color:var(--positive,#10b981)">$${fmt(e._ourBet||0)}</span>`;
-      const rowStyle = e._skipped ? 'opacity:0.4' : '';
-      return `<tr style="${rowStyle}"><td>${traderLink(e.tr)}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${marketLink(e.m, e.u)}</td><td>${e.s}</td><td class="mono">${e.p.toFixed(3)}</td><td class="mono">$${fmt(e.sz)}</td><td class="mono">${ourBetStr}</td></tr>`;
-    }).join('') : '<tr><td colspan="6" style="color:var(--text-muted);text-align:center;padding:12px">No buys</td></tr>';
+    // Collapsible section helper
+    const _dsToggleId = (Date.now() + '').slice(-6);
+    let _dsSecIdx = 0;
+    function collapsibleSection(summary, detailHtml, opts = {}) {
+      const id = `ds_sec_${_dsToggleId}_${_dsSecIdx++}`;
+      const big = opts.big || false;
+      const hasDetail = detailHtml && detailHtml.trim().length > 0;
+      const cursor = hasDetail ? 'cursor:pointer' : '';
+      const chevron = hasDetail ? `<span id="${id}_chev" style="font-size:0.7rem;color:var(--text-muted);margin-left:6px;transition:transform 0.2s">▶</span>` : '';
+      const style = big ? 'color:var(--text-primary);font-weight:700;font-size:0.9rem' : '';
+      return `<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;overflow:hidden">
+        <div style="padding:12px 16px;${cursor};user-select:none;font-size:0.82rem;line-height:1.5;color:var(--text-secondary);${style}" ${hasDetail ? `onclick="(function(){var d=document.getElementById('${id}'),c=document.getElementById('${id}_chev');if(d.style.display==='none'){d.style.display='block';c.style.transform='rotate(90deg)'}else{d.style.display='none';c.style.transform=''}})()"` : ''}>
+          ${chevron} ${summary}
+        </div>
+        ${hasDetail ? `<div id="${id}" style="display:none;border-top:1px solid var(--border);padding:8px 12px;max-height:400px;overflow-y:auto">${detailHtml}</div>` : ''}
+      </div>`;
+    }
 
-    // Sells table — only OUR positions
-    $('dsSellCount').textContent = `(${ourSells.length}${ourSells.length !== sells.length ? ` of ${sells.length} trader sells` : ''})`;
-    $('dsSellsBody').innerHTML = ourSells.length ? ourSells.map(e => {
-      const pnlStr = `<span style="color:${e._ourPnl >= 0 ? 'var(--positive,#10b981)' : 'var(--negative,#ef4444)'}">${e._ourPnl >= 0 ? '+' : ''}$${fmt(Math.abs(e._ourPnl))}</span>`;
-      return `<tr><td>${traderLink(e.tr)}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${marketLink(e.m, e.u)}</td><td>${e.s}</td><td class="mono">${e.p.toFixed(3)}</td><td class="mono">$${fmt(e.sz)}</td><td class="mono">${pnlStr}</td></tr>`;
-    }).join('') : '<tr><td colspan="6" style="color:var(--text-muted);text-align:center;padding:12px">No sells on our positions</td></tr>';
+    // Day summary — collapsible sections
+    {
+      const locked = Array.from(sim.positions.values()).reduce((s, p) => s + p.cost, 0);
+      const portfolioVal = sim.cash + locked;
+      const roi = ((portfolioVal / getStartingCapital()) - 1) * 100;
+      const sections = [];
 
-    // Redeems table — only OUR positions
-    $('dsRedeemCount').textContent = `(${ourRedeems.length}${ourRedeems.length !== redeems.length ? ` of ${redeems.length} trader redeems` : ''})`;
-    $('dsRedeemsBody').innerHTML = ourRedeems.length ? ourRedeems.map(e => {
-      const pnlStr = `<span style="color:${e._ourPnl >= 0 ? 'var(--positive,#10b981)' : 'var(--negative,#ef4444)'}">${e._ourPnl >= 0 ? '+' : ''}$${fmt(Math.abs(e._ourPnl))}</span>`;
-      return `<tr><td>${traderLink(e.tr)}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${marketLink(e.m, e.u)}</td><td>${e.s || '—'}</td><td class="mono">$${fmt(e.sz)}</td><td class="mono">${pnlStr}</td></tr>`;
-    }).join('') : '<tr><td colspan="5" style="color:var(--text-muted);text-align:center;padding:12px">No redemptions on our positions</td></tr>';
+      if (enteredCount === 0 && ourSells.length === 0 && ourRedeems.length === 0) {
+        sections.push(collapsibleSection('😴 Quiet day — no action on our positions', ''));
+      }
+
+      // Buys section
+      if (enteredCount > 0 || buys.length > 0) {
+        const topBuys = buys.filter(e => !e._skipped).slice(0, 3).map(e => e.m.length > 40 ? e.m.slice(0, 37) + '…' : e.m);
+        const emoji = enteredCount >= 10 ? '🔥' : enteredCount >= 5 ? '📈' : '🎯';
+        const summary = `${emoji} Opened <b>${enteredCount}</b> new position${enteredCount > 1 ? 's' : ''} (${fmtUsd(ourBuyVol)} deployed) — ${topBuys.join(', ')}${enteredCount > 3 ? ` +${enteredCount - 3} more` : ''}`;
+        const buyRows = buys.map(e => {
+          const skipLabel = e._skipReason === 'duplicate' ? 'DUP' : 'NO $';
+          const ourBetStr = e._skipped ? `<span style="color:var(--text-muted);font-size:0.75rem">${skipLabel}</span>` : `<span style="color:var(--positive,#10b981)">$${fmt(e._ourBet||0)}</span>`;
+          const rowStyle = e._skipped ? 'opacity:0.4' : '';
+          return `<tr style="${rowStyle}"><td>${traderLink(e.tr)}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${marketLink(e.m, e.u)}</td><td>${e.s}</td><td class="mono">${e.p.toFixed(3)}</td><td class="mono">$${fmt(e.sz)}</td><td class="mono">${ourBetStr}</td></tr>`;
+        }).join('');
+        const table = `<div class="table-wrap"><table><thead><tr><th>Trader</th><th>Market</th><th>Side</th><th>Price</th><th>Whale $</th><th>Our Bet</th></tr></thead><tbody>${buyRows}</tbody></table></div>`;
+        sections.push(collapsibleSection(summary, table));
+      }
+
+      // Sells section
+      if (ourSells.length > 0) {
+        const emoji = ourSellPnl > 0 ? '💰' : ourSellPnl < 0 ? '😬' : '🤝';
+        const ourSellCost = ourSells.reduce((s, e) => s + (e._ourCost || 0), 0);
+        const sellRoi = ourSellCost > 0 ? ((ourSellPnl / ourSellCost) * 100).toFixed(0) : 0;
+        const sellPortPct = portfolioVal > 0 ? Math.abs(ourSellPnl / portfolioVal * 100) : 0;
+        const topSells = ourSells.slice(0, 3).map(e => e.m.length > 35 ? e.m.slice(0, 32) + '…' : e.m);
+        const summary = `${emoji} Closed <b>${ourSells.length}</b> position${ourSells.length > 1 ? 's' : ''} (${fmtUsd(ourSellCost)} invested → <b>${ourSellPnl >= 0 ? '+' : ''}${fmtUsd(ourSellPnl)}</b> P&L, ${sellRoi}% ROI) — ${topSells.join(', ')}`;
+        const sellRows = ourSells.map(e => {
+          const pnlStr = `<span style="color:${e._ourPnl >= 0 ? 'var(--positive,#10b981)' : 'var(--negative,#ef4444)'}">${e._ourPnl >= 0 ? '+' : ''}$${fmt(Math.abs(e._ourPnl))}</span>`;
+          return `<tr><td>${traderLink(e.tr)}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${marketLink(e.m, e.u)}</td><td>${e.s}</td><td class="mono">${e.p.toFixed(3)}</td><td class="mono">$${fmt(e.sz)}</td><td class="mono">${pnlStr}</td></tr>`;
+        }).join('');
+        const table = `<div class="table-wrap"><table><thead><tr><th>Trader</th><th>Market</th><th>Side</th><th>Price</th><th>Whale $</th><th>Our P&L</th></tr></thead><tbody>${sellRows}</tbody></table></div>`;
+        sections.push(collapsibleSection(summary, table, { big: sellPortPct >= 10 }));
+      }
+
+      // Redeems section
+      if (ourRedeems.length > 0) {
+        const emoji = ourRedeemPnl > 0 ? '🎉' : '📉';
+        const ourRedeemCost = ourRedeems.reduce((s, e) => s + (e._ourCost || 0), 0);
+        const redeemRoi = ourRedeemCost > 0 ? ((ourRedeemPnl / ourRedeemCost) * 100).toFixed(0) : 0;
+        const redeemPortPct = portfolioVal > 0 ? Math.abs(ourRedeemPnl / portfolioVal * 100) : 0;
+        const topRedeems = ourRedeems.slice(0, 3).map(e => e.m.length > 35 ? e.m.slice(0, 32) + '…' : e.m);
+        const summary = `${emoji} <b>${ourRedeems.length}</b> market${ourRedeems.length > 1 ? 's' : ''} resolved (${fmtUsd(ourRedeemCost)} invested → <b>${ourRedeemPnl >= 0 ? '+' : ''}${fmtUsd(ourRedeemPnl)}</b> P&L, ${redeemRoi}% ROI) — ${topRedeems.join(', ')}`;
+        const redeemRows = ourRedeems.map(e => {
+          const pnlStr = `<span style="color:${e._ourPnl >= 0 ? 'var(--positive,#10b981)' : 'var(--negative,#ef4444)'}">${e._ourPnl >= 0 ? '+' : ''}$${fmt(Math.abs(e._ourPnl))}</span>`;
+          return `<tr><td>${traderLink(e.tr)}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${marketLink(e.m, e.u)}</td><td>${e.s || '—'}</td><td class="mono">$${fmt(e.sz)}</td><td class="mono">${pnlStr}</td></tr>`;
+        }).join('');
+        const table = `<div class="table-wrap"><table><thead><tr><th>Trader</th><th>Market</th><th>Side</th><th>Whale $</th><th>Our P&L</th></tr></thead><tbody>${redeemRows}</tbody></table></div>`;
+        sections.push(collapsibleSection(summary, table, { big: redeemPortPct >= 10 }));
+      }
+
+      // Missed / Duplicates
+      if (noCashCount > 0) {
+        sections.push(collapsibleSection(`🚫 Missed <b>${noCashCount}</b> trade${noCashCount > 1 ? 's' : ''} — wallet's empty!`, ''));
+      }
+      if (dupCount > 0) {
+        sections.push(collapsibleSection(`♻️ Skipped <b>${dupCount}</b> duplicate${dupCount > 1 ? 's' : ''} — already riding ${dupCount > 1 ? 'those' : 'that'}`, ''));
+      }
+
+      // Portfolio state
+      const numPos = sim.positions.size;
+      const roiEmoji = roi > 50 ? '🚀' : roi > 10 ? '📊' : roi > 0 ? '✅' : roi > -5 ? '😐' : '🩸';
+      const cashNote = sim.cash < 1 ? 'fully deployed 💪' : `${fmtUsd(sim.cash)} dry powder`;
+      const dayPctMove = portfolioVal > 0 ? Math.abs(sim.dayPnl / (portfolioVal - sim.dayPnl) * 100) : 0;
+      const portSummary = `${roiEmoji} Portfolio at <b>${fmtUsd(portfolioVal)}</b> (${roi >= 0 ? '+' : ''}${roi.toFixed(1)}%) — ${numPos} positions open, ${cashNote}`;
+      // Open positions detail
+      const posEntries = Array.from(sim.positions.entries()).sort((a, b) => b[1].cost - a[1].cost);
+      let posTable = '';
+      if (posEntries.length > 0) {
+        const posRows = posEntries.slice(0, 50).map(([key, pos]) => {
+          const [trader, market] = key.split('|');
+          return `<tr><td>${traderLink(trader)}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${market}</td><td class="mono">$${fmt(pos.cost)}</td><td class="mono">${pos.shares.toFixed(1)}</td></tr>`;
+        }).join('');
+        posTable = `<div class="table-wrap"><table><thead><tr><th>Trader</th><th>Market</th><th>Cost</th><th>Shares</th></tr></thead><tbody>${posRows}</tbody></table></div>` +
+          (posEntries.length > 50 ? `<div style="color:var(--text-muted);font-size:0.75rem;padding:4px">+${posEntries.length - 50} more positions</div>` : '');
+      }
+      sections.push(collapsibleSection(portSummary, posTable, { big: dayPctMove >= 10 }));
+
+      // Whale activity
+      sections.push(collapsibleSection(`🐋 <b>${events.length}</b> whale events today (${fmtUsd(buyVol)} in trader buys)`, ''));
+
+      $('dsDaySummary').innerHTML = '<div style="font-size:0.7rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:10px">📝 Day Summary</div>' + sections.join('');
+    }
   }
 
   // Event listeners
