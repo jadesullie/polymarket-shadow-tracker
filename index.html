@@ -85489,29 +85489,33 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
 
       if (enteredCount > 0) {
         const topBuys = buys.filter(e => !e._skipped).slice(0, 3).map(e => e.m.length > 40 ? e.m.slice(0, 37) + '…' : e.m);
-        bullets.push(`Entered <b>${enteredCount}</b> new position${enteredCount > 1 ? 's' : ''} (${fmtUsd(ourBuyVol)} deployed)` +
-          (topBuys.length ? ` — ${topBuys.join(', ')}${enteredCount > 3 ? ` +${enteredCount - 3} more` : ''}` : ''));
+        const emoji = enteredCount >= 10 ? '🔥' : enteredCount >= 5 ? '📈' : '🎯';
+        bullets.push(`${emoji} Opened <b>${enteredCount}</b> new position${enteredCount > 1 ? 's' : ''} (${fmtUsd(ourBuyVol)} deployed) — ${topBuys.join(', ')}${enteredCount > 3 ? ` +${enteredCount - 3} more` : ''}`);
       }
       if (ourSells.length > 0) {
+        const emoji = ourSellPnl > 0 ? '💰' : ourSellPnl < 0 ? '😬' : '🤝';
         const topSells = ourSells.slice(0, 3).map(e => e.m.length > 35 ? e.m.slice(0, 32) + '…' : e.m);
-        bullets.push(`Sold <b>${ourSells.length}</b> position${ourSells.length > 1 ? 's' : ''} for <b>${fmtUsd(ourSellPnl)}</b> P&L — ${topSells.join(', ')}`);
+        bullets.push(`${emoji} Closed <b>${ourSells.length}</b> position${ourSells.length > 1 ? 's' : ''} via sell → <b>${ourSellPnl >= 0 ? '+' : ''}${fmtUsd(ourSellPnl)}</b> P&L — ${topSells.join(', ')}`);
       }
       if (ourRedeems.length > 0) {
+        const emoji = ourRedeemPnl > 0 ? '🎉' : '📉';
         const topRedeems = ourRedeems.slice(0, 3).map(e => e.m.length > 35 ? e.m.slice(0, 32) + '…' : e.m);
-        bullets.push(`<b>${ourRedeems.length}</b> position${ourRedeems.length > 1 ? 's' : ''} redeemed for <b>${fmtUsd(ourRedeemPnl)}</b> P&L — ${topRedeems.join(', ')}`);
+        bullets.push(`${emoji} <b>${ourRedeems.length}</b> market${ourRedeems.length > 1 ? 's' : ''} resolved → <b>${ourRedeemPnl >= 0 ? '+' : ''}${fmtUsd(ourRedeemPnl)}</b> — ${topRedeems.join(', ')}`);
       }
       if (noCashCount > 0) {
-        bullets.push(`Skipped <b>${noCashCount}</b> trade${noCashCount > 1 ? 's' : ''} — insufficient cash`);
+        bullets.push(`🚫 Missed <b>${noCashCount}</b> trade${noCashCount > 1 ? 's' : ''} — wallet's empty!`);
       }
       if (dupCount > 0) {
-        bullets.push(`Filtered <b>${dupCount}</b> duplicate${dupCount > 1 ? 's' : ''} (already in position)`);
+        bullets.push(`♻️ Skipped <b>${dupCount}</b> duplicate${dupCount > 1 ? 's' : ''} — already riding ${dupCount > 1 ? 'those' : 'that'}`);
       }
       // Portfolio state
       const numPos = sim.positions.size;
-      bullets.push(`Portfolio: <b>${fmtUsd(portfolioVal)}</b> (${roi >= 0 ? '+' : ''}${roi.toFixed(1)}% ROI) — ${numPos} open position${numPos !== 1 ? 's' : ''}, ${fmtUsd(sim.cash)} cash`);
+      const roiEmoji = roi > 50 ? '🚀' : roi > 10 ? '📊' : roi > 0 ? '✅' : roi > -5 ? '😐' : '🩸';
+      const cashNote = sim.cash < 1 ? 'fully deployed 💪' : `${fmtUsd(sim.cash)} dry powder`;
+      bullets.push(`${roiEmoji} Portfolio at <b>${fmtUsd(portfolioVal)}</b> (${roi >= 0 ? '+' : ''}${roi.toFixed(1)}%) — ${numPos} positions open, ${cashNote}`);
 
       if (enteredCount === 0 && ourSells.length === 0 && ourRedeems.length === 0) {
-        bullets.unshift('Quiet day — no new entries or exits on our positions');
+        bullets.unshift('😴 Quiet day — no action on our positions');
       }
 
       $('dsDaySummary').innerHTML = '<div style="font-size:0.7rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">📝 Day Summary</div>' +
