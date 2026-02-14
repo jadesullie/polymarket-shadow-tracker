@@ -85533,6 +85533,7 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
 
   async function renderDay() {
     if (!days || !days.length) return;
+    try {
     const dayStr = days[currentIdx];
     $('dsCurrentDate').textContent = dayStr;
     $('dsDayCounter').textContent = `Day ${currentIdx + 1} of ${days.length}`;
@@ -85778,6 +85779,11 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
       sections.push(collapsibleSection(`🐋 <b>${events.length}</b> whale events today (${fmtUsd(buyVol)} in trader buys)`, ''));
 
       $('dsDaySummary').innerHTML = '<div style="font-size:0.7rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:10px">📝 Day Summary</div>' + sections.join('');
+    }
+    } catch(err) {
+      console.error('renderDay error:', err);
+      const el = $('dsDaySummary');
+      if (el) el.innerHTML = `<div style="color:var(--negative,#ef4444);padding:12px">Error rendering: ${err.message}</div>`;
     }
   }
 
