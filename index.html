@@ -84458,12 +84458,10 @@ const STRAT_COLORS = ['#10b981','#ef4444','#6366f1','#f5c518','#f472b6','#fb923c
 function fmtBig(n) {
   if (n == null || isNaN(n)) return '—';
   const abs = Math.abs(n);
-  if (abs >= 1e18) return (n/1e18).toFixed(1)+'E';
-  if (abs >= 1e15) return (n/1e15).toFixed(1)+'Q';
-  if (abs >= 1e12) return (n/1e12).toFixed(1)+'T';
-  if (abs >= 1e9) return (n/1e9).toFixed(1)+'B';
-  if (abs >= 1e6) return (n/1e6).toFixed(1)+'M';
-  if (abs >= 1e3) return (n/1e3).toFixed(1)+'K';
+  const sign = n < 0 ? '-' : '';
+  if (abs >= 1e9) return sign + (abs/1e9).toFixed(1)+'B';
+  if (abs >= 1e6) return sign + (abs/1e6).toFixed(1)+'M';
+  if (abs >= 1e3) return sign + (abs/1e3).toFixed(1)+'K';
   return n.toFixed(0);
 }
 
@@ -84532,12 +84530,14 @@ function renderStratChart() {
 
   if (allCurves.length === 0) return;
 
-  // Find min/max across all curves (log scale)
+  // Find min/max across all curves (linear scale)
   let allVals = [];
-  allCurves.forEach(c => c.curve.forEach(p => { if (p.value > 0) allVals.push(Math.log10(p.value)); }));
-  let minLog = Math.min(...allVals), maxLog = Math.max(...allVals);
-  if (maxLog - minLog < 1) { minLog -= 0.5; maxLog += 0.5; }
-  const logRange = maxLog - minLog;
+  allCurves.forEach(c => c.curve.forEach(p => allVals.push(p.value)));
+  let minVal = Math.min(...allVals), maxVal = Math.max(...allVals);
+  const padding = (maxVal - minVal) * 0.05 || 500;
+  minVal = Math.max(0, minVal - padding);
+  maxVal = maxVal + padding;
+  const valRange = maxVal - minVal;
 
   // Find date range
   let allDates = new Set();
@@ -84546,7 +84546,7 @@ function renderStratChart() {
   const dateMin = allDates[0], dateMax = allDates[allDates.length - 1];
 
   const xScale = (d) => padL + (allDates.indexOf(d) / (allDates.length - 1)) * (W - padL - padR);
-  const yScale = (v) => padT + (1 - (Math.log10(Math.max(v, 1)) - minLog) / logRange) * (H - padT - padB);
+  const yScale = (v) => padT + (1 - (v - minVal) / valRange) * (H - padT - padB);
 
   // Background
   ctx.fillStyle = 'rgba(10,10,15,0.8)';
@@ -84558,10 +84558,12 @@ function renderStratChart() {
   ctx.font = '10px JetBrains Mono';
   ctx.fillStyle = '#6868a0';
   ctx.textAlign = 'right';
-  for (let logV = Math.ceil(minLog); logV <= Math.floor(maxLog); logV++) {
-    const y = padT + (1 - (logV - minLog) / logRange) * (H - padT - padB);
+  const gridLines = 6;
+  for (let i = 0; i <= gridLines; i++) {
+    const v = minVal + (valRange * i / gridLines);
+    const y = padT + (1 - i / gridLines) * (H - padT - padB);
     ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(W - padR, y); ctx.stroke();
-    ctx.fillText('$' + fmtBig(Math.pow(10, logV)), padL - 5, y + 3);
+    ctx.fillText('$' + fmtBig(v), padL - 5, y + 3);
   }
 
   // Date labels
