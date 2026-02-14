@@ -85216,7 +85216,7 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
       { label: "Day's P&L", value: null, html: fmtPnl(state.dayPnl) },
       { label: 'Cumulative P&L', value: null, html: fmtPnl(state.cumPnl) },
       { label: 'Portfolio Value', value: fmtUsd(portfolioVal), color: 'var(--accent)' },
-      { label: 'ROI', value: null, html: fmtPnl(portfolioVal - getStartingCapital()), sub: ((portfolioVal / getStartingCapital() - 1) * 100).toFixed(1) + '%' },
+      { label: 'ROI', value: null, html: (() => { const pct = (portfolioVal / getStartingCapital() - 1) * 100; const color = pct >= 0 ? 'var(--green,#00c853)' : 'var(--red,#ff1744)'; return `<span style="color:${color};font-weight:700">${pct >= 0 ? '+' : ''}${pct.toFixed(1)}%</span>`; })(), sub: fmtPnl(portfolioVal - getStartingCapital()) },
     ];
     const el = $('dsSimCards');
     el.innerHTML = '<div style="grid-column:1/-1;font-size:0.75rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px">📊 Portfolio Simulation</div>' +
