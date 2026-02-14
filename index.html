@@ -212,6 +212,7 @@ canvas{width:100%!important;height:300px!important}
       <button class="nav-tab active" data-view="dashboard">Dashboard</button>
       <button class="nav-tab" data-view="positions">Positions</button>
       <button class="nav-tab" data-view="alerts">Alerts</button>
+      <button class="nav-tab" data-view="journal">Journal</button>
       <button class="nav-tab" data-view="simulation">Simulation</button>
     </div>
     <div class="updated" id="lastUpdated">Updated: —</div>
@@ -276,6 +277,66 @@ canvas{width:100%!important;height:300px!important}
   <div class="view" id="view-alerts">
     <h2 style="font-size:1.1rem;margin-bottom:16px">🚨 Trade Alerts</h2>
     <div class="alert-feed" id="alertsFeed"></div>
+  </div>
+
+  <!-- JOURNAL VIEW -->
+  <div class="view" id="view-journal">
+    <div id="journalSwipeHint" style="text-align:center;padding:12px;font-size:0.8rem;color:var(--text-muted);opacity:0.7;transition:opacity 0.5s">← Swipe to navigate days →</div>
+    <div id="dayStepperJournal">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap">
+        <h2 style="font-size:1.1rem;margin:0">📅 Day Stepper</h2>
+        <span style="font-size:0.78rem;color:var(--text-muted);font-family:'JetBrains Mono',monospace">Step through trades day by day — track portfolio state over time</span>
+      </div>
+
+      <!-- Date Range & Controls -->
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;margin-bottom:16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+        <label style="font-size:0.85rem;font-weight:600;color:var(--text-primary)">From</label>
+        <input type="date" id="dsFrom" value="2026-01-01" style="padding:6px 10px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);font-family:'JetBrains Mono',monospace;font-size:0.85rem">
+        <label style="font-size:0.85rem;font-weight:600;color:var(--text-primary)">To</label>
+        <input type="date" id="dsTo" value="2026-01-31" style="padding:6px 10px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);font-family:'JetBrains Mono',monospace;font-size:0.85rem">
+        <button id="dsApplyRange" style="padding:6px 14px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius);font-size:0.8rem;cursor:pointer;font-family:inherit">Apply</button>
+      </div>
+
+      <!-- Step Controls -->
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap">
+        <button id="dsPrev" style="padding:8px 20px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);cursor:pointer;font-family:inherit;font-size:0.9rem">◀ Prev Day</button>
+        <div style="text-align:center">
+          <div id="dsCurrentDate" style="font-size:1.6rem;font-weight:800;color:var(--accent);font-family:'JetBrains Mono',monospace;letter-spacing:0.5px">2026-01-01</div>
+          <div id="dsDayCounter" style="font-size:0.75rem;color:var(--text-muted);font-family:'JetBrains Mono',monospace;margin-top:2px"></div>
+        </div>
+        <button id="dsNext" style="padding:8px 20px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);cursor:pointer;font-family:inherit;font-size:0.9rem">Next Day ▶</button>
+      </div>
+
+      <!-- Running Totals -->
+      <div id="dsTotals" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:20px"></div>
+
+      <!-- New Entries -->
+      <div style="margin-bottom:20px">
+        <div style="font-size:0.95rem;font-weight:700;margin-bottom:8px">🟢 Positions Entered Today <span id="dsEntryCount" style="font-size:0.75rem;color:var(--text-muted);font-weight:500"></span></div>
+        <div class="table-wrap">
+          <table><thead><tr><th>Trader</th><th>Market</th><th>Side</th><th>Entry Price</th><th>Bet Size</th></tr></thead>
+          <tbody id="dsEntriesBody"></tbody></table>
+        </div>
+      </div>
+
+      <!-- Closures -->
+      <div style="margin-bottom:20px">
+        <div style="font-size:0.95rem;font-weight:700;margin-bottom:8px">🔴 Positions Closed Today <span id="dsCloseCount" style="font-size:0.75rem;color:var(--text-muted);font-weight:500"></span></div>
+        <div class="table-wrap">
+          <table><thead><tr><th>Trader</th><th>Market</th><th>Side</th><th>Outcome</th><th>P&L</th></tr></thead>
+          <tbody id="dsClosuresBody"></tbody></table>
+        </div>
+      </div>
+
+      <!-- Open Positions -->
+      <div style="margin-bottom:20px">
+        <div style="font-size:0.95rem;font-weight:700;margin-bottom:8px">📋 Currently Open <span id="dsOpenCount" style="font-size:0.75rem;color:var(--text-muted);font-weight:500"></span></div>
+        <div class="table-wrap">
+          <table><thead><tr><th>Trader</th><th>Market</th><th>Side</th><th>Entry Date</th><th>Bet Size</th></tr></thead>
+          <tbody id="dsOpenBody"></tbody></table>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- SIMULATION VIEW -->
@@ -378,65 +439,6 @@ canvas{width:100%!important;height:300px!important}
         </div>
       </div>
     </div>
-
-    <hr style="border:none;border-top:1px solid var(--border);margin:32px 0">
-
-    <!-- DAY STEPPER -->
-    <div id="dayStepperSection">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap">
-        <h2 style="font-size:1.1rem;margin:0">📅 Day Stepper</h2>
-        <span style="font-size:0.78rem;color:var(--text-muted);font-family:'JetBrains Mono',monospace">Step through trades day by day — track portfolio state over time</span>
-      </div>
-
-      <!-- Date Range & Controls -->
-      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;margin-bottom:16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-        <label style="font-size:0.85rem;font-weight:600;color:var(--text-primary)">From</label>
-        <input type="date" id="dsFrom" value="2026-01-01" style="padding:6px 10px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);font-family:'JetBrains Mono',monospace;font-size:0.85rem">
-        <label style="font-size:0.85rem;font-weight:600;color:var(--text-primary)">To</label>
-        <input type="date" id="dsTo" value="2026-01-31" style="padding:6px 10px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);font-family:'JetBrains Mono',monospace;font-size:0.85rem">
-        <button id="dsApplyRange" style="padding:6px 14px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius);font-size:0.8rem;cursor:pointer;font-family:inherit">Apply</button>
-      </div>
-
-      <!-- Step Controls -->
-      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:12px 20px;margin-bottom:16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-        <button id="dsPrev" style="padding:6px 16px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);cursor:pointer;font-family:inherit;font-size:0.85rem">◀ Prev Day</button>
-        <span id="dsCurrentDate" style="font-size:1rem;font-weight:700;color:var(--accent);font-family:'JetBrains Mono',monospace;min-width:120px;text-align:center">2026-01-01</span>
-        <button id="dsNext" style="padding:6px 16px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);cursor:pointer;font-family:inherit;font-size:0.85rem">Next Day ▶</button>
-        <span id="dsDayCounter" style="font-size:0.75rem;color:var(--text-muted);font-family:'JetBrains Mono',monospace"></span>
-      </div>
-
-      <!-- Running Totals -->
-      <div id="dsTotals" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:20px"></div>
-
-      <!-- New Entries -->
-      <div style="margin-bottom:20px">
-        <div style="font-size:0.95rem;font-weight:700;margin-bottom:8px">🟢 Positions Entered Today <span id="dsEntryCount" style="font-size:0.75rem;color:var(--text-muted);font-weight:500"></span></div>
-        <div class="table-wrap">
-          <table><thead><tr><th>Trader</th><th>Market</th><th>Side</th><th>Entry Price</th><th>Bet Size</th></tr></thead>
-          <tbody id="dsEntriesBody"></tbody></table>
-        </div>
-      </div>
-
-      <!-- Closures -->
-      <div style="margin-bottom:20px">
-        <div style="font-size:0.95rem;font-weight:700;margin-bottom:8px">🔴 Positions Closed Today <span id="dsCloseCount" style="font-size:0.75rem;color:var(--text-muted);font-weight:500"></span></div>
-        <div class="table-wrap">
-          <table><thead><tr><th>Trader</th><th>Market</th><th>Side</th><th>Outcome</th><th>P&L</th></tr></thead>
-          <tbody id="dsClosuresBody"></tbody></table>
-        </div>
-      </div>
-
-      <!-- Open Positions -->
-      <div style="margin-bottom:20px">
-        <div style="font-size:0.95rem;font-weight:700;margin-bottom:8px">📋 Currently Open <span id="dsOpenCount" style="font-size:0.75rem;color:var(--text-muted);font-weight:500"></span></div>
-        <div class="table-wrap">
-          <table><thead><tr><th>Trader</th><th>Market</th><th>Side</th><th>Entry Date</th><th>Bet Size</th></tr></thead>
-          <tbody id="dsOpenBody"></tbody></table>
-        </div>
-      </div>
-    </div>
-
-    <hr style="border:none;border-top:1px solid var(--border);margin:32px 0">
 
     <!-- LIVE SIMULATION (existing) -->
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap">
@@ -83710,7 +83712,7 @@ function handleRoute() {
     }
   }
   
-  const viewMap = { '': 'dashboard', 'dashboard': 'dashboard', 'positions': 'positions', 'alerts': 'alerts', 'simulation': 'simulation' };
+  const viewMap = { '': 'dashboard', 'dashboard': 'dashboard', 'positions': 'positions', 'alerts': 'alerts', 'journal': 'journal', 'simulation': 'simulation' };
   const view = viewMap[path] || 'dashboard';
   document.getElementById('view-' + view).classList.add('active');
   const tab = document.querySelector(`[data-view="${view}"]`);
@@ -85025,12 +85027,48 @@ const DAY_STEPPER_DATA = [{"trader":"gopfan2","market":"Will António José Segu
 
   // Keyboard nav
   document.addEventListener('keydown', (e) => {
-    if (!$('dayStepperSection')) return;
-    const simView = document.getElementById('view-simulation');
-    if (!simView || !simView.classList.contains('active')) return;
+    const jView = document.getElementById('view-journal');
+    if (!jView || !jView.classList.contains('active')) return;
     if (e.key === 'ArrowLeft') { $('dsPrev').click(); e.preventDefault(); }
     if (e.key === 'ArrowRight') { $('dsNext').click(); e.preventDefault(); }
   });
+
+  // Swipe gesture support
+  (function() {
+    const journalView = document.getElementById('view-journal');
+    if (!journalView) return;
+    let touchStartX = 0, touchStartY = 0, swiping = false;
+    journalView.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      swiping = true;
+    }, { passive: true });
+    journalView.addEventListener('touchmove', (e) => {
+      // Allow vertical scroll, only track
+    }, { passive: true });
+    journalView.addEventListener('touchend', (e) => {
+      if (!swiping) return;
+      swiping = false;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      const dy = e.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(dx) < 50 || Math.abs(dy) > Math.abs(dx)) return;
+      const content = document.getElementById('dayStepperJournal');
+      if (dx < 0) {
+        // Swipe left = next day
+        if (content) { content.style.transition = 'transform 0.2s ease, opacity 0.2s ease'; content.style.transform = 'translateX(-30px)'; content.style.opacity = '0.5'; }
+        $('dsNext').click();
+        setTimeout(() => { if (content) { content.style.transform = 'translateX(30px)'; setTimeout(() => { content.style.transform = 'translateX(0)'; content.style.opacity = '1'; }, 20); } }, 150);
+      } else {
+        // Swipe right = prev day
+        if (content) { content.style.transition = 'transform 0.2s ease, opacity 0.2s ease'; content.style.transform = 'translateX(30px)'; content.style.opacity = '0.5'; }
+        $('dsPrev').click();
+        setTimeout(() => { if (content) { content.style.transform = 'translateX(-30px)'; setTimeout(() => { content.style.transform = 'translateX(0)'; content.style.opacity = '1'; }, 20); } }, 150);
+      }
+      // Hide swipe hint after first use
+      const hint = document.getElementById('journalSwipeHint');
+      if (hint) { hint.style.opacity = '0'; setTimeout(() => hint.remove(), 500); }
+    }, { passive: true });
+  })();
 
   // Re-render when bet size changes
   const slider = $('betSizeSlider');
