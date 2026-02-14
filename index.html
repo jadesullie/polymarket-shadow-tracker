@@ -85435,6 +85435,7 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
           const soldCost = pos.cost * sellRatio;
           const proceeds = (pos.shares * sellRatio) * ev.p;
           ev._ourPnl = proceeds - soldCost;
+          ev._ourCost = soldCost;
           simCash += proceeds;
           if (sellRatio >= 0.999) simPositions.delete(key);
           else { pos.cost -= soldCost; pos.shares -= pos.shares * sellRatio; }
@@ -85445,6 +85446,7 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
         if (pos) {
           const proceeds = pos.shares * 1.0;
           ev._ourPnl = proceeds - pos.cost;
+          ev._ourCost = pos.cost;
           simCash += proceeds;
           simPositions.delete(key);
         }
@@ -85494,24 +85496,28 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
       }
       if (ourSells.length > 0) {
         const emoji = ourSellPnl > 0 ? '💰' : ourSellPnl < 0 ? '😬' : '🤝';
+        const ourSellCost = ourSells.reduce((s, e) => s + (e._ourCost || 0), 0);
+        const sellRoi = ourSellCost > 0 ? ((ourSellPnl / ourSellCost) * 100).toFixed(0) : 0;
         const topSells = ourSells.slice(0, 3).map(e => e.m.length > 35 ? e.m.slice(0, 32) + '…' : e.m);
-        bullets.push(`${emoji} Closed <b>${ourSells.length}</b> position${ourSells.length > 1 ? 's' : ''} via sell → <b>${ourSellPnl >= 0 ? '+' : ''}${fmtUsd(ourSellPnl)}</b> P&L — ${topSells.join(', ')}`);
+        bullets.push(`${emoji} Closed <b>${ourSells.length}</b> position${ourSells.length > 1 ? 's' : ''} (${fmtUsd(ourSellCost)} invested → <b>${ourSellPnl >= 0 ? '+' : ''}${fmtUsd(ourSellPnl)}</b> P&L, ${sellRoi}% ROI) — ${topSells.join(', ')}`);
       }
       if (ourRedeems.length > 0) {
         const emoji = ourRedeemPnl > 0 ? '🎉' : '📉';
+        const ourRedeemCost = ourRedeems.reduce((s, e) => s + (e._ourCost || 0), 0);
+        const redeemRoi = ourRedeemCost > 0 ? ((ourRedeemPnl / ourRedeemCost) * 100).toFixed(0) : 0;
         const topRedeems = ourRedeems.slice(0, 3).map(e => e.m.length > 35 ? e.m.slice(0, 32) + '…' : e.m);
-        bullets.push(`${emoji} <b>${ourRedeems.length}</b> market${ourRedeems.length > 1 ? 's' : ''} resolved → <b>${ourRedeemPnl >= 0 ? '+' : ''}${fmtUsd(ourRedeemPnl)}</b> — ${topRedeems.join(', ')}`);
+        bullets.push(`${emoji} <b>${ourRedeems.length}</b> market${ourRedeems.length > 1 ? 's' : ''} resolved (${fmtUsd(ourRedeemCost)} invested → <b>${ourRedeemPnl >= 0 ? '+' : ''}${fmtUsd(ourRedeemPnl)}</b> P&L, ${redeemRoi}% ROI) — ${topRedeems.join(', ')}`);
       }
       if (noCashCount > 0) {
-        bullets.push(`🚫 Missed <b>${noCashCount}</b> trade${noCashCount > 1 ? 's' : ''} — insufficient cash`);
+        bullets.push(`🚫 Missed <b>${noCashCount}</b> trade${noCashCount > 1 ? 's' : ''} — wallet's empty!`);
       }
       if (dupCount > 0) {
-        bullets.push(`♻️ Skipped <b>${dupCount}</b> duplicate${dupCount > 1 ? 's' : ''} — already in position`);
+        bullets.push(`♻️ Skipped <b>${dupCount}</b> duplicate${dupCount > 1 ? 's' : ''} — already riding ${dupCount > 1 ? 'those' : 'that'}`);
       }
       // Portfolio state
       const numPos = sim.positions.size;
       const roiEmoji = roi > 50 ? '🚀' : roi > 10 ? '📊' : roi > 0 ? '✅' : roi > -5 ? '😐' : '🩸';
-      const cashNote = sim.cash < 1 ? 'fully deployed' : `${fmtUsd(sim.cash)} cash available`;
+      const cashNote = sim.cash < 1 ? 'fully deployed 💪' : `${fmtUsd(sim.cash)} dry powder`;
       bullets.push(`${roiEmoji} Portfolio at <b>${fmtUsd(portfolioVal)}</b> (${roi >= 0 ? '+' : ''}${roi.toFixed(1)}%) — ${numPos} positions open, ${cashNote}`);
 
       if (enteredCount === 0 && ourSells.length === 0 && ourRedeems.length === 0) {
