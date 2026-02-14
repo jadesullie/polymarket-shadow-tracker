@@ -85453,15 +85453,20 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
     const dupCount = buys.filter(e => e._skipReason === 'duplicate').length;
     const noCashCount = buys.filter(e => e._skipReason === 'no cash').length;
 
-    // Summary cards — show OUR activity, not trader volumes
+    // Filter sells/redeems to only OUR positions (ones we actually hold)
+    const ourSells = sells.filter(e => e._ourPnl != null);
+    const ourRedeems = redeems.filter(e => e._ourPnl != null);
+    const ourSellPnl = ourSells.reduce((s, e) => s + (e._ourPnl || 0), 0);
+    const ourRedeemPnl = ourRedeems.reduce((s, e) => s + (e._ourPnl || 0), 0);
+
+    // Summary cards — show OUR activity only
     const cards = [
-      { label: 'Total Events', value: String(events.length), color: 'var(--accent)' },
       { label: '🟢 Our Buys', value: `${enteredCount}`, sub: fmtUsd(ourBuyVol) + ' deployed', color: 'var(--positive, #10b981)' },
+      { label: '🟠 Our Sells', value: `${ourSells.length}`, sub: ourSells.length ? fmtUsd(ourSellPnl) + ' P&L' : 'None yet', color: '#ff9800' },
+      { label: '💰 Our Redeems', value: `${ourRedeems.length}`, sub: ourRedeems.length ? fmtUsd(ourRedeemPnl) + ' P&L' : 'None yet', color: 'var(--positive, #10b981)' },
       { label: '🔁 Duplicates', value: String(dupCount), sub: 'Already in position', color: 'var(--text-muted)' },
       { label: '⏭️ No Cash', value: String(noCashCount), sub: 'Insufficient funds', color: 'var(--text-muted)' },
-      { label: '🟠 Sells', value: `${sells.length}`, sub: fmtUsd(sellVol) + ' (trader vol)', color: '#ff9800' },
-      { label: '💰 Redeems', value: `${redeems.length}`, sub: fmtUsd(redeemVol) + ' (trader vol)', color: 'var(--positive, #10b981)' },
-      { label: 'Whale Volume', value: fmtUsd(buyVol), sub: 'Trader buy volume', color: 'var(--text-muted)' },
+      { label: '🐋 Whale Events', value: String(events.length), sub: fmtUsd(buyVol) + ' trader buys', color: 'var(--text-muted)' },
     ];
 
     $('dsTotals').innerHTML = cards.map(c => `
@@ -85495,19 +85500,19 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
       return `<tr style="${rowStyle}"><td>${traderLink(e.tr)}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${marketLink(e.m, e.u)}</td><td>${e.s}</td><td class="mono">${e.p.toFixed(3)}</td><td class="mono">$${fmt(e.sz)}</td><td class="mono">${ourBetStr}</td></tr>`;
     }).join('') : '<tr><td colspan="6" style="color:var(--text-muted);text-align:center;padding:12px">No buys</td></tr>';
 
-    // Sells table
-    $('dsSellCount').textContent = `(${sells.length} — $${fmt(sellVol)})`;
-    $('dsSellsBody').innerHTML = sells.length ? sells.map(e => {
-      const pnlStr = e._ourPnl != null ? `<span style="color:${e._ourPnl >= 0 ? 'var(--positive,#10b981)' : 'var(--negative,#ef4444)'}">${e._ourPnl >= 0 ? '+' : ''}$${fmt(Math.abs(e._ourPnl))}</span>` : '<span style="color:var(--text-muted)">—</span>';
+    // Sells table — only OUR positions
+    $('dsSellCount').textContent = `(${ourSells.length}${ourSells.length !== sells.length ? ` of ${sells.length} trader sells` : ''})`;
+    $('dsSellsBody').innerHTML = ourSells.length ? ourSells.map(e => {
+      const pnlStr = `<span style="color:${e._ourPnl >= 0 ? 'var(--positive,#10b981)' : 'var(--negative,#ef4444)'}">${e._ourPnl >= 0 ? '+' : ''}$${fmt(Math.abs(e._ourPnl))}</span>`;
       return `<tr><td>${traderLink(e.tr)}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${marketLink(e.m, e.u)}</td><td>${e.s}</td><td class="mono">${e.p.toFixed(3)}</td><td class="mono">$${fmt(e.sz)}</td><td class="mono">${pnlStr}</td></tr>`;
-    }).join('') : '<tr><td colspan="6" style="color:var(--text-muted);text-align:center;padding:12px">No sells</td></tr>';
+    }).join('') : '<tr><td colspan="6" style="color:var(--text-muted);text-align:center;padding:12px">No sells on our positions</td></tr>';
 
-    // Redeems table
-    $('dsRedeemCount').textContent = `(${redeems.length} — $${fmt(redeemVol)})`;
-    $('dsRedeemsBody').innerHTML = redeems.length ? redeems.map(e => {
-      const pnlStr = e._ourPnl != null ? `<span style="color:${e._ourPnl >= 0 ? 'var(--positive,#10b981)' : 'var(--negative,#ef4444)'}">${e._ourPnl >= 0 ? '+' : ''}$${fmt(Math.abs(e._ourPnl))}</span>` : '<span style="color:var(--text-muted)">—</span>';
+    // Redeems table — only OUR positions
+    $('dsRedeemCount').textContent = `(${ourRedeems.length}${ourRedeems.length !== redeems.length ? ` of ${redeems.length} trader redeems` : ''})`;
+    $('dsRedeemsBody').innerHTML = ourRedeems.length ? ourRedeems.map(e => {
+      const pnlStr = `<span style="color:${e._ourPnl >= 0 ? 'var(--positive,#10b981)' : 'var(--negative,#ef4444)'}">${e._ourPnl >= 0 ? '+' : ''}$${fmt(Math.abs(e._ourPnl))}</span>`;
       return `<tr><td>${traderLink(e.tr)}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${marketLink(e.m, e.u)}</td><td>${e.s || '—'}</td><td class="mono">$${fmt(e.sz)}</td><td class="mono">${pnlStr}</td></tr>`;
-    }).join('') : '<tr><td colspan="5" style="color:var(--text-muted);text-align:center;padding:12px">No redemptions</td></tr>';
+    }).join('') : '<tr><td colspan="5" style="color:var(--text-muted);text-align:center;padding:12px">No redemptions on our positions</td></tr>';
   }
 
   // Event listeners
