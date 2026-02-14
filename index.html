@@ -297,6 +297,38 @@ canvas{width:100%!important;height:300px!important}
         <button id="dsApplyRange" style="padding:6px 14px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius);font-size:0.8rem;cursor:pointer;font-family:inherit">Apply</button>
       </div>
 
+      <!-- Sizing Controls -->
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:12px 20px;margin-bottom:16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+        <label style="font-size:0.8rem;font-weight:600;color:var(--text-muted)">Mode</label>
+        <div style="display:flex;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden">
+          <button id="dsModeFixed" class="filter-btn" style="border:none;border-radius:0;padding:5px 14px;font-size:0.78rem" onclick="dsSetMode('fixed')">Fixed $</button>
+          <button id="dsModeDynamic" class="filter-btn active" style="border:none;border-radius:0;padding:5px 14px;font-size:0.78rem" onclick="dsSetMode('dynamic')">Dynamic %</button>
+        </div>
+        <label style="font-size:0.8rem;font-weight:600;color:var(--text-muted)">Size</label>
+        <select id="dsSizePct" style="padding:5px 10px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:0.85rem" onchange="dsUpdateSize()">
+          <option value="0.5">0.5%</option>
+          <option value="0.65">0.65%</option>
+          <option value="1">1%</option>
+          <option value="1.5">1.5%</option>
+          <option value="2">2%</option>
+          <option value="2.5">2.5%</option>
+          <option value="3" selected>3%</option>
+          <option value="4">4%</option>
+          <option value="5">5%</option>
+          <option value="7.5">7.5%</option>
+          <option value="10">10%</option>
+        </select>
+        <span id="dsSizeLabel" style="font-size:0.75rem;color:var(--text-muted);font-family:'JetBrains Mono',monospace">= $300 per trade</span>
+        <label style="font-size:0.8rem;font-weight:600;color:var(--text-muted)">Capital</label>
+        <select id="dsCapital" style="padding:5px 10px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);font-family:'JetBrains Mono',monospace;font-size:0.85rem" onchange="dsUpdateSize()">
+          <option value="5000">$5K</option>
+          <option value="10000" selected>$10K</option>
+          <option value="25000">$25K</option>
+          <option value="50000">$50K</option>
+          <option value="100000">$100K</option>
+        </select>
+      </div>
+
       <!-- Step Controls -->
       <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap">
         <button id="dsPrev" style="padding:8px 20px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);cursor:pointer;font-family:inherit;font-size:0.9rem">◀ Prev Day</button>
@@ -84838,12 +84870,38 @@ const DAY_STEPPER_DATA = [{"trader":"gopfan2","market":"Will António José Segu
     return new Date(str + 'T00:00:00Z').getTime() / 1000;
   }
 
+  let dsMode = 'dynamic';
+  let dsPct = 3;
+  let dsCapitalVal = 10000;
+
+  window.dsSetMode = function(mode) {
+    dsMode = mode;
+    $('dsModeFixed').classList.toggle('active', mode === 'fixed');
+    $('dsModeDynamic').classList.toggle('active', mode === 'dynamic');
+    dsUpdateSize();
+    renderDay();
+  }
+  window.dsUpdateSize = function() {
+    dsPct = parseFloat($('dsSizePct').value);
+    dsCapitalVal = parseInt($('dsCapital').value);
+    const betAmt = dsCapitalVal * dsPct / 100;
+    $('dsSizeLabel').textContent = `= $${betAmt.toLocaleString()} per trade`;
+    renderDay();
+  }
+
   function getBetPct() {
+    // If journal is active, use journal controls
+    if (document.getElementById('view-journal')?.classList.contains('active')) {
+      return dsPct / 100;
+    }
     const el = $('betSizePctInput');
-    return el ? parseFloat(el.value) / 100 : 0.0065;
+    return el ? parseFloat(el.value) / 100 : 0.03;
   }
 
   function getStartingCapital() {
+    if (document.getElementById('view-journal')?.classList.contains('active')) {
+      return dsCapitalVal;
+    }
     const el = $('simCapitalInput');
     if (!el) return 10000;
     return parseFloat(el.value.replace(/,/g, '')) || 10000;
@@ -84888,6 +84946,9 @@ const DAY_STEPPER_DATA = [{"trader":"gopfan2","market":"Will António José Segu
   }
 
   function getSimMode() {
+    if (document.getElementById('view-journal')?.classList.contains('active')) {
+      return dsMode;
+    }
     const dynBtn = $('simModeDynamic');
     return dynBtn && dynBtn.classList.contains('active') ? 'dynamic' : 'fixed';
   }
