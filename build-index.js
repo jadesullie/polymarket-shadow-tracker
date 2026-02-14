@@ -17,15 +17,16 @@ const TRADERS = eval(html.slice(start+16, i+1));
 const traderByAddr = {};
 TRADERS.forEach(t => { traderByAddr[t.address.toLowerCase()] = t; });
 
-// ── Crypto noise filter ──
+// ── Crypto noise filter (15-min up/down + all crypto price direction bets) ──
 const noiseRe = /Up or Down.*\d+:\d+(AM|PM)/i;
+const cryptoPriceRe = /\b(Bitcoin|BTC|Ethereum|ETH|Solana|SOL|XRP|Dogecoin|DOGE)\b.*(above|below)\s*\$|FDV above/i;
 
 // ── Collect all positions with trader metadata ──
 const allPositions = [];
 for (const [addr, positions] of Object.entries(tradeHistory)) {
   const trader = traderByAddr[addr.toLowerCase()];
   for (const p of positions) {
-    if (noiseRe.test(p.market)) continue;
+    if (noiseRe.test(p.market) || cryptoPriceRe.test(p.market)) continue;
     allPositions.push({
       ...p,
       address: addr.toLowerCase(),

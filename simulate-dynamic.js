@@ -8,12 +8,13 @@ const fs = require('fs');
 
 const history = JSON.parse(fs.readFileSync('data/trade-history-v2.json', 'utf8'));
 const noise = /Up or Down.*\d+.*(?:AM|PM)/i;
+const cryptoPrice = /\b(Bitcoin|BTC|Ethereum|ETH|Solana|SOL|XRP|Dogecoin|DOGE)\b.*(above|below)\s*\$|FDV above/i;
 
 // Flatten all trades, filter noise, sort by entry date
 const allTrades = [];
 for (const [wallet, trades] of Object.entries(history)) {
   for (const t of trades) {
-    if (noise.test(t.market)) continue;
+    if (noise.test(t.market) || cryptoPrice.test(t.market)) continue;
     allTrades.push({
       wallet,
       market: t.market,

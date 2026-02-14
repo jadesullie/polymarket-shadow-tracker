@@ -6,6 +6,7 @@ const path = require('path');
 const weights = JSON.parse(fs.readFileSync('data/trader-weights-v2.json','utf8'));
 const trackedWallets = new Set(Object.keys(weights).map(w => w.toLowerCase()));
 const cryptoNoise = /Up or Down.*\d+:\d+(AM|PM)/i;
+const cryptoPrice = /\b(Bitcoin|BTC|Ethereum|ETH|Solana|SOL|XRP|Dogecoin|DOGE)\b.*(above|below)\s*\$|FDV above/i;
 const dir = 'data/raw-trades';
 const dayMs = 86400;
 
@@ -16,7 +17,7 @@ for (const f of fs.readdirSync(dir)) {
   if (!trackedWallets.has(wallet)) continue;
   const trades = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
   for (const t of trades) {
-    if (cryptoNoise.test(t.title || '')) continue;
+    if (cryptoNoise.test(t.title || '') || cryptoPrice.test(t.title || '')) continue;
     if (!t.slug || t.type === 'YIELD' || t.type === 'REWARD' || t.type === 'MAKER_REBATE') continue;
     const key = `${wallet}|${t.slug}`;
     if (!posMap.has(key)) posMap.set(key, {wallet, slug: t.slug, title: t.title, buys:[], sells:[], redeems:[], firstTs: t.timestamp, lastTs: t.timestamp});
