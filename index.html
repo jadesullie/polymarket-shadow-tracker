@@ -280,16 +280,6 @@ canvas{width:100%!important;height:300px!important}
 
   <!-- JOURNAL VIEW -->
   <div class="view" id="view-journal">
-    <!-- Strategy Library Selector -->
-    <div id="strategySelector" style="background:linear-gradient(135deg,var(--border),rgba(74,222,128,0.05));border:1px solid rgba(99,102,241,0.2);border-radius:var(--radius);padding:16px 20px;margin-bottom:16px">
-      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px">
-        <span style="font-size:0.9rem;font-weight:700;color:var(--accent)">📚 Strategy Library</span>
-        <select id="strategyDropdown" style="padding:8px 14px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);font-family:inherit;font-size:0.85rem;cursor:pointer;min-width:220px">
-        </select>
-      </div>
-      <div id="strategyDescription" style="font-size:0.78rem;color:var(--text-muted);font-style:italic"></div>
-      <div id="strategyQuickStats" style="display:flex;gap:16px;margin-top:8px;flex-wrap:wrap;font-size:0.75rem;font-family:'JetBrains Mono',monospace"></div>
-    </div>
     <!-- Sticky Step Controls - outside dayStepperJournal for proper sticky -->
     <div id="dsStickyNav" style="position:fixed;top:65px;left:0;right:0;z-index:100;background:var(--bg-primary);padding:10px 0;border-bottom:1px solid var(--border)">
         <div style="display:flex;align-items:center;justify-content:center;gap:16px">
@@ -302,6 +292,16 @@ canvas{width:100%!important;height:300px!important}
         </div>
       </div>
     <div id="dsStickyNavSpacer" style="height:80px"></div>
+    <!-- Strategy Library Selector -->
+    <div id="strategySelector" style="background:linear-gradient(135deg,var(--border),rgba(74,222,128,0.05));border:1px solid rgba(99,102,241,0.2);border-radius:var(--radius);padding:16px 20px;margin-bottom:16px">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px">
+        <span style="font-size:0.9rem;font-weight:700;color:var(--accent)">📚 Strategy Library</span>
+        <select id="strategyDropdown" style="padding:8px 14px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);font-family:inherit;font-size:0.85rem;cursor:pointer;min-width:220px">
+        </select>
+      </div>
+      <div id="strategyDescription" style="font-size:0.78rem;color:var(--text-muted);font-style:italic"></div>
+      <div id="strategyQuickStats" style="display:flex;gap:16px;margin-top:8px;flex-wrap:wrap;font-size:0.75rem;font-family:'JetBrains Mono',monospace"></div>
+    </div>
 
     <div id="dayStepperJournal">
       <!-- Settings -->
