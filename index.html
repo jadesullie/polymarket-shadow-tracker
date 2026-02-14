@@ -281,62 +281,72 @@ canvas{width:100%!important;height:300px!important}
 
   <!-- JOURNAL VIEW -->
   <div class="view" id="view-journal">
-    <div id="journalSwipeHint" style="text-align:center;padding:12px;font-size:0.8rem;color:var(--text-muted);opacity:0.7;transition:opacity 0.5s">← Swipe to navigate days →</div>
+    <!-- swipe removed -->
     <div id="dayStepperJournal">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap">
-        <h2 style="font-size:1.1rem;margin:0">📅 Day Stepper</h2>
-        <span style="font-size:0.78rem;color:var(--text-muted);font-family:'JetBrains Mono',monospace">Step through trades day by day — track portfolio state over time</span>
-      </div>
-
-      <!-- Date Range & Controls -->
-      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;margin-bottom:16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-        <label style="font-size:0.85rem;font-weight:600;color:var(--text-primary)">From</label>
-        <input type="date" id="dsFrom" value="2026-01-01" style="padding:6px 10px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);font-family:'JetBrains Mono',monospace;font-size:0.85rem">
-        <label style="font-size:0.85rem;font-weight:600;color:var(--text-primary)">To</label>
-        <input type="date" id="dsTo" value="2026-01-31" style="padding:6px 10px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);font-family:'JetBrains Mono',monospace;font-size:0.85rem">
-        <button id="dsApplyRange" style="padding:6px 14px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius);font-size:0.8rem;cursor:pointer;font-family:inherit">Apply</button>
-      </div>
-
-      <!-- Sizing Controls -->
-      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:12px 20px;margin-bottom:16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-        <label style="font-size:0.8rem;font-weight:600;color:var(--text-muted)">Mode</label>
-        <div style="display:flex;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden">
-          <button id="dsModeFixed" class="filter-btn" style="border:none;border-radius:0;padding:5px 14px;font-size:0.78rem" onclick="dsSetMode('fixed')">Fixed $</button>
-          <button id="dsModeDynamic" class="filter-btn active" style="border:none;border-radius:0;padding:5px 14px;font-size:0.78rem" onclick="dsSetMode('dynamic')">Dynamic %</button>
+      <!-- Sticky Step Controls -->
+      <div id="dsStickyNav" style="position:sticky;top:0;z-index:50;background:var(--bg-primary);padding:8px 0 8px 0;border-bottom:1px solid var(--border);margin-bottom:16px">
+        <div style="display:flex;align-items:center;justify-content:center;gap:16px">
+          <button id="dsPrev" style="padding:10px 24px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);cursor:pointer;font-family:inherit;font-size:1rem;font-weight:600">◀ Prev</button>
+          <div style="text-align:center;min-width:180px">
+            <div id="dsCurrentDate" style="font-size:1.6rem;font-weight:800;color:var(--accent);font-family:'JetBrains Mono',monospace;letter-spacing:0.5px">2026-01-01</div>
+            <div id="dsDayCounter" style="font-size:0.75rem;color:var(--text-muted);font-family:'JetBrains Mono',monospace;margin-top:2px"></div>
+          </div>
+          <button id="dsNext" style="padding:10px 24px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);cursor:pointer;font-family:inherit;font-size:1rem;font-weight:600">Next ▶</button>
         </div>
-        <label style="font-size:0.8rem;font-weight:600;color:var(--text-muted)">Size</label>
-        <select id="dsSizePct" style="padding:5px 10px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:0.85rem" onchange="dsUpdateSize()">
-          <option value="0.5">0.5%</option>
-          <option value="0.65">0.65%</option>
-          <option value="1">1%</option>
-          <option value="1.5">1.5%</option>
-          <option value="2">2%</option>
-          <option value="2.5">2.5%</option>
-          <option value="3" selected>3%</option>
-          <option value="4">4%</option>
-          <option value="5">5%</option>
-          <option value="7.5">7.5%</option>
-          <option value="10">10%</option>
-        </select>
-        <span id="dsSizeLabel" style="font-size:0.75rem;color:var(--text-muted);font-family:'JetBrains Mono',monospace">= $300 per trade</span>
-        <label style="font-size:0.8rem;font-weight:600;color:var(--text-muted)">Capital</label>
-        <select id="dsCapital" style="padding:5px 10px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);font-family:'JetBrains Mono',monospace;font-size:0.85rem" onchange="dsUpdateSize()">
-          <option value="5000">$5K</option>
-          <option value="10000" selected>$10K</option>
-          <option value="25000">$25K</option>
-          <option value="50000">$50K</option>
-          <option value="100000">$100K</option>
-        </select>
       </div>
 
-      <!-- Step Controls -->
-      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap">
-        <button id="dsPrev" style="padding:8px 20px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);cursor:pointer;font-family:inherit;font-size:0.9rem">◀ Prev Day</button>
-        <div style="text-align:center">
-          <div id="dsCurrentDate" style="font-size:1.6rem;font-weight:800;color:var(--accent);font-family:'JetBrains Mono',monospace;letter-spacing:0.5px">2026-01-01</div>
-          <div id="dsDayCounter" style="font-size:0.75rem;color:var(--text-muted);font-family:'JetBrains Mono',monospace;margin-top:2px"></div>
+      <!-- Settings -->
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;margin-bottom:16px">
+        <!-- Starting Capital -->
+        <div style="margin-bottom:14px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+            <span style="font-size:0.85rem;font-weight:700">Starting Capital</span>
+            <span style="color:var(--text-muted);font-size:0.85rem">$</span>
+            <input type="text" id="dsCapitalInput" value="10,000" style="width:100px;padding:6px 10px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);font-family:'JetBrains Mono',monospace;font-size:0.9rem;text-align:right" oninput="dsUpdateFromInputs()">
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="filter-btn" onclick="dsSetCapital(5000)">$5K</button>
+            <button class="filter-btn active" onclick="dsSetCapital(10000)">$10K</button>
+            <button class="filter-btn" onclick="dsSetCapital(25000)">$25K</button>
+            <button class="filter-btn" onclick="dsSetCapital(50000)">$50K</button>
+            <button class="filter-btn" onclick="dsSetCapital(100000)">$100K</button>
+          </div>
         </div>
-        <button id="dsNext" style="padding:8px 20px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);cursor:pointer;font-family:inherit;font-size:0.9rem">Next Day ▶</button>
+
+        <!-- Position Size -->
+        <div style="margin-bottom:14px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+            <span style="font-size:0.85rem;font-weight:700">Position Size</span>
+            <input type="text" id="dsPctInput" value="3" style="width:55px;padding:6px 10px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:0.9rem;font-weight:700;text-align:right" oninput="dsUpdateFromInputs()">
+            <span style="color:var(--text-muted);font-size:0.85rem;font-weight:700">%</span>
+            <span id="dsSizeLabel" style="font-size:0.78rem;color:var(--text-muted);font-family:'JetBrains Mono',monospace">= $300 per trade</span>
+          </div>
+          <input type="range" id="dsPctSlider" min="0" max="15" value="11" style="width:100%;accent-color:var(--accent)" oninput="dsSliderChange()">
+          <div style="display:flex;justify-content:space-between;font-size:0.65rem;color:var(--text-muted);font-family:'JetBrains Mono',monospace;margin-top:2px">
+            <span>0.01</span><span>0.05</span><span>0.1</span><span>0.25</span><span>0.5</span><span style="color:var(--text-muted)">0.65</span><span>1</span><span>1.25</span><span>1.5</span><span>2</span><span>2.5</span><span style="color:var(--accent);font-weight:700">3</span><span>4</span><span>5</span><span>7.5</span><span>10%</span>
+          </div>
+        </div>
+
+        <!-- Sizing Mode -->
+        <div style="margin-bottom:14px">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px">
+            <span style="font-size:0.85rem;font-weight:700">Sizing Mode</span>
+            <div style="display:flex;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden">
+              <button id="dsModeFixed" class="filter-btn" style="border:none;border-radius:0;padding:6px 16px" onclick="dsSetMode('fixed')">Fixed $</button>
+              <button id="dsModeDynamic" class="filter-btn active" style="border:none;border-radius:0;padding:6px 16px" onclick="dsSetMode('dynamic')">Dynamic %</button>
+            </div>
+          </div>
+          <span id="dsModeDesc" style="font-size:0.75rem;color:var(--text-muted)">Bet size scales with portfolio value (compounds)</span>
+        </div>
+
+        <!-- Date Range -->
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+          <span style="font-size:0.85rem;font-weight:700">Date Range</span>
+          <input type="date" id="dsFrom" value="2026-01-01" style="padding:5px 8px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);font-family:'JetBrains Mono',monospace;font-size:0.8rem">
+          <span style="color:var(--text-muted)">to</span>
+          <input type="date" id="dsTo" value="2026-01-31" style="padding:5px 8px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);font-family:'JetBrains Mono',monospace;font-size:0.8rem">
+          <button id="dsApplyRange" style="padding:5px 14px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius);font-size:0.8rem;cursor:pointer;font-family:inherit">Apply</button>
+        </div>
       </div>
 
       <!-- Running Totals -->
@@ -84873,20 +84883,49 @@ const DAY_STEPPER_DATA = [{"trader":"gopfan2","market":"Will António José Segu
   let dsMode = 'dynamic';
   let dsPct = 3;
   let dsCapitalVal = 10000;
+  const DS_PCT_SNAPS = [0.01, 0.05, 0.1, 0.25, 0.5, 0.65, 1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 7.5, 10];
 
   window.dsSetMode = function(mode) {
     dsMode = mode;
     $('dsModeFixed').classList.toggle('active', mode === 'fixed');
     $('dsModeDynamic').classList.toggle('active', mode === 'dynamic');
-    dsUpdateSize();
+    $('dsModeDesc').textContent = mode === 'fixed' ? 'Same dollar amount every trade' : 'Bet size scales with portfolio value (compounds)';
     renderDay();
-  }
-  window.dsUpdateSize = function() {
-    dsPct = parseFloat($('dsSizePct').value);
-    dsCapitalVal = parseInt($('dsCapital').value);
+  };
+  window.dsSetCapital = function(val) {
+    dsCapitalVal = val;
+    $('dsCapitalInput').value = val.toLocaleString();
+    document.querySelectorAll('#view-journal .filter-btn').forEach(b => {
+      if (b.onclick && b.onclick.toString().includes('dsSetCapital')) {
+        b.classList.toggle('active', b.textContent.includes(val >= 1000 ? '$' + (val/1000) + 'K' : '$' + val));
+      }
+    });
+    dsUpdateLabel();
+    renderDay();
+  };
+  window.dsSliderChange = function() {
+    const idx = parseInt($('dsPctSlider').value);
+    dsPct = DS_PCT_SNAPS[idx] || 3;
+    $('dsPctInput').value = dsPct;
+    dsUpdateLabel();
+    renderDay();
+  };
+  window.dsUpdateFromInputs = function() {
+    const pctVal = parseFloat($('dsPctInput').value);
+    if (!isNaN(pctVal) && pctVal > 0) dsPct = pctVal;
+    const capStr = $('dsCapitalInput').value.replace(/,/g, '');
+    const capVal = parseInt(capStr);
+    if (!isNaN(capVal) && capVal > 0) dsCapitalVal = capVal;
+    // Sync slider
+    let closest = 0;
+    DS_PCT_SNAPS.forEach((s, i) => { if (Math.abs(s - dsPct) < Math.abs(DS_PCT_SNAPS[closest] - dsPct)) closest = i; });
+    $('dsPctSlider').value = closest;
+    dsUpdateLabel();
+    renderDay();
+  };
+  function dsUpdateLabel() {
     const betAmt = dsCapitalVal * dsPct / 100;
     $('dsSizeLabel').textContent = `= $${betAmt.toLocaleString()} per trade`;
-    renderDay();
   }
 
   function getBetPct() {
@@ -85095,42 +85134,7 @@ const DAY_STEPPER_DATA = [{"trader":"gopfan2","market":"Will António José Segu
     if (e.key === 'ArrowRight') { $('dsNext').click(); e.preventDefault(); }
   });
 
-  // Swipe gesture support
-  (function() {
-    const journalView = document.getElementById('view-journal');
-    if (!journalView) return;
-    let touchStartX = 0, touchStartY = 0, swiping = false;
-    journalView.addEventListener('touchstart', (e) => {
-      touchStartX = e.touches[0].clientX;
-      touchStartY = e.touches[0].clientY;
-      swiping = true;
-    }, { passive: true });
-    journalView.addEventListener('touchmove', (e) => {
-      // Allow vertical scroll, only track
-    }, { passive: true });
-    journalView.addEventListener('touchend', (e) => {
-      if (!swiping) return;
-      swiping = false;
-      const dx = e.changedTouches[0].clientX - touchStartX;
-      const dy = e.changedTouches[0].clientY - touchStartY;
-      if (Math.abs(dx) < 50 || Math.abs(dy) > Math.abs(dx)) return;
-      const content = document.getElementById('dayStepperJournal');
-      if (dx < 0) {
-        // Swipe left = next day
-        if (content) { content.style.transition = 'transform 0.2s ease, opacity 0.2s ease'; content.style.transform = 'translateX(-30px)'; content.style.opacity = '0.5'; }
-        $('dsNext').click();
-        setTimeout(() => { if (content) { content.style.transform = 'translateX(30px)'; setTimeout(() => { content.style.transform = 'translateX(0)'; content.style.opacity = '1'; }, 20); } }, 150);
-      } else {
-        // Swipe right = prev day
-        if (content) { content.style.transition = 'transform 0.2s ease, opacity 0.2s ease'; content.style.transform = 'translateX(30px)'; content.style.opacity = '0.5'; }
-        $('dsPrev').click();
-        setTimeout(() => { if (content) { content.style.transform = 'translateX(-30px)'; setTimeout(() => { content.style.transform = 'translateX(0)'; content.style.opacity = '1'; }, 20); } }, 150);
-      }
-      // Hide swipe hint after first use
-      const hint = document.getElementById('journalSwipeHint');
-      if (hint) { hint.style.opacity = '0'; setTimeout(() => hint.remove(), 500); }
-    }, { passive: true });
-  })();
+  // Swipe removed — sticky nav is better UX
 
   // Re-render when bet size changes
   const slider = $('betSizeSlider');
