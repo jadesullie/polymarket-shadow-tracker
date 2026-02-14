@@ -1,15 +1,31 @@
 {
   "strategies": [
     {
+      "id": "mega-optimal",
+      "name": "Mega Optimal \ud83c\udfc6",
+      "description": "Top traders, 3% dynamic, 10% trailing stop, 0.85/0.15 price exits, 90d limit",
+      "sizing": "dynamic",
+      "sizePct": 3,
+      "entryRule": "first-buy",
+      "exitRule": "trailing-stop-price",
+      "trailingStopPct": 10,
+      "priceCeiling": 0.85,
+      "priceFloor": 0.15,
+      "timeLimitDays": 90,
+      "traderFilter": "top-performers",
+      "volumeFilter": 50000,
+      "highlighted": true
+    },
+    {
       "id": "optimal",
-      "name": "Optimal ⭐",
+      "name": "Optimal \u2b50",
       "description": "First-buy, 2% dynamic, 30d stop-loss, copy sells",
       "sizing": "dynamic",
       "sizePct": 2,
       "entryRule": "first-buy",
       "exitRule": "stop-loss-30d",
       "marketFilter": "none",
-      "highlighted": true
+      "highlighted": false
     },
     {
       "id": "aggressive",
@@ -35,8 +51,8 @@
     },
     {
       "id": "short-dated",
-      "name": "Short-dated ≤30d",
-      "description": "First-buy, 2% dynamic, only ≤30d markets, no force exits",
+      "name": "Short-dated \u226430d",
+      "description": "First-buy, 2% dynamic, only \u226430d markets, no force exits",
       "sizing": "dynamic",
       "sizePct": 2,
       "entryRule": "first-buy",
@@ -46,8 +62,8 @@
     },
     {
       "id": "sprint",
-      "name": "Sprint ≤14d",
-      "description": "First-buy, 1% dynamic, only ≤14d markets",
+      "name": "Sprint \u226414d",
+      "description": "First-buy, 1% dynamic, only \u226414d markets",
       "sizing": "dynamic",
       "sizePct": 1,
       "entryRule": "first-buy",

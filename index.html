@@ -84487,7 +84487,7 @@ function renderChart() {
 window.addEventListener('resize', renderChart);
 
 // ═══════════════════ STRATEGY LIBRARY ═══════════════════
-const STRATEGY_LIBRARY = {"strategies":[{"id":"optimal","name":"Optimal ⭐","description":"First-buy, 2% dynamic, 30d stop-loss, copy sells","sizing":"dynamic","sizePct":2,"entryRule":"first-buy","exitRule":"stop-loss-30d","marketFilter":"none","highlighted":true},{"id":"aggressive","name":"Aggressive","description":"First-buy, 5% dynamic, 30d stop-loss, copy sells","sizing":"dynamic","sizePct":5,"entryRule":"first-buy","exitRule":"stop-loss-30d","marketFilter":"none","highlighted":false},{"id":"conservative","name":"Conservative","description":"First-buy, 0.5% dynamic, 30d stop-loss, copy sells","sizing":"dynamic","sizePct":0.5,"entryRule":"first-buy","exitRule":"stop-loss-30d","marketFilter":"none","highlighted":false},{"id":"short-dated","name":"Short-dated ≤30d","description":"First-buy, 2% dynamic, only ≤30d markets, no force exits","sizing":"dynamic","sizePct":2,"entryRule":"first-buy","exitRule":"none","marketFilter":"short-30d","highlighted":false},{"id":"sprint","name":"Sprint ≤14d","description":"First-buy, 1% dynamic, only ≤14d markets","sizing":"dynamic","sizePct":1,"entryRule":"first-buy","exitRule":"none","marketFilter":"sprint-14d","highlighted":false},{"id":"every-buy","name":"Every-buy Baseline","description":"Every BUY = new position, 0.65% fixed, no stop-loss","sizing":"fixed","sizePct":0.65,"entryRule":"every-buy","exitRule":"none","marketFilter":"none","highlighted":false},{"id":"first-buy-no-exits","name":"First-buy No Exits","description":"First-buy, 2% dynamic, no stop-loss, pure buy-and-hold","sizing":"dynamic","sizePct":2,"entryRule":"first-buy","exitRule":"none","marketFilter":"none","highlighted":false},{"id":"proportional","name":"Proportional Copy","description":"Mirror trader buy size proportionally, 2% max cap","sizing":"proportional","sizePct":2,"entryRule":"first-buy","exitRule":"none","marketFilter":"none","highlighted":false},{"id":"micro-lockup","name":"Micro Lockup","description":"First-buy, 0.1% sizing, no stop-loss, lock up in everything","sizing":"dynamic","sizePct":0.1,"entryRule":"first-buy","exitRule":"none","marketFilter":"none","highlighted":false},{"id":"high-conviction","name":"High Conviction","description":"First-buy, 3% dynamic, 30d stop-loss, only >$1K trader bets","sizing":"dynamic","sizePct":3,"entryRule":"first-buy","exitRule":"stop-loss-30d","marketFilter":"high-conviction","highlighted":false}]};
+const STRATEGY_LIBRARY = {"strategies":[{"id":"mega-optimal","name":"Mega Optimal 🏆","description":"Top traders, 3% dynamic, 10% trailing stop, 0.85/0.15 price exits, 90d limit","sizing":"dynamic","sizePct":3,"entryRule":"first-buy","exitRule":"trailing-stop-price","trailingStopPct":10,"priceCeiling":0.85,"priceFloor":0.15,"timeLimitDays":90,"traderFilter":"top-performers","volumeFilter":50000,"highlighted":true},{"id":"optimal","name":"Optimal ⭐","description":"First-buy, 2% dynamic, 30d stop-loss, copy sells","sizing":"dynamic","sizePct":2,"entryRule":"first-buy","exitRule":"stop-loss-30d","marketFilter":"none","highlighted":false},{"id":"aggressive","name":"Aggressive","description":"First-buy, 5% dynamic, 30d stop-loss, copy sells","sizing":"dynamic","sizePct":5,"entryRule":"first-buy","exitRule":"stop-loss-30d","marketFilter":"none","highlighted":false},{"id":"conservative","name":"Conservative","description":"First-buy, 0.5% dynamic, 30d stop-loss, copy sells","sizing":"dynamic","sizePct":0.5,"entryRule":"first-buy","exitRule":"stop-loss-30d","marketFilter":"none","highlighted":false},{"id":"short-dated","name":"Short-dated ≤30d","description":"First-buy, 2% dynamic, only ≤30d markets, no force exits","sizing":"dynamic","sizePct":2,"entryRule":"first-buy","exitRule":"none","marketFilter":"short-30d","highlighted":false},{"id":"sprint","name":"Sprint ≤14d","description":"First-buy, 1% dynamic, only ≤14d markets","sizing":"dynamic","sizePct":1,"entryRule":"first-buy","exitRule":"none","marketFilter":"sprint-14d","highlighted":false},{"id":"every-buy","name":"Every-buy Baseline","description":"Every BUY = new position, 0.65% fixed, no stop-loss","sizing":"fixed","sizePct":0.65,"entryRule":"every-buy","exitRule":"none","marketFilter":"none","highlighted":false},{"id":"first-buy-no-exits","name":"First-buy No Exits","description":"First-buy, 2% dynamic, no stop-loss, pure buy-and-hold","sizing":"dynamic","sizePct":2,"entryRule":"first-buy","exitRule":"none","marketFilter":"none","highlighted":false},{"id":"proportional","name":"Proportional Copy","description":"Mirror trader buy size proportionally, 2% max cap","sizing":"proportional","sizePct":2,"entryRule":"first-buy","exitRule":"none","marketFilter":"none","highlighted":false},{"id":"micro-lockup","name":"Micro Lockup","description":"First-buy, 0.1% sizing, no stop-loss, lock up in everything","sizing":"dynamic","sizePct":0.1,"entryRule":"first-buy","exitRule":"none","marketFilter":"none","highlighted":false},{"id":"high-conviction","name":"High Conviction","description":"First-buy, 3% dynamic, 30d stop-loss, only >$1K trader bets","sizing":"dynamic","sizePct":3,"entryRule":"first-buy","exitRule":"stop-loss-30d","marketFilter":"high-conviction","highlighted":false}]};
 let STRATEGY_RESULTS = null;
 let stratSelectedTf = 'ALL';
 const STRAT_COLORS = ['#10b981','#ef4444','#6366f1','#f5c518','#f472b6','#fb923c','#22d3ee','#a78bfa','#94a3b8','#10b981'];
@@ -85171,39 +85171,142 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
   let fromDate, toDate, currentIdx, days;
   let portfolio, openPositions, cumulativePnl;
 
+  // ── Top Performers (>60% win rate) ──
+  const TOP_PERFORMERS = new Set(["inducedchance","issathegreat","022221","SuperApe","larpas","xeroror","trumppppp..","therealbatman","farmyboi","zxgngl","doooooooooge","Trunp","walletmobile","492LdDfWP1","theo5","noovd","0x31a56e","kcnyekchno","TheSpiritofUkraine>UMA","anoin123","imjustken","gopfan2","Flipadelphia","UnRektCapital","chungguskhan","5332321","ImJustKen","zerosmart","swissmiss","SwissMiss","Car","Apsalar","Eatpraylove","aenews2","lsck","0xe899b5ea69","ArmageddonRewardsBilly","datawitch","operationcastle","NotGambid","hopedieslast","WordleAddict","failstober","jokerfucker","0xCarneyAsada","tdrhrhhd","hell0pia","debased","deetown","lijialijia2020","50Whence","pako","0x1e1f174120","annica","YatSen","0xe639e4","0xdfe3fedc5c","Magamyman","bama124","Alhambra1","DrillBabyDrill","0x6139c42e48","8BlocksCapital","ciro2","scottilicious","mombil","realitycheck","0xf743f416ca","magamyman"]);
+
+  // ── Mega Optimal strategy config ──
+  const MEGA_OPTIMAL = { trailingStopPct: 10, priceCeiling: 0.85, priceFloor: 0.15, timeLimitDays: 90 };
+  let megaOptimalEnabled = true; // checkbox in UI
+
+  // ── Price cache for exit rules ──
+  const _priceCache = {}; // date -> { "market|side": price }
+  async function fetchMarketPrices(positions, date) {
+    const cacheKey = date;
+    if (_priceCache[cacheKey]) return _priceCache[cacheKey];
+    const posList = [];
+    for (const [k, v] of positions) {
+      const parts = k.split('|');
+      if (parts.length >= 3) posList.push({ market: parts.slice(1, -1).join('|'), side: parts[parts.length - 1] });
+    }
+    if (posList.length === 0) { _priceCache[cacheKey] = {}; return {}; }
+    try {
+      const posKeys = posList.map(p => p.market + '|' + p.side);
+      // Batch in chunks of 150 to avoid URL length limits
+      const result = {};
+      for (let i = 0; i < posKeys.length; i += 150) {
+        const chunk = posKeys.slice(i, i + 150);
+        const resp = await fetch(`/api/market-prices?date=${date}&positions=${encodeURIComponent(chunk.join(','))}`);
+        const data = await resp.json();
+        Object.assign(result, data);
+      }
+      _priceCache[cacheKey] = result;
+      return result;
+    } catch(e) {
+      console.warn('Price fetch failed:', e);
+      _priceCache[cacheKey] = {};
+      return {};
+    }
+  }
+
+  function daysBetweenDates(d1, d2) {
+    return (new Date(d2 + 'T00:00:00Z') - new Date(d1 + 'T00:00:00Z')) / 86400000;
+  }
+
   // ── Portfolio Simulation State ──
   const simSnapshots = {}; // keyed by day index → deep copy of simState
-  let simState = null; // {cash, positions: Map<key,{cost,shares}>, cumPnl, dayPnl}
+  let simState = null;
 
   function initSimState() {
-    return { cash: getStartingCapital(), positions: new Map(), cumPnl: 0, dayPnl: 0 };
+    return { cash: getStartingCapital(), positions: new Map(), cumPnl: 0, dayPnl: 0, autoExits: [] };
   }
 
   function cloneSimState(s) {
-    const c = { cash: s.cash, cumPnl: s.cumPnl, dayPnl: s.dayPnl, positions: new Map() };
-    for (const [k, v] of s.positions) c.positions.set(k, { cost: v.cost, shares: v.shares });
+    const c = { cash: s.cash, cumPnl: s.cumPnl, dayPnl: s.dayPnl, autoExits: (s.autoExits || []).slice(), positions: new Map() };
+    for (const [k, v] of s.positions) c.positions.set(k, { cost: v.cost, shares: v.shares, entryDate: v.entryDate, peakPrice: v.peakPrice, _market: v._market, _side: v._side });
     return c;
   }
 
-  function applyEventsToSim(state, events) {
+  async function applyExitRules(state, currentDate) {
+    if (!megaOptimalEnabled) return;
+    const prices = await fetchMarketPrices(state.positions, currentDate);
+    const toDelete = [];
+    state.autoExits = [];
+
+    for (const [key, pos] of state.positions) {
+      const parts = key.split('|');
+      const market = parts.slice(1, -1).join('|');
+      const side = parts[parts.length - 1];
+      const priceKey = market + '|' + side;
+      const currentPrice = prices[priceKey];
+
+      if (currentPrice != null) {
+        if (currentPrice > (pos.peakPrice || 0)) pos.peakPrice = currentPrice;
+
+        let exitReason = null;
+
+        // Trailing stop
+        if (MEGA_OPTIMAL.trailingStopPct && pos.peakPrice > 0) {
+          const dropPct = ((pos.peakPrice - currentPrice) / pos.peakPrice) * 100;
+          if (dropPct >= MEGA_OPTIMAL.trailingStopPct) exitReason = 'trailing-stop';
+        }
+
+        // Price ceiling
+        if (!exitReason && MEGA_OPTIMAL.priceCeiling && currentPrice > MEGA_OPTIMAL.priceCeiling) exitReason = 'price-ceiling';
+
+        // Price floor
+        if (!exitReason && MEGA_OPTIMAL.priceFloor && currentPrice < MEGA_OPTIMAL.priceFloor) exitReason = 'price-floor';
+
+        // Time limit
+        if (!exitReason && MEGA_OPTIMAL.timeLimitDays && pos.entryDate) {
+          if (daysBetweenDates(pos.entryDate, currentDate) >= MEGA_OPTIMAL.timeLimitDays) exitReason = 'time-limit';
+        }
+
+        if (exitReason) {
+          const proceeds = pos.shares * currentPrice;
+          const pnl = proceeds - pos.cost;
+          state.cash += proceeds;
+          state.dayPnl += pnl;
+          state.cumPnl += pnl;
+          state.autoExits.push({ market, side, trader: parts[0], reason: exitReason, price: currentPrice, pnl, cost: pos.cost });
+          toDelete.push(key);
+        }
+      } else {
+        // No price — check time limit
+        if (MEGA_OPTIMAL.timeLimitDays && pos.entryDate) {
+          if (daysBetweenDates(pos.entryDate, currentDate) >= MEGA_OPTIMAL.timeLimitDays) {
+            state.cash += pos.cost;
+            state.autoExits.push({ market, side, trader: parts[0], reason: 'time-limit-wash', price: null, pnl: 0, cost: pos.cost });
+            toDelete.push(key);
+          }
+        }
+      }
+    }
+    for (const k of toDelete) state.positions.delete(k);
+  }
+
+  async function applyEventsToSim(state, events, currentDate) {
     state.dayPnl = 0;
-    const portfolioValue = state.cash + Array.from(state.positions.values()).reduce((s, p) => s + p.cost, 0);
+    state.autoExits = [];
+
+    // Apply exit rules FIRST
+    await applyExitRules(state, currentDate);
 
     for (const ev of events) {
       const key = `${ev.tr}|${ev.m}|${ev.s}`;
       if (ev.t === 'B') {
-        // First-buy-only: skip if we already have this position
+        // Trader filter (mega optimal)
+        if (megaOptimalEnabled && !TOP_PERFORMERS.has(ev.tr)) continue;
+        // First-buy-only
         if (state.positions.has(key)) continue;
         const betSize = computeBetSize(state.cash + Array.from(state.positions.values()).reduce((s, p) => s + p.cost, 0));
         const cost = Math.min(betSize, state.cash);
         if (cost <= 0) continue;
         const shares = cost / ev.p;
-        state.positions.set(key, { cost, shares });
+        state.positions.set(key, { cost, shares, entryDate: currentDate, peakPrice: ev.p, _market: ev.m, _side: ev.s });
         state.cash -= cost;
       } else if (ev.t === 'S') {
         const pos = state.positions.get(key);
         if (!pos) continue;
-        // Sell entire position (or partial by proportion of dollar amount)
         const sellRatio = Math.min(1, ev.sz / pos.cost);
         const soldCost = pos.cost * sellRatio;
         const soldShares = pos.shares * sellRatio;
@@ -85221,7 +85324,6 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
       } else if (ev.t === 'R') {
         const pos = state.positions.get(key);
         if (!pos) continue;
-        // Winning side redeems at $1 per share
         const proceeds = pos.shares * 1.0;
         const pnl = proceeds - pos.cost;
         state.cash += proceeds;
@@ -85234,9 +85336,7 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
   }
 
   async function getSimStateForDay(idx) {
-    // Check cache
     if (simSnapshots[idx]) return cloneSimState(simSnapshots[idx]);
-    // Find latest cached state before idx
     let startIdx = -1;
     for (let i = idx - 1; i >= 0; i--) {
       if (simSnapshots[i]) { startIdx = i; break; }
@@ -85244,9 +85344,9 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
     let state = startIdx >= 0 ? cloneSimState(simSnapshots[startIdx]) : initSimState();
     const from = startIdx >= 0 ? startIdx + 1 : 0;
     for (let i = from; i <= idx; i++) {
-      if (i > from || startIdx < 0) state.dayPnl = 0; // reset dayPnl for intermediate days
+      if (i > from || startIdx < 0) { state.dayPnl = 0; state.autoExits = []; }
       const evts = await fetchDayEvents(days[i]);
-      applyEventsToSim(state, evts);
+      await applyEventsToSim(state, evts, days[i]);
       simSnapshots[i] = cloneSimState(state);
     }
     return state;
@@ -85458,9 +85558,20 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
     const prevSim = currentIdx > 0 ? await getSimStateForDay(currentIdx - 1) : initSimState();
     let simCash = prevSim.cash;
     const simPositions = new Map(prevSim.positions);
+
+    // Auto-exits that happened at start of day
+    const autoExits = sim.autoExits || [];
+
     for (const ev of events) {
       if (ev.t === 'B') {
         const key = `${ev.tr}|${ev.m}|${ev.s}`;
+        // Trader filter (mega optimal)
+        if (megaOptimalEnabled && !TOP_PERFORMERS.has(ev.tr)) {
+          ev._ourBet = 0;
+          ev._skipped = true;
+          ev._skipReason = 'not top trader';
+          continue;
+        }
         // First-buy-only: skip if already in this position
         if (simPositions.has(key)) {
           ev._ourBet = 0;
@@ -85476,7 +85587,7 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
         if (ev._skipped) ev._skipReason = 'no cash';
         if (cost > 0) {
           simCash -= cost;
-          simPositions.set(key, { cost, shares: cost / ev.p });
+          simPositions.set(key, { cost, shares: cost / ev.p, entryDate: dayStr, peakPrice: ev.p });
         }
       } else if (ev.t === 'S') {
         const key = `${ev.tr}|${ev.m}|${ev.s}`;
@@ -85568,8 +85679,25 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
       const roi = ((portfolioVal / getStartingCapital()) - 1) * 100;
       const sections = [];
 
-      if (enteredCount === 0 && ourSells.length === 0 && ourRedeems.length === 0) {
+      if (enteredCount === 0 && ourSells.length === 0 && ourRedeems.length === 0 && autoExits.length === 0) {
         sections.push(collapsibleSection('😴 Quiet day — no action on our positions', ''));
+      }
+
+      // Auto-exits section (trailing stops, price exits, time limits)
+      if (autoExits.length > 0) {
+        const autoExitPnl = autoExits.reduce((s, e) => s + (e.pnl || 0), 0);
+        const reasonLabels = { 'trailing-stop': '📉 Trailing Stop', 'price-ceiling': '🎯 Take Profit', 'price-floor': '🔻 Cut Loss', 'time-limit': '⏰ Time Limit', 'time-limit-wash': '⏰ Time Limit (wash)' };
+        const reasonCounts = {};
+        autoExits.forEach(e => { reasonCounts[e.reason] = (reasonCounts[e.reason] || 0) + 1; });
+        const reasonSummary = Object.entries(reasonCounts).map(([r, c]) => `${c} ${reasonLabels[r] || r}`).join(', ');
+        const emoji = autoExitPnl >= 0 ? '🤖' : '⚠️';
+        const summary = `${emoji} <b>${autoExits.length}</b> auto-exit${autoExits.length > 1 ? 's' : ''} triggered (${reasonSummary}) → <b>${autoExitPnl >= 0 ? '+' : ''}${fmtUsd(autoExitPnl)}</b> P&L`;
+        const autoRows = autoExits.map(e => {
+          const pnlStr = `<span style="color:${e.pnl >= 0 ? 'var(--positive,#10b981)' : 'var(--negative,#ef4444)'}">${e.pnl >= 0 ? '+' : ''}$${fmt(Math.abs(e.pnl))}</span>`;
+          return `<tr><td>${e.trader}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${e.market}</td><td>${e.side}</td><td>${reasonLabels[e.reason] || e.reason}</td><td class="mono">${e.price != null ? e.price.toFixed(3) : '—'}</td><td class="mono">${pnlStr}</td></tr>`;
+        }).join('');
+        const table = `<div class="table-wrap"><table><thead><tr><th>Trader</th><th>Market</th><th>Side</th><th>Trigger</th><th>Price</th><th>P&L</th></tr></thead><tbody>${autoRows}</tbody></table></div>`;
+        sections.push(collapsibleSection(summary, table, { open: true }));
       }
 
       // Buys section
@@ -85578,7 +85706,7 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
         const emoji = enteredCount >= 10 ? '🔥' : enteredCount >= 5 ? '📈' : '🎯';
         const summary = `${emoji} Opened <b>${enteredCount}</b> new position${enteredCount > 1 ? 's' : ''} (${fmtUsd(ourBuyVol)} deployed) — ${topBuys.join(', ')}${enteredCount > 3 ? ` +${enteredCount - 3} more` : ''}`;
         const buyRows = buys.map(e => {
-          const skipLabel = e._skipReason === 'duplicate' ? 'DUP' : 'NO $';
+          const skipLabel = e._skipReason === 'duplicate' ? 'DUP' : e._skipReason === 'not top trader' ? 'FILTERED' : 'NO $';
           const ourBetStr = e._skipped ? `<span style="color:var(--text-muted);font-size:0.75rem">${skipLabel}</span>` : `<span style="color:var(--positive,#10b981)">$${fmt(e._ourBet||0)}</span>`;
           const rowStyle = e._skipped ? 'opacity:0.4' : '';
           return `<tr style="${rowStyle}"><td>${traderLink(e.tr)}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${marketLink(e.m, e.u)}</td><td>${e.s}</td><td class="mono">${e.p.toFixed(3)}</td><td class="mono">$${fmt(e.sz)}</td><td class="mono">${ourBetStr}</td></tr>`;
