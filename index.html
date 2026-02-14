@@ -85138,17 +85138,13 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
     for (const ev of events) {
       const key = `${ev.tr}|${ev.m}|${ev.s}`;
       if (ev.t === 'B') {
+        // First-buy-only: skip if we already have this position
+        if (state.positions.has(key)) continue;
         const betSize = computeBetSize(state.cash + Array.from(state.positions.values()).reduce((s, p) => s + p.cost, 0));
         const cost = Math.min(betSize, state.cash);
         if (cost <= 0) continue;
         const shares = cost / ev.p;
-        const existing = state.positions.get(key);
-        if (existing) {
-          existing.shares += shares;
-          existing.cost += cost;
-        } else {
-          state.positions.set(key, { cost, shares });
-        }
+        state.positions.set(key, { cost, shares });
         state.cash -= cost;
       } else if (ev.t === 'S') {
         const pos = state.positions.get(key);
@@ -85410,16 +85406,23 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
     const simPositions = new Map(prevSim.positions);
     for (const ev of events) {
       if (ev.t === 'B') {
+        const key = `${ev.tr}|${ev.m}|${ev.s}`;
+        // First-buy-only: skip if already in this position
+        if (simPositions.has(key)) {
+          ev._ourBet = 0;
+          ev._skipped = true;
+          ev._skipReason = 'duplicate';
+          continue;
+        }
         const portVal = simCash + Array.from(simPositions.values()).reduce((s, p) => s + p.cost, 0);
         const betSize = computeBetSize(portVal);
         const cost = Math.min(betSize, simCash);
         ev._ourBet = cost > 0 ? cost : 0;
         ev._skipped = cost <= 0;
+        if (ev._skipped) ev._skipReason = 'no cash';
         if (cost > 0) {
           simCash -= cost;
-          const key = `${ev.tr}|${ev.m}|${ev.s}`;
-          const ex = simPositions.get(key);
-          if (ex) { ex.cost += cost; } else { simPositions.set(key, { cost, shares: cost / ev.p }); }
+          simPositions.set(key, { cost, shares: cost / ev.p });
         }
       } else if (ev.t === 'S') {
         const key = `${ev.tr}|${ev.m}|${ev.s}`;
@@ -85447,13 +85450,15 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
 
     const ourBuyVol = buys.reduce((s, e) => s + (e._ourBet || 0), 0);
     const enteredCount = buys.filter(e => !e._skipped).length;
-    const skippedCount = buys.filter(e => e._skipped).length;
+    const dupCount = buys.filter(e => e._skipReason === 'duplicate').length;
+    const noCashCount = buys.filter(e => e._skipReason === 'no cash').length;
 
     // Summary cards — show OUR activity, not trader volumes
     const cards = [
       { label: 'Total Events', value: String(events.length), color: 'var(--accent)' },
-      { label: '🟢 Our Buys', value: `${enteredCount}/${buys.length}`, sub: fmtUsd(ourBuyVol) + ' deployed', color: 'var(--positive, #10b981)' },
-      { label: '⏭️ Skipped', value: String(skippedCount), sub: 'No cash available', color: 'var(--text-muted)' },
+      { label: '🟢 Our Buys', value: `${enteredCount}`, sub: fmtUsd(ourBuyVol) + ' deployed', color: 'var(--positive, #10b981)' },
+      { label: '🔁 Duplicates', value: String(dupCount), sub: 'Already in position', color: 'var(--text-muted)' },
+      { label: '⏭️ No Cash', value: String(noCashCount), sub: 'Insufficient funds', color: 'var(--text-muted)' },
       { label: '🟠 Sells', value: `${sells.length}`, sub: fmtUsd(sellVol) + ' (trader vol)', color: '#ff9800' },
       { label: '💰 Redeems', value: `${redeems.length}`, sub: fmtUsd(redeemVol) + ' (trader vol)', color: 'var(--positive, #10b981)' },
       { label: 'Whale Volume', value: fmtUsd(buyVol), sub: 'Trader buy volume', color: 'var(--text-muted)' },
@@ -85484,7 +85489,8 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
     }
 
     $('dsBuysBody').innerHTML = buys.length ? buys.map(e => {
-      const ourBetStr = e._skipped ? '<span style="color:var(--text-muted);font-size:0.75rem">SKIP</span>' : `<span style="color:var(--positive,#10b981)">$${fmt(e._ourBet||0)}</span>`;
+      const skipLabel = e._skipReason === 'duplicate' ? 'DUP' : 'NO $';
+      const ourBetStr = e._skipped ? `<span style="color:var(--text-muted);font-size:0.75rem">${skipLabel}</span>` : `<span style="color:var(--positive,#10b981)">$${fmt(e._ourBet||0)}</span>`;
       const rowStyle = e._skipped ? 'opacity:0.4' : '';
       return `<tr style="${rowStyle}"><td>${traderLink(e.tr)}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${marketLink(e.m, e.u)}</td><td>${e.s}</td><td class="mono">${e.p.toFixed(3)}</td><td class="mono">$${fmt(e.sz)}</td><td class="mono">${ourBetStr}</td></tr>`;
     }).join('') : '<tr><td colspan="6" style="color:var(--text-muted);text-align:center;padding:12px">No buys</td></tr>';
