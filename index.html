@@ -85546,15 +85546,18 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
     function collapsibleSection(summary, detailHtml, opts = {}) {
       const id = `ds_sec_${_dsToggleId}_${_dsSecIdx++}`;
       const big = opts.big || false;
+      const open = opts.open || false;
       const hasDetail = detailHtml && detailHtml.trim().length > 0;
       const cursor = hasDetail ? 'cursor:pointer' : '';
-      const chevron = hasDetail ? `<span id="${id}_chev" style="font-size:0.7rem;color:var(--text-muted);margin-left:6px;transition:transform 0.2s">▶</span>` : '';
+      const chevronRotate = open ? 'transform:rotate(90deg)' : '';
+      const chevron = hasDetail ? `<span id="${id}_chev" style="font-size:0.7rem;color:var(--text-muted);margin-left:6px;transition:transform 0.2s;${chevronRotate}">▶</span>` : '';
       const style = big ? 'color:var(--text-primary);font-weight:700;font-size:0.9rem' : '';
+      const detailDisplay = open ? 'block' : 'none';
       return `<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;overflow:hidden">
         <div style="padding:12px 16px;${cursor};user-select:none;font-size:0.82rem;line-height:1.5;color:var(--text-secondary);${style}" ${hasDetail ? `onclick="(function(){var d=document.getElementById('${id}'),c=document.getElementById('${id}_chev');if(d.style.display==='none'){d.style.display='block';c.style.transform='rotate(90deg)'}else{d.style.display='none';c.style.transform=''}})()"` : ''}>
           ${chevron} ${summary}
         </div>
-        ${hasDetail ? `<div id="${id}" style="display:none;border-top:1px solid var(--border);padding:8px 12px;max-height:400px;overflow-y:auto">${detailHtml}</div>` : ''}
+        ${hasDetail ? `<div id="${id}" style="display:${detailDisplay};border-top:1px solid var(--border);padding:8px 12px;max-height:400px;overflow-y:auto">${detailHtml}</div>` : ''}
       </div>`;
     }
 
@@ -85581,7 +85584,7 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
           return `<tr style="${rowStyle}"><td>${traderLink(e.tr)}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${marketLink(e.m, e.u)}</td><td>${e.s}</td><td class="mono">${e.p.toFixed(3)}</td><td class="mono">$${fmt(e.sz)}</td><td class="mono">${ourBetStr}</td></tr>`;
         }).join('');
         const table = `<div class="table-wrap"><table><thead><tr><th>Trader</th><th>Market</th><th>Side</th><th>Price</th><th>Whale $</th><th>Our Bet</th></tr></thead><tbody>${buyRows}</tbody></table></div>`;
-        sections.push(collapsibleSection(summary, table));
+        sections.push(collapsibleSection(summary, table, { open: true }));
       }
 
       // Sells section
@@ -85597,7 +85600,7 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
           return `<tr><td>${traderLink(e.tr)}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${marketLink(e.m, e.u)}</td><td>${e.s}</td><td class="mono">${e.p.toFixed(3)}</td><td class="mono">$${fmt(e.sz)}</td><td class="mono">${pnlStr}</td></tr>`;
         }).join('');
         const table = `<div class="table-wrap"><table><thead><tr><th>Trader</th><th>Market</th><th>Side</th><th>Price</th><th>Whale $</th><th>Our P&L</th></tr></thead><tbody>${sellRows}</tbody></table></div>`;
-        sections.push(collapsibleSection(summary, table, { big: sellPortPct >= 10 }));
+        sections.push(collapsibleSection(summary, table, { big: sellPortPct >= 10, open: true }));
       }
 
       // Redeems section
@@ -85613,7 +85616,7 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
           return `<tr><td>${traderLink(e.tr)}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${marketLink(e.m, e.u)}</td><td>${e.s || '—'}</td><td class="mono">$${fmt(e.sz)}</td><td class="mono">${pnlStr}</td></tr>`;
         }).join('');
         const table = `<div class="table-wrap"><table><thead><tr><th>Trader</th><th>Market</th><th>Side</th><th>Whale $</th><th>Our P&L</th></tr></thead><tbody>${redeemRows}</tbody></table></div>`;
-        sections.push(collapsibleSection(summary, table, { big: redeemPortPct >= 10 }));
+        sections.push(collapsibleSection(summary, table, { big: redeemPortPct >= 10, open: true }));
       }
 
       // Missed / Duplicates
