@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const fs = require('fs');
 
-const history = JSON.parse(fs.readFileSync('data/trade-history-v2.json', 'utf8'));
+const history = JSON.parse(fs.readFileSync('data/trade-history-v3.json', 'utf8'));
 const noise = /Up or Down.*\d+.*(?:AM|PM)/i;
 const cryptoPrice = /\b(Bitcoin|BTC|Ethereum|ETH|Solana|SOL|XRP|Dogecoin|DOGE)\b.*(above|below)\s*\$|FDV above/i;
 

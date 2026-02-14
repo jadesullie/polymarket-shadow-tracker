@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 // ── Load data ──
-const tradeHistory = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/trade-history-v2.json'), 'utf8'));
+const tradeHistory = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/trade-history-v3.json'), 'utf8'));
 const html = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8');
 const start = html.indexOf('const TRADERS = [');
 let depth = 0, i = html.indexOf('[', start);
