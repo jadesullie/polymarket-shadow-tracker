@@ -348,6 +348,11 @@ canvas{width:100%!important;height:300px!important}
         </div>
       </div>
 
+      <!-- Portfolio Simulation -->
+      <div id="dsSimCards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:16px;padding:14px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius)">
+        <div style="grid-column:1/-1;font-size:0.75rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px">📊 Portfolio Simulation</div>
+      </div>
+
       <!-- Running Totals -->
       <div id="dsTotals" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:20px"></div>
 
@@ -84871,6 +84876,119 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
   let fromDate, toDate, currentIdx, days;
   let portfolio, openPositions, cumulativePnl;
 
+  // ── Portfolio Simulation State ──
+  const simSnapshots = {}; // keyed by day index → deep copy of simState
+  let simState = null; // {cash, positions: Map<key,{cost,shares}>, cumPnl, dayPnl}
+
+  function initSimState() {
+    return { cash: getStartingCapital(), positions: new Map(), cumPnl: 0, dayPnl: 0 };
+  }
+
+  function cloneSimState(s) {
+    const c = { cash: s.cash, cumPnl: s.cumPnl, dayPnl: s.dayPnl, positions: new Map() };
+    for (const [k, v] of s.positions) c.positions.set(k, { cost: v.cost, shares: v.shares });
+    return c;
+  }
+
+  function applyEventsToSim(state, events) {
+    state.dayPnl = 0;
+    const portfolioValue = state.cash + Array.from(state.positions.values()).reduce((s, p) => s + p.cost, 0);
+
+    for (const ev of events) {
+      const key = `${ev.tr}|${ev.m}|${ev.s}`;
+      if (ev.t === 'B') {
+        const betSize = computeBetSize(state.cash + Array.from(state.positions.values()).reduce((s, p) => s + p.cost, 0));
+        const cost = Math.min(betSize, state.cash);
+        if (cost <= 0) continue;
+        const shares = cost / ev.p;
+        const existing = state.positions.get(key);
+        if (existing) {
+          existing.shares += shares;
+          existing.cost += cost;
+        } else {
+          state.positions.set(key, { cost, shares });
+        }
+        state.cash -= cost;
+      } else if (ev.t === 'S') {
+        const pos = state.positions.get(key);
+        if (!pos) continue;
+        // Sell entire position (or partial by proportion of dollar amount)
+        const sellRatio = Math.min(1, ev.sz / pos.cost);
+        const soldCost = pos.cost * sellRatio;
+        const soldShares = pos.shares * sellRatio;
+        const proceeds = soldShares * ev.p;
+        const pnl = proceeds - soldCost;
+        state.cash += proceeds;
+        state.dayPnl += pnl;
+        state.cumPnl += pnl;
+        if (sellRatio >= 0.999) {
+          state.positions.delete(key);
+        } else {
+          pos.cost -= soldCost;
+          pos.shares -= soldShares;
+        }
+      } else if (ev.t === 'R') {
+        const pos = state.positions.get(key);
+        if (!pos) continue;
+        // Winning side redeems at $1 per share
+        const proceeds = pos.shares * 1.0;
+        const pnl = proceeds - pos.cost;
+        state.cash += proceeds;
+        state.dayPnl += pnl;
+        state.cumPnl += pnl;
+        state.positions.delete(key);
+      }
+    }
+    return state;
+  }
+
+  async function getSimStateForDay(idx) {
+    // Check cache
+    if (simSnapshots[idx]) return cloneSimState(simSnapshots[idx]);
+    // Find latest cached state before idx
+    let startIdx = -1;
+    for (let i = idx - 1; i >= 0; i--) {
+      if (simSnapshots[i]) { startIdx = i; break; }
+    }
+    let state = startIdx >= 0 ? cloneSimState(simSnapshots[startIdx]) : initSimState();
+    const from = startIdx >= 0 ? startIdx + 1 : 0;
+    for (let i = from; i <= idx; i++) {
+      if (i > from || startIdx < 0) state.dayPnl = 0; // reset dayPnl for intermediate days
+      const evts = await fetchDayEvents(days[i]);
+      applyEventsToSim(state, evts);
+      simSnapshots[i] = cloneSimState(state);
+    }
+    return state;
+  }
+
+  function clearSimCache() {
+    for (const k in simSnapshots) delete simSnapshots[k];
+  }
+
+  function renderSimCards(state) {
+    const locked = Array.from(state.positions.values()).reduce((s, p) => s + p.cost, 0);
+    const portfolioVal = state.cash + locked;
+    const numPos = state.positions.size;
+    const cards = [
+      { label: 'Cash Available', value: fmtUsd(state.cash), color: 'var(--text-primary)' },
+      { label: 'Locked in Trades', value: fmtUsd(locked), color: 'var(--accent)' },
+      { label: 'Open Positions', value: String(numPos), color: 'var(--text-primary)' },
+      { label: "Day's P&L", value: null, html: fmtPnl(state.dayPnl) },
+      { label: 'Cumulative P&L', value: null, html: fmtPnl(state.cumPnl) },
+      { label: 'Portfolio Value', value: fmtUsd(portfolioVal), color: 'var(--accent)' },
+      { label: 'ROI', value: null, html: fmtPnl(portfolioVal - getStartingCapital()), sub: ((portfolioVal / getStartingCapital() - 1) * 100).toFixed(1) + '%' },
+    ];
+    const el = $('dsSimCards');
+    el.innerHTML = '<div style="grid-column:1/-1;font-size:0.75rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px">📊 Portfolio Simulation</div>' +
+      cards.map(c => `
+        <div>
+          <div style="font-size:0.65rem;color:var(--text-muted);margin-bottom:2px">${c.label}</div>
+          <div style="font-size:0.95rem;font-weight:700;font-family:'JetBrains Mono',monospace;color:${c.color || ''}">${c.html || c.value}</div>
+          ${c.sub ? `<div style="font-size:0.65rem;color:var(--text-muted)">${c.sub}</div>` : ''}
+        </div>
+      `).join('');
+  }
+
   const $ = id => document.getElementById(id);
 
   function dateStr(ts) {
@@ -84892,6 +85010,7 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
     $('dsModeFixed').classList.toggle('active', mode === 'fixed');
     $('dsModeDynamic').classList.toggle('active', mode === 'dynamic');
     $('dsModeDesc').textContent = mode === 'fixed' ? 'Same dollar amount every trade' : 'Bet size scales with portfolio value (compounds)';
+    clearSimCache();
     renderDay();
   };
   window.dsSetCapital = function(val) {
@@ -84903,6 +85022,7 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
       }
     });
     dsUpdateLabel();
+    clearSimCache();
     renderDay();
   };
   window.dsSliderChange = function() {
@@ -84910,6 +85030,7 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
     dsPct = DS_PCT_SNAPS[idx] || 3;
     $('dsPctInput').value = dsPct;
     dsUpdateLabel();
+    clearSimCache();
     renderDay();
   };
   window.dsUpdateFromInputs = function() {
@@ -84923,6 +85044,7 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
     DS_PCT_SNAPS.forEach((s, i) => { if (Math.abs(s - dsPct) < Math.abs(DS_PCT_SNAPS[closest] - dsPct)) closest = i; });
     $('dsPctSlider').value = closest;
     dsUpdateLabel();
+    clearSimCache();
     renderDay();
   };
   function dsUpdateLabel() {
@@ -84983,6 +85105,7 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
     portfolio = getStartingCapital();
     openPositions = [];
     cumulativePnl = 0;
+    clearSimCache();
     renderDay();
   }
 
@@ -85070,6 +85193,10 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
     $('dsRedeemsBody').innerHTML = redeems.length ? redeems.map(e => `
       <tr><td>${e.tr}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${e.m}</td><td>${e.s || '—'}</td><td class="mono">$${fmt(e.sz)}</td></tr>
     `).join('') : '<tr><td colspan="4" style="color:var(--text-muted);text-align:center;padding:12px">No redemptions</td></tr>';
+
+    // Portfolio simulation
+    const sim = await getSimStateForDay(currentIdx);
+    renderSimCards(sim);
   }
 
   // Event listeners
