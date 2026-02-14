@@ -85178,20 +85178,34 @@ const DAY_STEPPER_DATA = [{"trader":"0x000d257d","market":"Government shutdown o
 
     // Buys table
     $('dsBuyCount').textContent = `(${buys.length} — $${fmt(buyVol)})`;
+    // Build trader profile lookup
+    const traderProfileMap = {};
+    TRADERS.forEach(t => { if (t.username) traderProfileMap[t.username] = t.profileUrl || `https://polymarket.com/@${t.username}`; });
+
+    function traderLink(name) {
+      const url = traderProfileMap[name];
+      if (url) return `<a href="${url}" target="_blank" style="color:var(--accent);text-decoration:none">${name}</a>`;
+      return name;
+    }
+    function marketLink(title) {
+      const url = `https://polymarket.com/search?q=${encodeURIComponent(title.substring(0, 60))}`;
+      return `<a href="${url}" target="_blank" style="color:var(--text-primary);text-decoration:none;border-bottom:1px dotted var(--text-muted)">${title}</a>`;
+    }
+
     $('dsBuysBody').innerHTML = buys.length ? buys.map(e => `
-      <tr><td>${e.tr}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${e.m}</td><td>${e.s}</td><td class="mono">${e.p.toFixed(3)}</td><td class="mono">$${fmt(e.sz)}</td></tr>
+      <tr><td>${traderLink(e.tr)}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${marketLink(e.m)}</td><td>${e.s}</td><td class="mono">${e.p.toFixed(3)}</td><td class="mono">$${fmt(e.sz)}</td></tr>
     `).join('') : '<tr><td colspan="5" style="color:var(--text-muted);text-align:center;padding:12px">No buys</td></tr>';
 
     // Sells table
     $('dsSellCount').textContent = `(${sells.length} — $${fmt(sellVol)})`;
     $('dsSellsBody').innerHTML = sells.length ? sells.map(e => `
-      <tr><td>${e.tr}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${e.m}</td><td>${e.s}</td><td class="mono">${e.p.toFixed(3)}</td><td class="mono">$${fmt(e.sz)}</td></tr>
+      <tr><td>${traderLink(e.tr)}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${marketLink(e.m)}</td><td>${e.s}</td><td class="mono">${e.p.toFixed(3)}</td><td class="mono">$${fmt(e.sz)}</td></tr>
     `).join('') : '<tr><td colspan="5" style="color:var(--text-muted);text-align:center;padding:12px">No sells</td></tr>';
 
     // Redeems table
     $('dsRedeemCount').textContent = `(${redeems.length} — $${fmt(redeemVol)})`;
     $('dsRedeemsBody').innerHTML = redeems.length ? redeems.map(e => `
-      <tr><td>${e.tr}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${e.m}</td><td>${e.s || '—'}</td><td class="mono">$${fmt(e.sz)}</td></tr>
+      <tr><td>${traderLink(e.tr)}</td><td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${marketLink(e.m)}</td><td>${e.s || '—'}</td><td class="mono">$${fmt(e.sz)}</td></tr>
     `).join('') : '<tr><td colspan="4" style="color:var(--text-muted);text-align:center;padding:12px">No redemptions</td></tr>';
 
     // Portfolio simulation
