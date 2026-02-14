@@ -281,10 +281,8 @@ canvas{width:100%!important;height:300px!important}
 
   <!-- JOURNAL VIEW -->
   <div class="view" id="view-journal">
-    <!-- swipe removed -->
-    <div id="dayStepperJournal">
-      <!-- Sticky Step Controls -->
-      <div id="dsStickyNav" style="position:sticky;top:0;z-index:50;background:var(--bg-primary);padding:8px 0 8px 0;border-bottom:1px solid var(--border);margin-bottom:16px">
+    <!-- Sticky Step Controls - outside dayStepperJournal for proper sticky -->
+    <div id="dsStickyNav" style="position:sticky;top:0;z-index:50;background:var(--bg-primary);padding:8px 0 8px 0;border-bottom:1px solid var(--border);margin-bottom:16px">
         <div style="display:flex;align-items:center;justify-content:center;gap:16px">
           <button id="dsPrev" style="padding:10px 24px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);cursor:pointer;font-family:inherit;font-size:1rem;font-weight:600">◀ Prev</button>
           <div style="text-align:center;min-width:180px">
@@ -295,6 +293,7 @@ canvas{width:100%!important;height:300px!important}
         </div>
       </div>
 
+    <div id="dayStepperJournal">
       <!-- Settings -->
       <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;margin-bottom:16px">
         <!-- Starting Capital -->
