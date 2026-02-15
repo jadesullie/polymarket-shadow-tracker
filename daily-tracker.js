@@ -57,7 +57,7 @@ function summarize(state) {
 }
 
 function fmtDollar(n) {
-  return (n >= 0 ? '+' : '') + '$' + Math.abs(n).toFixed(0);
+  return (n >= 0 ? '+' : '-') + '$' + Math.abs(n).toFixed(0);
 }
 
 function main() {
@@ -87,6 +87,7 @@ function main() {
     msg += `📂 Open positions │ ${a.openCount} ($${a.positionsAtCost.toFixed(0)}) │ ${b.openCount} ($${b.positionsAtCost.toFixed(0)})\n`;
     msg += `💰 Portfolio value │ ~$${a.totalValue.toFixed(0)} │ ~$${b.totalValue.toFixed(0)}\n`;
     msg += `📈 Realized P&L │ ${fmtDollar(a.realizedPnl)} │ ${fmtDollar(b.realizedPnl)}\n`;
+    // ^ fmtDollar handles sign
     msg += `🎯 ROI │ ${a.roi}% │ ${b.roi}%\n`;
     msg += `🔄 Trades │ ${a.trades} (${a.wr} WR) │ ${b.trades} (${b.wr} WR)\n`;
   }
