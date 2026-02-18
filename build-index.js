@@ -27,6 +27,10 @@ for (const [addr, positions] of Object.entries(tradeHistory)) {
   const trader = traderByAddr[addr.toLowerCase()];
   for (const p of positions) {
     if (noiseRe.test(p.market) || cryptoPriceRe.test(p.market)) continue;
+    // Entry ceiling: skip entries at >= $0.90
+    if (p.entryPrice >= 0.90) continue;
+    // Cap exit price at $1.00 (binary market max)
+    if (p.exitPrice > 1.0) p.exitPrice = 1.0;
     allPositions.push({
       ...p,
       address: addr.toLowerCase(),
@@ -106,7 +110,7 @@ for (const [tf, startDate] of Object.entries(timeframes)) {
   const tfPositions = allPositions.filter(p => p.entryTs >= startTs);
   
   if (tfPositions.length === 0) {
-    result[tf] = { curve: [{ date: startDate.toISOString().substring(0,10), equal: 100, sharpe: 100, optimal: 100, recencyOpt: 100 }], stats: { totalReturn: {equal:0,sharpe:0,optimal:0,recencyOpt:0}, trades: 0, winRate: 0 } };
+    result[tf] = { curve: [{ date: startDate.toISOString().substring(0,10), fixedK: 100, confidence: 100, compound: 100}], stats: { totalReturn: {fixedK:0,confidence:0,compound:0,}, trades: 0, winRate: 0 } };
     continue;
   }
 
@@ -140,7 +144,7 @@ for (const [tf, startDate] of Object.entries(timeframes)) {
   let wins = 0, total = 0;
   
   const curve = [];
-  curve.push({ date: startDate.toISOString().substring(0,10), equal: 100, sharpe: 100, optimal: 100, recencyOpt: 100 });
+  curve.push({ date: startDate.toISOString().substring(0,10), fixedK: 100, confidence: 100, compound: 100});
   
   for (const date of dates) {
     const positions = byDate[date];
@@ -164,7 +168,7 @@ for (const [tf, startDate] of Object.entries(timeframes)) {
       const optPositionSize = Math.min(BASE_POSITION * optWeight, optCapital * 0.1);
       optCapital += optPositionSize * ret;
       
-      // Recency-optimal: uses v2 blended weights
+      // Recency-compound: uses v2 blended weights
       const v2w = traderWeightsV2[p.address];
       const recWeight = v2w ? v2w.recommendedWeight : 1;
       const recPositionSize = Math.min(BASE_POSITION * recWeight, recCapital * 0.1);
@@ -173,10 +177,9 @@ for (const [tf, startDate] of Object.entries(timeframes)) {
     
     curve.push({
       date,
-      equal: Math.round((eqCapital / STARTING_CAPITAL) * 1000) / 10,
-      sharpe: Math.round((shCapital / STARTING_CAPITAL) * 1000) / 10,
-      optimal: Math.round((optCapital / STARTING_CAPITAL) * 1000) / 10,
-      recencyOpt: Math.round((recCapital / STARTING_CAPITAL) * 1000) / 10,
+      fixedK: Math.round((eqCapital / STARTING_CAPITAL) * 1000) / 10,
+      confidence: Math.round((shCapital / STARTING_CAPITAL) * 1000) / 10,
+      compound: Math.round((optCapital / STARTING_CAPITAL) * 1000) / 10,
       n: positions.length,
     });
   }
@@ -185,17 +188,16 @@ for (const [tf, startDate] of Object.entries(timeframes)) {
     curve,
     stats: {
       totalReturn: {
-        equal: Math.round((eqCapital / STARTING_CAPITAL - 1) * 1000) / 10,
-        sharpe: Math.round((shCapital / STARTING_CAPITAL - 1) * 1000) / 10,
-        optimal: Math.round((optCapital / STARTING_CAPITAL - 1) * 1000) / 10,
-        recencyOpt: Math.round((recCapital / STARTING_CAPITAL - 1) * 1000) / 10,
+        fixedK: Math.round((eqCapital / STARTING_CAPITAL - 1) * 1000) / 10,
+        confidence: Math.round((shCapital / STARTING_CAPITAL - 1) * 1000) / 10,
+        compound: Math.round((optCapital / STARTING_CAPITAL - 1) * 1000) / 10,
       },
       trades: total,
       winRate: total > 0 ? Math.round((wins / total) * 1000) / 10 : 0,
     },
   };
   
-  console.log(`${tf}: ${tfPositions.length} positions (entry-filtered), ${dates.length} days, EQ=${result[tf].stats.totalReturn.equal}%, SH=${result[tf].stats.totalReturn.sharpe}%, OPT=${result[tf].stats.totalReturn.optimal}%, REC=${result[tf].stats.totalReturn.recencyOpt}%`);
+  console.log(`${tf}: ${tfPositions.length} positions (entry-filtered), ${dates.length} days, FK=${result[tf].stats.totalReturn.fixedK}%, CF=${result[tf].stats.totalReturn.confidence}%, CM=${result[tf].stats.totalReturn.compound}%`);
 }
 
 fs.writeFileSync(path.join(__dirname, 'data/index-by-timeframe.json'), JSON.stringify(result, null, 2));
@@ -205,7 +207,7 @@ console.log('\nWritten to data/index-by-timeframe.json');
 console.log('\n=== COMPARISON (old exit-filtered → new entry-filtered) ===');
 const oldReturns = { '1W': 1077.8, '1M': 1391.7, '3M': 1954.2, '6M': 2435.7, '1Y': 3950.3, 'YTD': 1551.6, 'ALL': 5643.2 };
 for (const tf of Object.keys(timeframes)) {
-  const newR = result[tf].stats.totalReturn.equal;
+  const newR = result[tf].stats.totalReturn.fixedK;
   const oldR = oldReturns[tf] || '?';
   console.log(`${tf}: EQ ${oldR}% → ${newR}% (${newR < oldR ? '↓' : '↑'})`);
 }
