@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from 'fs';
 
-const traders = JSON.parse(readFileSync('/Users/jadesullie/.openclaw/workspace/polymarket-tracker/data/all-traders.json', 'utf8'));
-const tradeHistory = JSON.parse(readFileSync('/Users/jadesullie/.openclaw/workspace/polymarket-tracker/data/trade-history-full.json', 'utf8'));
+const traders = JSON.parse(readFileSync('./data/all-traders.json', 'utf8'));
+const tradeHistory = JSON.parse(readFileSync('./data/trade-history-full.json', 'utf8'));
 
 // Build address->trader lookup
 const traderByAddr = {};
@@ -435,7 +435,7 @@ for (const [name, weightFn] of Object.entries(strategies)) {
 const output = { traderStats, clusterMap: {}, riskMap: {}, allTrades: allTrades.length };
 
 // Serialize key stats
-writeFileSync('/Users/jadesullie/.openclaw/workspace/polymarket-tracker/analysis-output.json', JSON.stringify({
+writeFileSync('./analysis-output.json', JSON.stringify({
   traderCount: traders.length,
   tradersWithHistory: traderStats.length,
   totalTrades: allTrades.length,

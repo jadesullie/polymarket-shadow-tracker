@@ -1,10 +1,10 @@
 #!/bin/bash
 # Fetch trade history for all tracked Polymarket wallets
-DATA_DIR="/Users/jadesullie/.openclaw/workspace/polymarket-tracker/data"
+DATA_DIR="./data"
 mkdir -p "$DATA_DIR/raw-trades"
 
 # Read trader addresses from the DB
-TRADERS_DB="/Users/jadesullie/.openclaw/workspace/memory/polymarket-traders-db.json"
+TRADERS_DB=".//memory/polymarket-traders-db.json"
 
 # Extract username and address pairs
 cat "$TRADERS_DB" | python3 -c "

@@ -1,6 +1,6 @@
 #!/bin/bash
 # Runs minute-poller.js and sends Discord alert if new trades found
-cd /Users/jadesullie/.openclaw/workspace/polymarket-tracker
+cd .//polymarket-tracker
 
 OUTPUT=$(node minute-poller.js 2>/dev/null)
 

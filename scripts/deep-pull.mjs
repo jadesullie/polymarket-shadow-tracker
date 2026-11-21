@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join } from 'path';
 
-const BASE = '/Users/jadesullie/.openclaw/workspace/polymarket-tracker';
+const BASE = './/polymarket-tracker';
 const DATA = join(BASE, 'data');
 const RAW = join(DATA, 'raw-trades');
 mkdirSync(RAW, { recursive: true });

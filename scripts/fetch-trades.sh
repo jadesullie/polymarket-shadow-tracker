@@ -1,7 +1,7 @@
 #!/bin/bash
 # Fetch all trades for all traders, 10 at a time in parallel
-DATADIR="/Users/jadesullie/.openclaw/workspace/polymarket-tracker/data/raw-trades"
-TRADERS_FILE="/Users/jadesullie/.openclaw/workspace/polymarket-tracker/data/all-traders.json"
+DATADIR="./data/raw-trades"
+TRADERS_FILE="./data/all-traders.json"
 mkdir -p "$DATADIR"
 
 # Extract addresses

@@ -1,7 +1,7 @@
 const fs = require('fs');
 const { execSync } = require('child_process');
 
-const batch2 = JSON.parse(fs.readFileSync('/Users/jadesullie/.openclaw/workspace/memory/polymarket-traders-batch2.json', 'utf8'));
+const batch2 = JSON.parse(fs.readFileSync('.//memory/polymarket-traders-batch2.json', 'utf8'));
 const existing = JSON.parse(fs.readFileSync('data/traders.json', 'utf8'));
 
 // Normalize batch2 traders

@@ -4,9 +4,9 @@ import json, os, re
 from collections import defaultdict
 from datetime import datetime
 
-DATA_DIR = "/Users/jadesullie/.openclaw/workspace/polymarket-tracker/data"
+DATA_DIR = "./data"
 RAW_DIR = os.path.join(DATA_DIR, "raw-trades")
-TRADERS_DB = "/Users/jadesullie/.openclaw/workspace/memory/polymarket-traders-db.json"
+TRADERS_DB = ".//memory/polymarket-traders-db.json"
 
 with open(TRADERS_DB) as f:
     traders = json.load(f)
@@ -165,7 +165,7 @@ if os.path.exists(traders_json_path):
     print(f"\nUpdated {traders_json_path}")
 
 # Now update index.html
-index_path = "/Users/jadesullie/.openclaw/workspace/polymarket-tracker/index.html"
+index_path = "./index.html"
 with open(index_path, "r") as f:
     html = f.read()
 

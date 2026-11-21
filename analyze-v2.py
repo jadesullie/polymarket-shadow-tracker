@@ -357,7 +357,7 @@ Active clusters (1.5×): {', '.join(sorted(ACTIVE_CLUSTERS))}
 Played-out (0.3×): {', '.join(sorted(PLAYED_OUT))}
 """
 
-with open('/Users/jadesullie/.openclaw/workspace/memory/polymarket-strategy-reanalysis.md', 'w') as f:
+with open('.//memory/polymarket-strategy-reanalysis.md', 'w') as f:
     f.write(report)
 print(f"\nWrote reanalysis report")
 
