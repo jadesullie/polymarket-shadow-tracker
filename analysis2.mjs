@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 
-const traders = JSON.parse(readFileSync('/Users/jadesullie/.openclaw/workspace/polymarket-tracker/data/all-traders.json', 'utf8'));
-const tradeHistory = JSON.parse(readFileSync('/Users/jadesullie/.openclaw/workspace/polymarket-tracker/data/trade-history-full.json', 'utf8'));
+const traders = JSON.parse(readFileSync('./data/all-traders.json', 'utf8'));
+const tradeHistory = JSON.parse(readFileSync('./data/trade-history-full.json', 'utf8'));
 
 const traderByAddr = {};
 for (const t of traders) traderByAddr[t.address] = t;

@@ -3,8 +3,8 @@
 import json, re, os
 from datetime import datetime
 
-DATA_DIR = "/Users/jadesullie/.openclaw/workspace/polymarket-tracker/data"
-INDEX_PATH = "/Users/jadesullie/.openclaw/workspace/polymarket-tracker/index.html"
+DATA_DIR = "./data"
+INDEX_PATH = "./index.html"
 
 with open(os.path.join(DATA_DIR, "trade-history.json")) as f:
     trade_history = json.load(f)

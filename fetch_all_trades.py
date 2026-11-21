@@ -6,8 +6,8 @@ import time
 import os
 from collections import defaultdict
 
-DATA_DIR = "/Users/jadesullie/.openclaw/workspace/polymarket-tracker/data"
-TRADERS_DB = "/Users/jadesullie/.openclaw/workspace/memory/polymarket-traders-db.json"
+DATA_DIR = "./data"
+TRADERS_DB = ".//memory/polymarket-traders-db.json"
 RAW_DIR = os.path.join(DATA_DIR, "raw-trades")
 os.makedirs(RAW_DIR, exist_ok=True)
 

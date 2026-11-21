@@ -449,7 +449,7 @@ Consider Strategy E (Priority Queue) if implementing trader-tier-aware allocatio
 \`\`\`
 `;
 
-fs.writeFileSync('/Users/jadesullie/.openclaw/workspace/memory/polymarket-capital-allocation.md', md);
+fs.writeFileSync('.//memory/polymarket-capital-allocation.md', md);
 console.log('\nSaved memory/polymarket-capital-allocation.md');
 console.log('Saved data/capital-strategies.json');
 console.log(`JSON size: ${(fs.statSync('data/capital-strategies.json').size/1024).toFixed(0)}KB`);
